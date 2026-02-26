@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>About — The DIY Decider</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #0a0a0a;
+    color: #f0ebe0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 3rem;
+  }
+
+  /* NAV */
+  nav {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-top: 0.5rem;
+  }
+  .nav-logo {
+    font-family: Arial Black, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #f0ebe0;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #f59e0b; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #444;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #f59e0b; }
+  .nav-links a.active { color: #f59e0b; }
+
+  /* HEADER */
+  .header {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 2rem;
+  }
+  .header h1 {
+    font-family: Arial Black, Arial, sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #f0ebe0;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 span { color: #f59e0b; }
+  .header-rule {
+    width: 40px;
+    height: 3px;
+    background: #f59e0b;
+    border-radius: 2px;
+    margin-top: 1rem;
+  }
+
+  /* CARD */
+  .card {
+    width: 100%;
+    max-width: 500px;
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .about-text {
+    font-family: Georgia, Times New Roman, serif;
+    font-size: 1.05rem;
+    color: #b0a898;
+    line-height: 1.8;
+  }
+
+  .about-text p + p { margin-top: 1.2rem; }
+
+  .divider {
+    height: 1px;
+    background: #1e1e1e;
+    border: none;
+  }
+
+  /* HOW IT WORKS */
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #f59e0b;
+    margin-bottom: 1rem;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 1rem; }
+  .step { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-num {
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #f59e0b;
+    min-width: 28px;
+    line-height: 1.4;
+  }
+  .step-text {
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* COFFEE */
+  .coffee-block {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-left: 3px solid #f59e0b;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .coffee-block p {
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.7;
+  }
+  .btn-coffee {
+    display: inline-block;
+    background: #f59e0b;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem 1.4rem;
+    font-family: Arial Black, sans-serif;
+    font-weight: 900;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.15s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-coffee:active { opacity: 0.75; transform: scale(0.97); }
+
+  /* SIGNATURE */
+  .signature {
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    color: #444;
+    font-style: italic;
+  }
+
+  /* CTA back to app */
+  .btn-try {
+    display: block;
+    background: transparent;
+    border: 1.5px solid #242424;
+    border-radius: 10px;
+    padding: 0.95rem;
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-try:hover { border-color: #f59e0b; color: #f59e0b; }
+
+  /* FOOTER */
+  footer {
+    color: #1c1c1c;
+    font-size: 0.62rem;
+    margin-top: 2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">The DIY <span>Decider</span></a>
+    <div class="nav-links">
+      <a href="index.html">Tool</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+  </nav>
+
+  <div class="header">
+    <h1>About the <span>Decider</span></h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="card">
+
+    <div class="about-text">
+      <p>The DIY Decider was built to give you straight advice — whether that's the confidence to grab your tools or the good sense to put them down.</p>
+      <p>Tell the tool what you're trying to tackle. It'll size you up based on the task, the skill required, and what you tell it about yourself — then give you a verdict with zero sugarcoating.</p>
+      <p>Take the advice. Or don't. But don't say you weren't warned.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <div class="section-label">How it works</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Enter your project — be specific. "Fix a leaky faucet" beats "plumbing stuff."</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Answer 5 yes/no questions designed by a guy who's seen every DIY disaster imaginable.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Get a straight verdict — DIY or call a pro — plus a cost estimate and resources if you're going for it.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="coffee-block">
+      <p>If you found this useful, entertaining, or both — consider buying me a coffee. It keeps the lights on and the attitude flowing.</p>
+      <!-- Replace # with your Buy Me a Coffee link -->
+      <a href="#" class="btn-coffee">☕ &nbsp;Buy Me a Coffee</a>
+    </div>
+
+    <div class="signature">— Dave</div>
+
+    <a href="index.html" class="btn-try">← Back to the Tool</a>
+
+  </div>
+
+  <footer>The DIY Decider · Powered by Claude</footer>
+
+</body>
+</html>
