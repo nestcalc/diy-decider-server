@@ -4,282 +4,447 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="The DIY Decider — 5 questions. 1 straight answer. Find out if you should tackle your home project yourself or call a pro.">
 <title>The DIY Decider</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-THPQQG9ZB4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-THPQQG9ZB4');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  body {
-    background: #0a0a0a;
-    color: #f0ebe0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
+body {
+  background: #f5f0e8;
+  font-family: 'Barlow Condensed', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  nav {
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  .nav-logo {
-    font-family: Arial Black, Arial, sans-serif;
-    font-weight: 900;
-    font-size: 1rem;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    color: #f0ebe0;
-    text-decoration: none;
-  }
-  .nav-logo span { color: #f59e0b; }
-  .nav-links { display: flex; gap: 1.5rem; }
-  .nav-links a {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #444;
-    text-decoration: none;
-  }
-  .nav-links a.active { color: #f59e0b; }
+/* NAV */
+nav {
+  width: 100%;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-decoration: none;
+}
+.nav-logo span { color: #ffd700; }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: #ffd700; }
 
-  .header { text-align: center; margin-bottom: 2rem; }
-  .header h1 {
-    font-family: Arial Black, Arial, sans-serif;
-    font-weight: 900;
-    font-size: clamp(2rem, 8vw, 3.2rem);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    text-transform: uppercase;
-    color: #f0ebe0;
-  }
-  .header h1 span { color: #f59e0b; }
-  .header p {
-    font-size: 0.72rem;
-    color: #333;
-    margin-top: 0.6rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+/* HEADER BANNER */
+.site-header {
+  width: 100%;
+  background: #c0392b;
+  padding: 1.5rem 1.5rem 1.2rem;
+  text-align: center;
+  border-bottom: 4px solid #1a1a1a;
+}
+.site-header .eyebrow {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.site-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1;
+}
+.site-header h1 span { color: #ffd700; }
+.site-header .tagline {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
 
-  .card {
-    width: 100%;
-    max-width: 500px;
-    background: #111;
-    border: 1px solid #1e1e1e;
-    border-radius: 18px;
-    padding: 2rem;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+/* MAIN CONTENT */
+main {
+  width: 100%;
+  max-width: 520px;
+  padding: 1.8rem 1rem 3rem;
+  flex: 1;
+}
 
-  /* INPUT */
-  .input-section { display: flex; flex-direction: column; gap: 1.2rem; }
-  label.field-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #444;
-  }
-  input[type="text"] {
-    background: #0a0a0a;
-    border: 1px solid #242424;
-    border-radius: 10px;
-    padding: 0.95rem 1rem;
-    color: #f0ebe0;
-    font-size: 16px;
-    font-family: Georgia, serif;
-    outline: none;
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    transition: border-color 0.2s;
-  }
-  input[type="text"]:focus { border-color: #f59e0b; }
+/* CARD */
+.card {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  overflow: hidden;
+}
 
-  .error-msg { color: #f87171; font-size: 0.8rem; word-break: break-word; }
+.card-header {
+  background: #1a1a1a;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-header-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #ffd700;
+  text-transform: uppercase;
+}
+.card-header-dots {
+  display: flex; gap: 4px;
+}
+.card-header-dots span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #333;
+}
 
-  .btn-main {
-    background: #f59e0b;
-    color: #0a0a0a;
-    border: none;
-    border-radius: 10px;
-    padding: 0.95rem;
-    font-size: 0.85rem;
-    font-family: Arial Black, sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 100%;
-    transition: opacity 0.1s, transform 0.1s;
-  }
-  .btn-main:disabled { background: #181818; color: #333; cursor: not-allowed; box-shadow: none; }
-  .btn-main:active { opacity: 0.75; transform: scale(0.97); }
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-height: 280px;
+  justify-content: center;
+}
 
-  /* LOADING */
-  .loading-section { text-align: center; }
-  .spinner {
-    display: inline-block;
-    width: 28px; height: 28px;
-    border: 2.5px solid #1a1a1a;
-    border-top-color: #f59e0b;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    margin-bottom: 1rem;
-  }
-  @keyframes spin { to { transform: rotate(360deg); -webkit-transform: rotate(360deg); } }
-  .loading-section p { font-size: 0.82rem; color: #3a3a3a; letter-spacing: 0.06em; }
+/* INPUT */
+.field-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+input[type="text"] {
+  background: #f9f9f9;
+  border: 2px solid #1a1a1a;
+  border-radius: 0;
+  padding: 0.85rem 1rem;
+  color: #1a1a1a;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+input[type="text"]:focus { border-color: #c0392b; }
 
-  /* QUESTIONS */
-  .questions-section { display: flex; flex-direction: column; gap: 1.6rem; }
-  .progress-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-  .progress-num { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: #f59e0b; }
-  .progress-label { font-size: 0.65rem; color: #2a2a2a; letter-spacing: 0.08em; }
-  .progress-bar-bg { height: 2px; background: #181818; border-radius: 2px; }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #d97706, #f59e0b);
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-  .question-text {
-    font-size: 1.2rem;
-    color: #f0ebe0;
-    line-height: 1.55;
-    font-family: Georgia, Times New Roman, serif;
-    min-height: 3.6em;
-  }
-  .yn-buttons { display: flex; gap: 0.8rem; }
-  .btn-yes, .btn-no {
-    flex: 1;
-    border: 1.5px solid;
-    border-radius: 10px;
-    padding: 1rem;
-    font-family: Arial Black, sans-serif;
-    font-weight: 900;
-    font-size: 0.92rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: opacity 0.1s, transform 0.1s;
-    -webkit-appearance: none;
-  }
-  .btn-yes { background: #0b1a0b; border-color: #162816; color: #4ade80; }
-  .btn-no  { background: #1a0b0b; border-color: #281616; color: #f87171; }
-  .btn-yes:active, .btn-no:active { opacity: 0.7; transform: scale(0.96); }
+.error-msg {
+  color: #c0392b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  word-break: break-word;
+}
 
-  .dots { display: flex; gap: 5px; justify-content: center; align-items: center; }
-  .dot {
-    height: 6px;
-    border-radius: 3px;
-    background: #1c1c1c;
-    transition: all 0.3s ease;
-  }
-  .dot.done { background: #f59e0b; width: 6px; }
-  .dot.active { background: #f0ebe0; width: 20px; }
-  .dot.upcoming { width: 6px; }
+/* BUTTONS */
+.btn-main {
+  background: #1a1a1a;
+  color: #ffd700;
+  border: 2px solid #1a1a1a;
+  border-radius: 0;
+  padding: 0.95rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.1s, transform 0.1s;
+  box-shadow: 3px 3px 0 #c0392b;
+}
+.btn-main:disabled {
+  background: #ddd;
+  color: #aaa;
+  border-color: #ddd;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.btn-main:active { opacity: 0.85; transform: scale(0.98); }
 
-  /* DELIBERATING */
-  .deliberating-section { text-align: center; padding: 1rem 0; }
-  .wheel-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 1.8rem; }
-  .wheel-glow {
-    position: absolute;
-    top: -4px; right: -4px; bottom: -4px; left: -4px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  #wheelSvg {
-    transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
-    -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
-  }
-  .wheel-pointer {
-    position: absolute;
-    top: -10px; left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 16px solid #f59e0b;
-    z-index: 10;
-  }
-  .deliberating-phrase { font-size: 0.85rem; color: #555; letter-spacing: 0.05em; min-height: 1.3em; transition: opacity 0.3s; }
+/* DIVIDER */
+.hw-divider {
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #1a1a1a 0, #1a1a1a 8px, transparent 8px, transparent 14px);
+  margin: 0.2rem 0;
+}
 
-  /* VERDICT */
-  .verdict-section { display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.5s ease; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* LOADING */
+.loading-section { text-align: center; padding: 1rem 0; }
+.spinner {
+  display: inline-block;
+  width: 32px; height: 32px;
+  border: 3px solid #eee;
+  border-top-color: #c0392b;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-bottom: 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-section p {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
-  .verdict-banner {
-    border-radius: 14px;
-    padding: 1.6rem 1.4rem;
-    text-align: center;
-  }
-  .verdict-emoji { font-size: 2.2rem; margin-bottom: 0.6rem; }
-  .verdict-label {
-    font-family: Arial Black, Arial, sans-serif;
-    font-size: clamp(1.4rem, 5vw, 2rem);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    line-height: 1;
-    text-transform: uppercase;
-  }
-  .verdict-tagline {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: #333;
-    margin-top: 0.5rem;
-  }
+/* QUESTIONS */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.progress-badge {
+  background: #c0392b;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+}
+.progress-pct {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #bbb;
+  letter-spacing: 0.08em;
+}
+.progress-track {
+  height: 5px;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+.progress-fill {
+  height: 100%;
+  background: #c0392b;
+  transition: width 0.4s ease;
+}
 
-  .info-block {
-    background: #0d0d0d;
-    border: 1px solid #1e1e1e;
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-  }
-  .info-block-label {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 0.5rem;
-  }
-  .info-block p { font-size: 0.92rem; color: #999; line-height: 1.7; font-family: Georgia, serif; }
+.question-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  min-height: 3.6em;
+}
 
-  .btn-reset {
-    background: transparent;
-    border: 1.5px solid #1c1c1c;
-    border-radius: 10px;
-    padding: 0.8rem;
-    color: #444;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 0.2rem;
-    transition: opacity 0.1s, transform 0.1s;
-    -webkit-appearance: none;
-  }
-  .btn-reset:active { opacity: 0.7; transform: scale(0.97); }
+.yn-buttons { display: flex; gap: 0.8rem; }
+.btn-yes {
+  flex: 1;
+  background: #2d7a2d;
+  color: #fff;
+  border: 2px solid #1a1510;
+  border-radius: 0;
+  padding: 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  transition: opacity 0.1s, transform 0.1s;
+}
+.btn-no {
+  flex: 1;
+  background: #c0392b;
+  color: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 0;
+  padding: 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  transition: opacity 0.1s, transform 0.1s;
+}
+.btn-yes:active, .btn-no:active { opacity: 0.8; transform: scale(0.97); box-shadow: 1px 1px 0 #1a1a1a; }
 
-  .footer {
-    color: #1c1c1c;
-    font-size: 0.62rem;
-    margin-top: 2rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
+.dots { display: flex; gap: 5px; justify-content: center; align-items: center; }
+.dot {
+  height: 6px; border-radius: 1px;
+  background: #ddd;
+  transition: all 0.3s ease;
+}
+.dot.done { background: #c0392b; width: 6px; }
+.dot.active { background: #1a1a1a; width: 20px; }
+.dot.upcoming { width: 6px; }
 
-  .hidden { display: none !important; }
+/* DELIBERATING */
+.deliberating-section { text-align: center; padding: 1rem 0; }
+.wheel-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 1.5rem; }
+.wheel-glow {
+  position: absolute;
+  top: -4px; right: -4px; bottom: -4px; left: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,57,43,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+#wheelSvg {
+  transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+  -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.wheel-pointer {
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 16px solid #c0392b;
+  z-index: 10;
+}
+.deliberating-phrase {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-height: 1.3em;
+}
+
+/* VERDICT */
+.verdict-section { display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.5s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.verdict-banner {
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  border: 2px solid #1a1a1a;
+}
+.verdict-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+.verdict-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.verdict-tagline {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  opacity: 0.6;
+}
+
+.info-block {
+  background: #f9f9f9;
+  border: 2px solid #1a1a1a;
+  border-left: 5px solid #c0392b;
+  padding: 0.9rem 1rem;
+}
+.info-block-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c0392b;
+  margin-bottom: 0.4rem;
+}
+.info-block p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.6;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 2px solid #ddd;
+  border-radius: 0;
+  padding: 0.8rem;
+  color: #aaa;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s, color 0.2s;
+  -webkit-appearance: none;
+}
+.btn-reset:active { opacity: 0.7; }
+
+/* FOOTER */
+footer {
+  width: 100%;
+  background: #1a1a1a;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+.footer-left {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #444;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.btn-coffee {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a1a1a;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  border: 2px solid #ffd700;
+  transition: opacity 0.15s;
+}
+.btn-coffee:active { opacity: 0.8; }
+
+.hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -292,81 +457,96 @@
   </div>
 </nav>
 
-<div class="header">
-  <h1>The DIY <span>Decider</span></h1>
-  <p>5 questions. 1 straight answer. No ego.</p>
+<div class="site-header">
+  <div class="eyebrow">Est. 2025 · Straight Talk Only</div>
+  <h1>THE DIY <span>DECIDER</span></h1>
+  <div class="tagline">5 questions · 1 straight answer · no ego</div>
 </div>
 
-<div class="card">
-
-  <!-- INPUT -->
-  <div id="stage-input" class="input-section">
-    <label class="field-label" for="projectInput">What's the project?</label>
-    <input type="text" id="projectInput" placeholder="e.g. Replace a bathroom faucet..." />
-    <div id="errorMsg" class="error-msg hidden"></div>
-    <button class="btn-main" id="btnStart" onclick="startProject()">Let's Find Out →</button>
-  </div>
-
-  <!-- LOADING QUESTIONS -->
-  <div id="stage-loading-q" class="loading-section hidden">
-    <div class="spinner"></div>
-    <p>Sizing up your project...</p>
-  </div>
-
-  <!-- QUESTIONS -->
-  <div id="stage-questions" class="questions-section hidden">
-    <div>
-      <div class="progress-header">
-        <span class="progress-num" id="progressNum">1 <span style="color:#2a2a2a">/ 5</span></span>
-        <span class="progress-label" id="progressLabel">Just getting started</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+<main>
+  <div class="card">
+    <div class="card-header">
+      <span class="card-header-label" id="cardHeaderLabel">Start Your Assessment</span>
+      <div class="card-header-dots">
+        <span></span><span></span><span></span>
       </div>
     </div>
-    <p class="question-text" id="questionText"></p>
-    <div class="yn-buttons">
-      <button class="btn-yes" onclick="submitAnswer('Yes')">✓&nbsp;&nbsp;Yes</button>
-      <button class="btn-no"  onclick="submitAnswer('No')">✗&nbsp;&nbsp;No</button>
+
+    <div class="card-body">
+
+      <!-- INPUT -->
+      <div id="stage-input">
+        <div class="field-label">What's the project?</div>
+        <input type="text" id="projectInput" placeholder="e.g. Replace a bathroom faucet..." />
+        <div id="errorMsg" class="error-msg hidden"></div>
+        <div class="hw-divider"></div>
+        <button class="btn-main" id="btnStart" onclick="startProject()">Let's Find Out →</button>
+      </div>
+
+      <!-- LOADING -->
+      <div id="stage-loading-q" class="loading-section hidden">
+        <div class="spinner"></div>
+        <p>Sizing up your project...</p>
+      </div>
+
+      <!-- QUESTIONS -->
+      <div id="stage-questions" class="hidden">
+        <div class="progress-header">
+          <span class="progress-badge" id="progressBadge">Question 1 of 5</span>
+          <span class="progress-pct" id="progressPct">Just getting started</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="hw-divider" style="margin-top:0.8rem"></div>
+        <p class="question-text" id="questionText"></p>
+        <div class="yn-buttons">
+          <button class="btn-yes" onclick="submitAnswer('Yes')">✓ &nbsp;Yes</button>
+          <button class="btn-no"  onclick="submitAnswer('No')">✗ &nbsp;No</button>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+
+      <!-- DELIBERATING -->
+      <div id="stage-deliberating" class="deliberating-section hidden">
+        <div class="wheel-wrap">
+          <div class="wheel-glow"></div>
+          <svg id="wheelSvg" width="140" height="140" viewBox="0 0 140 140"></svg>
+          <div class="wheel-pointer"></div>
+        </div>
+        <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
+      </div>
+
+      <!-- VERDICT -->
+      <div id="stage-verdict" class="verdict-section hidden">
+        <div class="verdict-banner" id="verdictBanner">
+          <div class="verdict-emoji" id="verdictEmoji"></div>
+          <div class="verdict-label" id="verdictLabel"></div>
+          <div class="verdict-tagline" id="verdictTagline"></div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-label" id="reasoningLabel">💬 &nbsp;The Verdict</div>
+          <p id="reasoningText"></p>
+        </div>
+        <div class="info-block" style="border-left-color:#888">
+          <div class="info-block-label" style="color:#888">💰 &nbsp;What a Pro Would Cost You</div>
+          <p id="costText"></p>
+        </div>
+        <div class="info-block hidden" id="resourcesBlock" style="border-left-color:#2d7a2d">
+          <div class="info-block-label" style="color:#2d7a2d">📚 &nbsp;Where to Learn</div>
+          <p id="resourcesText"></p>
+        </div>
+        <button class="btn-reset" onclick="reset()">← Try Another Project</button>
+      </div>
+
     </div>
-    <div class="dots" id="dots"></div>
   </div>
+</main>
 
-  <!-- DELIBERATING -->
-  <div id="stage-deliberating" class="deliberating-section hidden">
-    <div class="wheel-wrap">
-      <div class="wheel-glow"></div>
-      <svg id="wheelSvg" width="140" height="140" viewBox="0 0 140 140"></svg>
-      <div class="wheel-pointer"></div>
-    </div>
-    <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
-  </div>
-
-  <!-- VERDICT -->
-  <div id="stage-verdict" class="verdict-section hidden">
-    <div class="verdict-banner" id="verdictBanner">
-      <div class="verdict-emoji" id="verdictEmoji"></div>
-      <div class="verdict-label" id="verdictLabel"></div>
-      <div class="verdict-tagline" id="verdictTagline"></div>
-    </div>
-    <div class="info-block">
-      <div class="info-block-label" id="reasoningLabel"></div>
-      <p id="reasoningText"></p>
-    </div>
-    <div class="info-block">
-      <div class="info-block-label" style="color:#888">💰&nbsp;&nbsp;What You Should Expect to Pay</div>
-      <p id="costText"></p>
-    </div>
-    <div class="info-block hidden" id="resourcesBlock">
-      <div class="info-block-label" style="color:#4ade80">📚&nbsp;&nbsp;Where to Learn</div>
-      <p id="resourcesText"></p>
-    </div>
-    <button class="btn-reset" onclick="reset()">← Try another project</button>
-  </div>
-
-</div>
-
-<p class="footer">The DIY Decider · Powered by Claude</p>
+<footer>
+  <span class="footer-left">The DIY Decider · Powered by Claude</span>
+  <a href="https://buymeacoffee.com/thediydecider" target="_blank" class="btn-coffee">☕ Buy Dave a Coffee</a>
+</footer>
 
 <script>
 const PHRASES = [
@@ -378,21 +558,14 @@ const PHRASES = [
   "The verdict is in.",
 ];
 
-let questions = [];
-let answers = [];
-let currentQ = 0;
-let wheelRotation = 0;
-let wheelInterval = null;
-let wheelTimeout = null;
-let phraseIndex = 0;
-let phraseInterval = null;
-let pendingResult = null;
-let wheelDone = false;
+let questions = [], answers = [], currentQ = 0;
+let wheelRotation = 0, wheelInterval = null, wheelTimeout = null;
+let phraseIndex = 0, pendingResult = null, wheelDone = false;
 
-// Build wheel SVG
+// Build wheel
 (function buildWheel() {
   const svg = document.getElementById('wheelSvg');
-  const fills = ["#f59e0b","#1c1c1c","#d97706","#141414","#f59e0b","#1c1c1c","#d97706","#141414"];
+  const fills = ["#c0392b","#1a1a1a","#e74c3c","#111","#c0392b","#1a1a1a","#e74c3c","#111"];
   const count = fills.length, r = 58, cx = 70, cy = 70;
   fills.forEach((fill, i) => {
     const angle = 360 / count;
@@ -403,16 +576,16 @@ let wheelDone = false;
     const path = document.createElementNS("http://www.w3.org/2000/svg","path");
     path.setAttribute("d", `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`);
     path.setAttribute("fill", fill);
-    path.setAttribute("stroke", "#0a0a0a");
+    path.setAttribute("stroke", "#f5f0e8");
     path.setAttribute("stroke-width", "1.5");
     svg.appendChild(path);
   });
   const hub = document.createElementNS("http://www.w3.org/2000/svg","circle");
   hub.setAttribute("cx",70); hub.setAttribute("cy",70); hub.setAttribute("r",16);
-  hub.setAttribute("fill","#0a0a0a"); hub.setAttribute("stroke","#2a2a2a"); hub.setAttribute("stroke-width","1.5");
+  hub.setAttribute("fill","#f5f0e8"); hub.setAttribute("stroke","#ddd"); hub.setAttribute("stroke-width","1.5");
   svg.appendChild(hub);
   const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  dot.setAttribute("cx",70); dot.setAttribute("cy",70); dot.setAttribute("r",7); dot.setAttribute("fill","#f59e0b");
+  dot.setAttribute("cx",70); dot.setAttribute("cy",70); dot.setAttribute("r",7); dot.setAttribute("fill","#c0392b");
   svg.appendChild(dot);
 })();
 
@@ -421,6 +594,14 @@ function showStage(name) {
     document.getElementById('stage-'+s).classList.add('hidden');
   });
   document.getElementById('stage-'+name).classList.remove('hidden');
+  const labels = {
+    'input': 'Start Your Assessment',
+    'loading-q': 'Analyzing Project...',
+    'questions': 'Answer Honestly',
+    'deliberating': 'Rendering Judgment...',
+    'verdict': 'The Verdict Is In'
+  };
+  document.getElementById('cardHeaderLabel').textContent = labels[name] || '';
 }
 
 function showError(msg) {
@@ -428,25 +609,22 @@ function showError(msg) {
   el.textContent = msg;
   el.classList.remove('hidden');
 }
-
-function hideError() {
-  document.getElementById('errorMsg').classList.add('hidden');
-}
+function hideError() { document.getElementById('errorMsg').classList.add('hidden'); }
 
 function updateDots() {
-  const container = document.getElementById('dots');
-  container.innerHTML = '';
+  const c = document.getElementById('dots');
+  c.innerHTML = '';
   for (let i = 0; i < 5; i++) {
     const d = document.createElement('div');
     d.className = 'dot ' + (i < currentQ ? 'done' : i === currentQ ? 'active' : 'upcoming');
-    container.appendChild(d);
+    c.appendChild(d);
   }
 }
 
 function updateProgress() {
-  document.getElementById('progressNum').innerHTML = `${currentQ+1} <span style="color:#2a2a2a">/ 5</span>`;
-  const labels = ["Just getting started","25% done","50% done","75% done","Last one"];
-  document.getElementById('progressLabel').textContent = labels[currentQ] || '';
+  document.getElementById('progressBadge').textContent = `Question ${currentQ+1} of 5`;
+  const labels = ["Just getting started", "25% done", "Halfway there", "Almost done", "Last one"];
+  document.getElementById('progressPct').textContent = labels[currentQ] || '';
   document.getElementById('progressFill').style.width = `${(currentQ/5)*100}%`;
   updateDots();
 }
@@ -457,23 +635,22 @@ async function startProject() {
   hideError();
   showStage('loading-q');
 
+  // Track event
+  gtag('event', 'project_started', { project_name: project });
+
   try {
     const res = await fetch("/questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ project })
     });
-
     const data = await res.json();
     if (data.error) { showError("Error: " + data.error); showStage('input'); return; }
-
     questions = data.questions.slice(0, 5);
-    answers = [];
-    currentQ = 0;
+    answers = []; currentQ = 0;
     showStage('questions');
     document.getElementById('questionText').textContent = questions[0].q;
     updateProgress();
-
   } catch(e) {
     showError("Error: " + (e.message || "Something went wrong"));
     showStage('input');
@@ -482,35 +659,24 @@ async function startProject() {
 
 async function submitAnswer(answer) {
   answers.push(answer);
-
   if (currentQ < 4) {
     currentQ++;
     document.getElementById('questionText').textContent = questions[currentQ].q;
     updateProgress();
   } else {
-    // Start wheel + fire API simultaneously
-    wheelDone = false;
-    pendingResult = null;
+    wheelDone = false; pendingResult = null;
     showStage('deliberating');
     startWheel();
-
     const project = document.getElementById('projectInput').value.trim();
-
     try {
       const res = await fetch("/verdict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ project, questions, answers })
       });
-
       const data = await res.json();
       if (data.error) { stopWheel(); showError("Error: " + data.error); showStage('input'); return; }
-
-      if (wheelDone) {
-        showVerdict(data);
-      } else {
-        pendingResult = data;
-      }
+      if (wheelDone) { showVerdict(data); } else { pendingResult = data; }
     } catch(e) {
       stopWheel();
       showError("Couldn't get verdict: " + (e.message || "Try again"));
@@ -523,7 +689,6 @@ function startWheel() {
   const svg = document.getElementById('wheelSvg');
   phraseIndex = 0;
   document.getElementById('deliberatingPhrase').textContent = PHRASES[0];
-
   wheelInterval = setInterval(() => {
     phraseIndex = Math.min(phraseIndex + 1, PHRASES.length - 1);
     document.getElementById('deliberatingPhrase').textContent = PHRASES[phraseIndex];
@@ -531,13 +696,10 @@ function startWheel() {
     svg.style.transform = `rotate(${wheelRotation}deg)`;
     svg.style.webkitTransform = `rotate(${wheelRotation}deg)`;
   }, 1100);
-
   wheelTimeout = setTimeout(() => {
     stopWheel();
     wheelDone = true;
-    if (pendingResult) {
-      setTimeout(() => showVerdict(pendingResult), 400);
-    }
+    if (pendingResult) setTimeout(() => showVerdict(pendingResult), 400);
   }, 7000);
 }
 
@@ -548,23 +710,18 @@ function stopWheel() {
 
 function showVerdict(data) {
   const isDIY = data.verdict === "DIY";
-  const accent = isDIY ? "#4ade80" : "#f59e0b";
-  const bg = isDIY ? "#0a1a0a" : "#1a150a";
-  const border = isDIY ? "#1a3a1a" : "#3a2d0a";
 
   const banner = document.getElementById('verdictBanner');
-  banner.style.background = bg;
-  banner.style.border = `1px solid ${border}`;
-  banner.style.boxShadow = `0 0 60px ${isDIY ? "rgba(74,222,128,0.12)" : "rgba(245,158,11,0.12)"}`;
+  banner.style.background = isDIY ? '#f0fdf4' : '#fff5f5';
+  banner.style.borderColor = isDIY ? '#2d7a2d' : '#c0392b';
 
   document.getElementById('verdictEmoji').textContent = isDIY ? "🔨" : "📞";
   document.getElementById('verdictLabel').textContent = isDIY ? "DO IT YOURSELF" : "CALL A PRO";
-  document.getElementById('verdictLabel').style.color = accent;
+  document.getElementById('verdictLabel').style.color = isDIY ? '#2d7a2d' : '#c0392b';
   document.getElementById('verdictTagline').textContent = isDIY ? "You've got this one." : "Nothing wrong with knowing your limits.";
+  document.getElementById('verdictTagline').style.color = isDIY ? '#2d7a2d' : '#c0392b';
 
-  const reasoningBlock = document.getElementById('reasoningLabel');
-  reasoningBlock.textContent = "💬  The Verdict";
-  reasoningBlock.style.color = accent;
+  document.getElementById('reasoningLabel').style.color = isDIY ? '#2d7a2d' : '#c0392b';
   document.getElementById('reasoningText').textContent = data.reasoning;
   document.getElementById('costText').textContent = data.cost;
 
@@ -574,6 +731,9 @@ function showVerdict(data) {
   } else {
     document.getElementById('resourcesBlock').classList.add('hidden');
   }
+
+  // Track verdict
+  gtag('event', 'verdict_received', { verdict: data.verdict });
 
   showStage('verdict');
 }
@@ -587,7 +747,6 @@ function reset() {
   showStage('input');
 }
 
-// Enter key support
 document.getElementById('projectInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') startProject();
 });
