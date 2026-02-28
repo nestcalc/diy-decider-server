@@ -50,33 +50,34 @@ body {
 
 /* HEADER */
 .header {
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  position: relative;
+  padding: 1.5rem 1rem;
 }
 
-.sebastian-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header-text {
+  text-align: right;
+}
+
+.sebastian-header {
   width: auto;
-  height: 220px;
-  opacity: 0.5;
-  z-index: 1;
-  pointer-events: none;
+  height: 70px;
+  opacity: 0.85;
 }
 
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
   line-height: 1.1;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 4px;
 }
 
 .logo em {
@@ -85,12 +86,10 @@ body {
 }
 
 .tagline {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.95);
   font-weight: 500;
   letter-spacing: 0.5px;
-  position: relative;
-  z-index: 2;
 }
 
 /* MAIN */
@@ -266,7 +265,7 @@ main {
 
 .loading-sebastian {
   width: auto;
-  height: 120px;
+  height: 180px;
   margin: 0 auto 20px;
   animation: bounce 1s ease-in-out infinite;
 }
@@ -515,9 +514,13 @@ main {
 <body>
 
 <header class="header">
-  <img src="sebastian.png" alt="Sebastian" class="sebastian-bg">
-  <h1 class="logo">Are <em>They</em> Into You?</h1>
-  <p class="tagline">Let Sebastian read the situation 💅</p>
+  <div class="header-content">
+    <div class="header-text">
+      <h1 class="logo">Are <em>They</em> Into You?</h1>
+      <p class="tagline">Let Sebastian read the situation 💅</p>
+    </div>
+    <img src="sebastian.png" alt="Sebastian" class="sebastian-header">
+  </div>
 </header>
 
 <main>
