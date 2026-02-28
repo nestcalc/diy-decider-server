@@ -3,28 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
 
-<!-- SEO -->
-<title>The DIY Decider — Should You DIY or Hire a Pro?</title>
-<meta name="description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating.">
-<meta name="keywords" content="DIY or hire a pro, should I DIY, home improvement advice, DIY home repair, hire a contractor, DIY vs professional">
-<link rel="canonical" href="https://thediydecider.com/" />
+<title>Are They Into You? 💅</title>
+<meta name="description" content="Upload your texts and let Randy tell you the truth about whether they're into you.">
+<meta name="robots" content="noindex, nofollow">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://thediydecider.com/" />
-<meta property="og:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta property="og:description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating." />
-<meta property="og:site_name" content="The DIY Decider" />
-
-<!-- Twitter/X Card -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="https://thediydecider.com/" />
-<meta name="twitter:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta name="twitter:description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating." />
-
-<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) - same as main site -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-THPQQG9ZB4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -33,20 +17,20 @@
   gtag('config', 'G-THPQQG9ZB4');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Barlow:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 :root {
-  --bg-dark: #1c1917;
-  --rust: #c0392b;
-  --rust-dark: #991b1b;
-  --caution: #facc15;
-  --text-light: #fafaf9;
-  --text-muted: #a8a29e;
-  --card-bg: #292524;
-  --radius: 24px;
+  --pink: #FF2D87;
+  --pink-dark: #D91A6E;
+  --purple: #7B2D8E;
+  --purple-deep: #4A1259;
+  --gold: #FFD700;
+  --cream: #FFF8F0;
+  --text-dark: #2D1F2D;
+  --radius: 20px;
 }
 
 html, body {
@@ -55,8 +39,8 @@ html, body {
 }
 
 body {
-  background: var(--bg-dark);
-  font-family: 'Barlow', sans-serif;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--purple-deep) 100%);
+  font-family: 'Outfit', sans-serif;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -64,932 +48,809 @@ body {
   overflow-x: hidden;
 }
 
-/* ========================================
-   NAV
-   ======================================== */
-nav {
-  width: 100%;
-  background: var(--bg-dark);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  position: relative;
-  z-index: 100;
-}
-
-.nav-logo {
-  font-family: 'Anton', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.02em;
-  color: #fff;
-  text-decoration: none;
-}
-.nav-logo span { color: var(--caution); }
-
-.nav-links { display: flex; gap: 2rem; }
-.nav-links a {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover, .nav-links a.active { color: var(--caution); }
-
-/* ========================================
-   HEADER BANNER
-   ======================================== */
-.hero-section {
-  width: 100%;
-  background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 2rem 1.5rem 0;
-  position: relative;
-  min-height: 280px;
-}
-
-.hero-text {
-  flex: 1;
+/* HEADER */
+.header {
   text-align: center;
-  padding-bottom: 2rem;
-  z-index: 2;
+  padding: 2rem 1rem 1.5rem;
+  position: relative;
 }
 
-.hero-text h1 {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3rem, 12vw, 5rem);
-  color: #fff;
-  line-height: 0.9;
-  text-transform: uppercase;
-  text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-}
-
-.hero-text h1 span { 
-  color: var(--caution);
-  display: block;
-}
-
-.hero-text .tagline {
-  font-size: clamp(1rem, 3vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.85);
-  text-transform: uppercase;
-  margin-top: 1rem;
-}
-
-/* Character on left */
-/* Character - contained within hero section only */
-.hero-character {
+.randy-bg {
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  top: 0;
-  width: 55%;
-  max-width: 350px;
-  z-index: 5;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  opacity: 0.45;
+  z-index: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
   pointer-events: none;
 }
 
-.hero-character img {
-  width: 100%;
-  height: auto;
-  display: block;
-  mix-blend-mode: multiply;
-  opacity: 0.9;
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Desktop: character on left side within header */
-@media (min-width: 769px) {
-  .hero-character {
-    left: 2%;
-    transform: none;
-    top: 0;
-    width: 28%;
-    max-width: 320px;
-  }
-  
-  .hero-character img {
-    opacity: 1;
-  }
+.logo em {
+  font-style: italic;
+  color: var(--gold);
 }
 
-/* Caution stripe */
-.caution-stripe {
-  width: 100%;
-  height: 14px;
-  background: repeating-linear-gradient(
-    -55deg,
-    var(--caution) 0px,
-    var(--caution) 14px,
-    #111 14px,
-    #111 28px
-  );
+.tagline {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.95);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
 }
 
-/* ========================================
-   MAIN CONTENT
-   ======================================== */
+/* MAIN */
 main {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1rem;
-  position: relative;
-}
-
-/* Character that extends into main area */
-.character-extension {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40%;
-  max-width: 350px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.character-extension img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transform: translateY(-20%);
-}
-
-/* ========================================
-   CARD
-   ======================================== */
-.card-wrapper {
-  width: 100%;
+  padding: 0 1rem 2rem;
   max-width: 480px;
-  margin: -3rem auto 2rem;
-  margin-left: auto;
-  margin-right: 1.5rem;
-  position: relative;
-  z-index: 10;
-}
-
-.card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-}
-
-.card-body {
-  padding: 2rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* ========================================
-   FORM ELEMENTS
-   ======================================== */
-.field-label {
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--text-light);
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-input[type="text"] {
-  background: #44403c;
-  border: none;
-  border-radius: 16px;
-  padding: 1rem 1.25rem;
-  color: var(--text-light);
-  font-family: 'Barlow', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  width: 100%;
-  outline: none;
-  -webkit-appearance: none;
-  transition: box-shadow 0.2s;
-}
-
-input[type="text"]::placeholder {
-  color: #78716c;
-}
-
-input[type="text"]:focus { 
-  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.3);
-}
-
-.error-msg {
-  color: #fca5a5;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-/* ========================================
-   BUTTONS
-   ======================================== */
-.btn-main {
-  background: var(--caution);
-  color: #1c1917;
-  border: none;
-  border-radius: 16px;
-  padding: 1.1rem;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  width: 100%;
-  transition: transform 0.1s, filter 0.1s;
-  box-shadow: 0 4px 0 #ca8a04;
-}
-
-.btn-main:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #ca8a04;
-}
-
-.btn-main:disabled {
-  background: #57534e;
-  color: #a8a29e;
-  box-shadow: none;
-  cursor: not-allowed;
-}
-
-/* ========================================
-   LOADING
-   ======================================== */
-.loading-section { 
-  text-align: center; 
-  padding: 2.5rem 0; 
-}
-
-.spinner {
-  display: inline-block;
-  width: 48px; 
-  height: 48px;
-  border: 4px solid #44403c;
-  border-top-color: var(--caution);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  margin-bottom: 1.25rem;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.loading-section p {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* ========================================
-   QUESTIONS
-   ======================================== */
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.progress-badge {
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--caution);
-  text-transform: uppercase;
-}
-
-.progress-pct {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-.progress-bar {
-  height: 8px;
-  background: #44403c;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--rust) 0%, var(--caution) 100%);
-  width: 0%;
-  transition: width 0.4s ease;
-  border-radius: 8px;
-}
-
-.question-text {
-  font-size: clamp(1.25rem, 4.5vw, 1.5rem);
-  font-weight: 700;
-  color: var(--text-light);
-  line-height: 1.4;
-  text-align: center;
-  min-height: 3.5rem;
-}
-
-.question-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.btn-yes, .btn-no {
-  flex: 1;
-  padding: 1rem;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.15rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 14px;
-  transition: transform 0.1s;
-}
-
-.btn-yes {
-  background: #22c55e;
-  color: #fff;
-  box-shadow: 0 4px 0 #15803d;
-}
-
-.btn-no {
-  background: var(--rust);
-  color: #fff;
-  box-shadow: 0 4px 0 var(--rust-dark);
-}
-
-.btn-yes:active, .btn-no:active {
-  transform: translateY(2px);
-}
-
-.btn-yes:active { box-shadow: 0 2px 0 #15803d; }
-.btn-no:active { box-shadow: 0 2px 0 var(--rust-dark); }
-
-/* DOTS */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 1.25rem;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #44403c;
-  transition: all 0.3s;
-}
-
-.dot.done { 
-  background: var(--caution); 
-}
-
-.dot.active { 
-  background: var(--rust); 
-  animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
-}
-
-/* ========================================
-   DELIBERATING
-   ======================================== */
-.deliberating-section {
-  text-align: center;
-  padding: 1.5rem 0;
-}
-
-.wheel-wrap {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 1.25rem;
-}
-
-.wheel-glow {
-  position: absolute;
-  inset: -15px;
-  background: radial-gradient(circle, rgba(250,204,21,0.2) 0%, transparent 70%);
-  border-radius: 50%;
-}
-
-#wheelSvg {
-  display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  width: 100%;
 }
 
-.wheel-pointer {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 16px solid var(--caution);
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
+/* CARDS */
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  margin-bottom: 16px;
+  width: 100%;
+  animation: slideUp 0.4s ease-out;
 }
 
-.deliberating-phrase {
-  font-size: 1rem;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-title {
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-/* ========================================
-   VERDICT
-   ======================================== */
-.verdict-section {
+  color: var(--purple-deep);
+  margin-bottom: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 8px;
 }
 
-.verdict-banner {
-  padding: 1.5rem;
-  text-align: center;
+/* UPLOAD AREA */
+.upload-zone {
+  border: 2px dashed rgba(123, 45, 142, 0.3);
   border-radius: 16px;
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: linear-gradient(135deg, rgba(255,45,135,0.05) 0%, rgba(123,45,142,0.05) 100%);
 }
 
-.verdict-emoji {
-  font-size: 3rem;
-  margin-bottom: 0.25rem;
+.upload-zone:hover {
+  border-color: var(--pink);
+  background: linear-gradient(135deg, rgba(255,45,135,0.1) 0%, rgba(123,45,142,0.1) 100%);
 }
 
-.verdict-label {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.6rem, 6vw, 2rem);
-  line-height: 1;
+.upload-zone.has-files {
+  border-color: var(--pink);
+  border-style: solid;
 }
 
-.verdict-tagline {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-top: 0.3rem;
-  opacity: 0.85;
+.upload-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
 }
 
-/* INFO BLOCKS */
-.info-block {
-  background: #1c1917;
-  border-left: 4px solid var(--rust);
-  padding: 1rem 1.25rem;
-  border-radius: 0 12px 12px 0;
-}
-
-.info-block-label {
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--rust);
-  margin-bottom: 0.4rem;
-}
-
-.info-block p {
+.upload-text {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-light);
-  line-height: 1.55;
+  color: var(--purple-deep);
 }
 
-/* RESET */
-.btn-reset {
-  display: block;
+.upload-hint {
+  font-size: 0.85rem;
+  color: #78716C;
+  margin-top: 4px;
+}
+
+.file-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.file-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid var(--pink);
+}
+
+/* TEXT INPUT */
+.text-input {
+  width: 100%;
+  min-height: 120px;
+  border: 2px solid #E7E5E4;
+  border-radius: 12px;
+  padding: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.text-input::placeholder {
+  color: #A8A29E;
+}
+
+/* BUTTONS */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255,45,135,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255,45,135,0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
   width: 100%;
   background: transparent;
-  border: 2px solid #44403c;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+  padding: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   border-radius: 14px;
-  padding: 0.9rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.btn-secondary:hover {
+  border-color: white;
+  background: rgba(255,255,255,0.1);
+}
+
+/* LOADING */
+.loading-container {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.loading-randy {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  animation: bounce 1s ease-in-out infinite;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.loading-text {
+  font-size: 1.1rem;
+  color: var(--purple-deep);
+  font-weight: 500;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
+
+/* QUESTIONS */
+.question-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  width: 100%;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.question-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E7E5E4;
   transition: all 0.2s;
 }
 
-.btn-reset:hover {
-  border-color: var(--caution);
-  color: var(--caution);
+.progress-dot.active {
+  background: var(--pink);
+  transform: scale(1.2);
 }
 
-/* ========================================
-   UTILITIES
-   ======================================== */
-.hidden { display: none !important; }
-
-/* ========================================
-   RESPONSIVE - MOBILE FIRST
-   ======================================== */
-
-/* Mobile: stack layout, character behind */
-@media (max-width: 768px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: center;
-    min-height: 220px;
-    padding: 1.5rem 1rem 0;
-  }
-  
-  .hero-text {
-    padding-bottom: 1.5rem;
-  }
-  
-  .hero-character {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    max-width: 280px;
-    opacity: 0.2;
-    z-index: 1;
-  }
-  
-  .hero-text {
-    z-index: 2;
-  }
-  
-  .character-extension {
-    display: none;
-  }
-  
-  .card-wrapper {
-    margin: -2rem auto 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 420px;
-  }
-  
-  .card-body {
-    padding: 1.75rem 1.5rem;
-  }
-  
-  nav {
-    padding: 0.9rem 1rem;
-  }
-  
-  .nav-logo {
-    font-size: 1.2rem;
-  }
-  
-  .nav-links {
-    gap: 1.25rem;
-  }
-  
-  .nav-links a {
-    font-size: 0.8rem;
-  }
+.progress-dot.done {
+  background: var(--purple);
 }
 
-/* Desktop: side by side layout */
-@media (min-width: 769px) {
-  .hero-content {
-    padding: 0 2rem;
-  }
-  
-  .hero-text {
-    margin-left: 35%;
-    text-align: center;
-  }
-  
-  .card-wrapper {
-    max-width: 440px;
-    margin-right: 5%;
-  }
-  
-  main {
-    align-items: flex-end;
-    padding-right: 2rem;
-  }
+.question-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--purple-deep);
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
 
-/* Large desktop */
-@media (min-width: 1024px) {
-  .hero-character {
-    max-width: 450px;
-    width: 40%;
+.option-btn {
+  width: 100%;
+  background: #F5F5F4;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.15s;
+}
+
+.option-btn:hover {
+  background: rgba(255,45,135,0.08);
+  border-color: var(--pink);
+}
+
+.option-btn:active {
+  transform: scale(0.98);
+}
+
+/* VERDICT */
+.verdict-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.verdict-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.verdict-YES { background: linear-gradient(135deg, #10B981, #059669); color: white; }
+.verdict-PROBABLY-YES { background: linear-gradient(135deg, #34D399, #10B981); color: white; }
+.verdict-MIXED-SIGNALS { background: linear-gradient(135deg, #FBBF24, #F59E0B); color: #1c1917; }
+.verdict-PROBABLY-NOT { background: linear-gradient(135deg, #FB923C, #EA580C); color: white; }
+.verdict-NO { background: linear-gradient(135deg, #EF4444, #DC2626); color: white; }
+
+.verdict-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--purple-deep);
+  line-height: 1.3;
+}
+
+.verdict-section {
+  margin-top: 20px;
+}
+
+.verdict-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.verdict-section p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+.flags-list {
+  list-style: none;
+  padding: 0;
+}
+
+.flags-list li {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.flags-list li::before {
+  position: absolute;
+  left: 0;
+}
+
+.green-flags li::before { content: '🟢'; }
+.red-flags li::before { content: '🚩'; }
+
+/* SITUATION BADGE */
+.situation-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+/* ANALYSIS PREVIEW */
+.analysis-preview {
+  background: linear-gradient(135deg, rgba(255,45,135,0.08), rgba(123,45,142,0.08));
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.analysis-preview-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+
+.observation {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.observation::before {
+  content: '👀';
+  position: absolute;
+  left: 0;
+  font-size: 0.8rem;
+}
+
+/* BACK LINK */
+.back-link {
+  display: block;
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 1rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+/* MOBILE TWEAKS */
+@media (max-width: 400px) {
+  .header {
+    padding: 1.5rem 1rem 1rem;
   }
   
-  .card-wrapper {
-    margin-right: 8%;
+  .logo {
+    font-size: 1.9rem;
+  }
+  
+  .card {
+    padding: 20px 16px;
   }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">THE DIY <span>DECIDER</span></a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Tool</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
+<header class="header">
+  <img src="/atiy/randy.jpg" alt="Randy" class="randy-bg">
+  <h1 class="logo">Are <em>They</em> Into You?</h1>
+  <p class="tagline">Let Randy read the situation 💅</p>
+</header>
 
-<div class="hero-section">
-  <div class="hero-character">
-    <img src="decider.png" alt="The Decider">
-  </div>
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>THE DIY <span>DECIDER</span></h1>
-      <div class="tagline">5 Questions · 1 Verdict · Zero BS</div>
+<main>
+  <div id="app">
+    <!-- Upload Stage -->
+    <div id="upload-stage">
+      <div class="card">
+        <h2 class="card-title">📸 Share the Evidence</h2>
+        <div class="upload-zone" id="upload-zone">
+          <div class="upload-icon">📱</div>
+          <div class="upload-text">Tap to upload screenshots</div>
+          <div class="upload-hint">DMs, texts, dating apps — whatever you've got</div>
+          <div class="file-preview" id="file-preview"></div>
+        </div>
+        <input type="file" id="file-input" accept="image/*" multiple hidden>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">💬 Or paste the conversation</h2>
+        <textarea class="text-input" id="text-input" placeholder="Copy and paste texts here, or give Randy some context about the situation..."></textarea>
+      </div>
+
+      <button class="btn-primary" id="analyze-btn" disabled>Let Randy Analyze This 🔮</button>
     </div>
-  </div>
-</div>
-<div class="caution-stripe"></div>
 
-<main style="margin-top: 1.5rem;">
-  <div class="card-wrapper">
-    <div class="card">
-      <div class="card-body">
-
-        <!-- STAGE: INPUT -->
-        <div id="stage-input">
-          <label class="field-label" for="projectInput">What's the project?</label>
-          <input type="text" id="projectInput" placeholder="e.g. Replace a leaky faucet..." autocomplete="off" />
-          <p class="error-msg hidden" id="errorMsg"></p>
-          <button class="btn-main" onclick="startProject()">Size Me Up</button>
+    <!-- Loading Stage -->
+    <div id="loading-stage" style="display: none;">
+      <div class="card">
+        <div class="loading-container">
+          <img src="/atiy/randy.jpg" alt="Randy thinking" class="loading-randy">
+          <p class="loading-text">Randy is studying every detail<span class="loading-dots"></span></p>
         </div>
-
-        <!-- STAGE: LOADING -->
-        <div id="stage-loading-q" class="loading-section hidden">
-          <div class="spinner"></div>
-          <p>Analyzing your project...</p>
-        </div>
-
-        <!-- STAGE: QUESTIONS -->
-        <div id="stage-questions" class="hidden">
-          <div class="progress-header">
-            <span class="progress-badge" id="progressBadge">Question 1 of 5</span>
-            <span class="progress-pct" id="progressPct">Just getting started</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-          <p class="question-text" id="questionText"></p>
-          <div class="question-buttons">
-            <button class="btn-yes" onclick="submitAnswer('Yes')">✓ Yes</button>
-            <button class="btn-no" onclick="submitAnswer('No')">✗ No</button>
-          </div>
-          <div class="dots" id="dots"></div>
-        </div>
-
-        <!-- DELIBERATING -->
-        <div id="stage-deliberating" class="deliberating-section hidden">
-          <div class="wheel-wrap">
-            <div class="wheel-glow"></div>
-            <svg id="wheelSvg" width="130" height="130" viewBox="0 0 130 130"></svg>
-            <div class="wheel-pointer"></div>
-          </div>
-          <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
-        </div>
-
-        <!-- VERDICT -->
-        <div id="stage-verdict" class="verdict-section hidden">
-          <div class="verdict-banner" id="verdictBanner">
-            <div class="verdict-emoji" id="verdictEmoji"></div>
-            <div class="verdict-label" id="verdictLabel"></div>
-            <div class="verdict-tagline" id="verdictTagline"></div>
-          </div>
-          <div class="info-block">
-            <div class="info-block-label" id="reasoningLabel">💬 The Verdict</div>
-            <p id="reasoningText"></p>
-          </div>
-          <div class="info-block" style="border-left-color:#78716c">
-            <div class="info-block-label" style="color:#78716c">💰 Pro Cost</div>
-            <p id="costText"></p>
-          </div>
-          <div class="info-block hidden" id="resourcesBlock" style="border-left-color:#22c55e">
-            <div class="info-block-label" style="color:#22c55e">📚 Where to Learn</div>
-            <p id="resourcesText"></p>
-          </div>
-          <button class="btn-reset" onclick="reset()">← Try Another Project</button>
-        </div>
-
       </div>
     </div>
+
+    <!-- Analysis Stage (shows observations + questions) -->
+    <div id="analysis-stage" style="display: none;">
+      <div class="card" id="analysis-card">
+        <div id="situation-container"></div>
+        <div class="analysis-preview" id="observations-container">
+          <div class="analysis-preview-title">👀 What Randy Noticed</div>
+          <div id="observations-list"></div>
+        </div>
+        <div id="initial-read"></div>
+      </div>
+    </div>
+
+    <!-- Questions Stage -->
+    <div id="questions-stage" style="display: none;"></div>
+
+    <!-- Verdict Stage -->
+    <div id="verdict-stage" style="display: none;">
+      <div class="card" id="verdict-card"></div>
+      <button class="btn-secondary" id="start-over-btn">Start Over</button>
+    </div>
   </div>
+
+  <a href="/about.html" class="back-link">← Back to The DIY Decider</a>
 </main>
 
 <script>
-const PHRASES = [
-  "Cross-referencing your answers...",
-  "Consulting 40 years of experience...",
-  "Running the numbers...",
-  "Checking if you're kidding...",
-  "Almost ready to judge you...",
-  "The verdict is in.",
-];
+// ============================================
+// CONFIG - Same server, use relative URLs
+// ============================================
+const API_BASE_URL = ''; // Empty = same origin (your server handles both DIY + Randy)
 
-let questions = [], answers = [], currentQ = 0;
-let wheelRotation = 0, wheelInterval = null, wheelTimeout = null;
-let phraseIndex = 0, pendingResult = null, wheelDone = false;
+// ============================================
+// STATE
+// ============================================
+let uploadedFiles = [];
+let analysisData = null;
+let currentQuestion = 0;
+let answers = [];
 
-// Build wheel
-(function buildWheel() {
-  const svg = document.getElementById('wheelSvg');
-  const fills = ["#c0392b","#1c1917","#dc2626","#0c0a09","#c0392b","#1c1917","#dc2626","#0c0a09"];
-  const count = fills.length, r = 54, cx = 65, cy = 65;
-  fills.forEach((fill, i) => {
-    const angle = 360 / count;
-    const s = (i * angle - 90) * Math.PI / 180;
-    const e = ((i * angle - 90) + angle) * Math.PI / 180;
-    const x1 = cx + r * Math.cos(s), y1 = cy + r * Math.sin(s);
-    const x2 = cx + r * Math.cos(e), y2 = cy + r * Math.sin(e);
-    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-    path.setAttribute("d", `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`);
-    path.setAttribute("fill", fill);
-    path.setAttribute("stroke", "#292524");
-    path.setAttribute("stroke-width", "2");
-    svg.appendChild(path);
+// ============================================
+// DOM ELEMENTS
+// ============================================
+const uploadZone = document.getElementById('upload-zone');
+const fileInput = document.getElementById('file-input');
+const filePreview = document.getElementById('file-preview');
+const textInput = document.getElementById('text-input');
+const analyzeBtn = document.getElementById('analyze-btn');
+
+const uploadStage = document.getElementById('upload-stage');
+const loadingStage = document.getElementById('loading-stage');
+const analysisStage = document.getElementById('analysis-stage');
+const questionsStage = document.getElementById('questions-stage');
+const verdictStage = document.getElementById('verdict-stage');
+
+const startOverBtn = document.getElementById('start-over-btn');
+
+// ============================================
+// FILE UPLOAD
+// ============================================
+uploadZone.addEventListener('click', () => fileInput.click());
+
+fileInput.addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+  uploadedFiles = [...uploadedFiles, ...files];
+  renderFilePreviews();
+  checkCanAnalyze();
+});
+
+function renderFilePreviews() {
+  filePreview.innerHTML = '';
+  uploadedFiles.forEach((file, i) => {
+    const img = document.createElement('img');
+    img.className = 'file-thumb';
+    img.src = URL.createObjectURL(file);
+    img.alt = `Screenshot ${i + 1}`;
+    filePreview.appendChild(img);
   });
-  const hub = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  hub.setAttribute("cx",65); hub.setAttribute("cy",65); hub.setAttribute("r",16);
-  hub.setAttribute("fill","#292524"); hub.setAttribute("stroke","#44403c"); hub.setAttribute("stroke-width","2");
-  svg.appendChild(hub);
-  const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  dot.setAttribute("cx",65); dot.setAttribute("cy",65); dot.setAttribute("r",7); dot.setAttribute("fill","#facc15");
-  svg.appendChild(dot);
-})();
-
-function showStage(name) {
-  ['input','loading-q','questions','deliberating','verdict'].forEach(s => {
-    document.getElementById('stage-'+s).classList.add('hidden');
-  });
-  document.getElementById('stage-'+name).classList.remove('hidden');
-}
-
-function showError(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg;
-  el.classList.remove('hidden');
-}
-function hideError() { document.getElementById('errorMsg').classList.add('hidden'); }
-
-function updateDots() {
-  const c = document.getElementById('dots');
-  c.innerHTML = '';
-  for (let i = 0; i < 5; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot ' + (i < currentQ ? 'done' : i === currentQ ? 'active' : '');
-    c.appendChild(d);
+  
+  if (uploadedFiles.length > 0) {
+    uploadZone.classList.add('has-files');
+  } else {
+    uploadZone.classList.remove('has-files');
   }
 }
 
-function updateProgress() {
-  document.getElementById('progressBadge').textContent = `Question ${currentQ+1} of 5`;
-  const labels = ["Just getting started", "25% done", "Halfway there", "Almost done", "Last one"];
-  document.getElementById('progressPct').textContent = labels[currentQ] || '';
-  document.getElementById('progressFill').style.width = `${(currentQ/5)*100}%`;
-  updateDots();
+textInput.addEventListener('input', checkCanAnalyze);
+
+function checkCanAnalyze() {
+  const hasContent = uploadedFiles.length > 0 || textInput.value.trim().length > 10;
+  analyzeBtn.disabled = !hasContent;
 }
 
-async function startProject() {
-  const project = document.getElementById('projectInput').value.trim();
-  if (!project) return;
-  hideError();
-  showStage('loading-q');
-  gtag('event', 'project_started', { project_name: project });
-
+// ============================================
+// ANALYZE
+// ============================================
+analyzeBtn.addEventListener('click', async () => {
+  showStage('loading');
+  
   try {
-    const res = await fetch("/questions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ project })
+    const formData = new FormData();
+    uploadedFiles.forEach(file => formData.append('files', file));
+    formData.append('text', textInput.value);
+    
+    const response = await fetch(`${API_BASE_URL}/api/analyze`, {
+      method: 'POST',
+      body: formData
     });
-    const data = await res.json();
-    if (data.error) { showError("Error: " + data.error); showStage('input'); return; }
-    questions = data.questions.slice(0, 5);
-    answers = []; currentQ = 0;
-    showStage('questions');
-    document.getElementById('questionText').textContent = questions[0].q;
-    updateProgress();
-  } catch(e) {
-    showError("Error: " + (e.message || "Something went wrong"));
-    showStage('input');
+    
+    if (!response.ok) throw new Error('Analysis failed');
+    
+    const result = await response.json();
+    analysisData = result.data;
+    
+    renderAnalysis();
+    showStage('analysis');
+    
+    // After a moment, show the first question
+    setTimeout(() => {
+      showStage('questions');
+      renderQuestion();
+    }, 2500);
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Oops! Something went wrong. Please try again.');
+    showStage('upload');
+  }
+});
+
+// ============================================
+// RENDER ANALYSIS
+// ============================================
+function renderAnalysis() {
+  // Situation badge
+  const situationContainer = document.getElementById('situation-container');
+  if (analysisData.situation_type) {
+    situationContainer.innerHTML = `<span class="situation-badge">${analysisData.situation_type}</span>`;
+  }
+  
+  // Observations
+  const observationsList = document.getElementById('observations-list');
+  if (analysisData.observations && analysisData.observations.length > 0) {
+    observationsList.innerHTML = analysisData.observations
+      .map(obs => `<div class="observation">${obs}</div>`)
+      .join('');
+  }
+  
+  // Initial read
+  const initialRead = document.getElementById('initial-read');
+  if (analysisData.initial_read) {
+    initialRead.innerHTML = `<p style="font-size: 1rem; color: var(--text-dark); line-height: 1.6; font-style: italic;">"${analysisData.initial_read}"</p>`;
   }
 }
 
-async function submitAnswer(answer) {
-  answers.push(answer);
-  if (currentQ < 4) {
-    currentQ++;
-    document.getElementById('questionText').textContent = questions[currentQ].q;
-    updateProgress();
-  } else {
-    wheelDone = false; pendingResult = null;
-    showStage('deliberating');
-    startWheel();
-    const project = document.getElementById('projectInput').value.trim();
-    try {
-      const res = await fetch("/verdict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ project, questions, answers })
+// ============================================
+// QUESTIONS
+// ============================================
+function renderQuestion() {
+  const questions = analysisData.questions;
+  if (currentQuestion >= questions.length) {
+    getVerdict();
+    return;
+  }
+  
+  const q = questions[currentQuestion];
+  
+  questionsStage.innerHTML = `
+    <div class="question-card">
+      <div class="question-progress">
+        ${questions.map((_, i) => `
+          <div class="progress-dot ${i < currentQuestion ? 'done' : ''} ${i === currentQuestion ? 'active' : ''}"></div>
+        `).join('')}
+      </div>
+      <p class="question-text">${q.question}</p>
+      ${q.options.map((opt, i) => `
+        <button class="option-btn" data-index="${i}">${opt}</button>
+      `).join('')}
+    </div>
+  `;
+  
+  // Add click handlers
+  questionsStage.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.index);
+      answers.push({
+        question: q.question,
+        answer: q.options[idx]
       });
-      const data = await res.json();
-      if (data.error) { stopWheel(); showError("Error: " + data.error); showStage('input'); return; }
-      if (wheelDone) { showVerdict(data); } else { pendingResult = data; }
-    } catch(e) {
-      stopWheel();
-      showError("Couldn't get verdict: " + (e.message || "Try again"));
-      showStage('input');
-    }
+      currentQuestion++;
+      renderQuestion();
+    });
+  });
+}
+
+// ============================================
+// VERDICT
+// ============================================
+async function getVerdict() {
+  showStage('loading');
+  
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/verdict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        originalContent: textInput.value,
+        initialRead: analysisData.initial_read,
+        situationType: analysisData.situation_type,
+        observations: analysisData.observations,
+        questions: analysisData.questions,
+        answers: answers
+      })
+    });
+    
+    if (!response.ok) throw new Error('Verdict failed');
+    
+    const result = await response.json();
+    renderVerdict(result.data);
+    showStage('verdict');
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Oops! Randy got distracted. Please try again.');
+    showStage('upload');
   }
 }
 
-function startWheel() {
-  const svg = document.getElementById('wheelSvg');
-  phraseIndex = 0;
-  document.getElementById('deliberatingPhrase').textContent = PHRASES[0];
-  wheelInterval = setInterval(() => {
-    phraseIndex = Math.min(phraseIndex + 1, PHRASES.length - 1);
-    document.getElementById('deliberatingPhrase').textContent = PHRASES[phraseIndex];
-    wheelRotation += 55 + Math.random() * 30;
-    svg.style.transform = `rotate(${wheelRotation}deg)`;
-  }, 1100);
-  wheelTimeout = setTimeout(() => {
-    stopWheel();
-    wheelDone = true;
-    if (pendingResult) setTimeout(() => showVerdict(pendingResult), 400);
-  }, 7000);
+function renderVerdict(verdict) {
+  const verdictClass = verdict.verdict.replace(/\s+/g, '-');
+  
+  document.getElementById('verdict-card').innerHTML = `
+    <div class="verdict-header">
+      <div class="verdict-badge verdict-${verdictClass}">${verdict.verdict}</div>
+      <h2 class="verdict-headline">${verdict.headline}</h2>
+    </div>
+    
+    <div class="verdict-section">
+      <div class="verdict-section-title">☕ The Tea</div>
+      <p>${verdict.the_tea}</p>
+    </div>
+    
+    ${verdict.green_flags && verdict.green_flags.length > 0 ? `
+      <div class="verdict-section">
+        <div class="verdict-section-title">Green Flags</div>
+        <ul class="flags-list green-flags">
+          ${verdict.green_flags.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+      </div>
+    ` : ''}
+    
+    ${verdict.red_flags && verdict.red_flags.length > 0 ? `
+      <div class="verdict-section">
+        <div class="verdict-section-title">Red Flags</div>
+        <ul class="flags-list red-flags">
+          ${verdict.red_flags.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+      </div>
+    ` : ''}
+    
+    <div class="verdict-section">
+      <div class="verdict-section-title">💅 Randy's Advice</div>
+      <p>${verdict.randy_advice}</p>
+    </div>
+  `;
 }
 
-function stopWheel() {
-  clearInterval(wheelInterval);
-  clearTimeout(wheelTimeout);
+// ============================================
+// NAVIGATION
+// ============================================
+function showStage(stage) {
+  uploadStage.style.display = stage === 'upload' ? 'block' : 'none';
+  loadingStage.style.display = stage === 'loading' ? 'block' : 'none';
+  analysisStage.style.display = stage === 'analysis' ? 'block' : 'none';
+  questionsStage.style.display = stage === 'questions' ? 'block' : 'none';
+  verdictStage.style.display = stage === 'verdict' ? 'block' : 'none';
 }
 
-function showVerdict(data) {
-  const isDIY = data.verdict === "DIY";
-
-  const banner = document.getElementById('verdictBanner');
-  banner.style.background = isDIY ? 'rgba(34, 197, 94, 0.15)' : 'rgba(192, 57, 43, 0.15)';
-
-  document.getElementById('verdictEmoji').textContent = isDIY ? "🔨" : "📞";
-  document.getElementById('verdictLabel').textContent = isDIY ? "DO IT YOURSELF" : "CALL A PRO";
-  document.getElementById('verdictLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
-  document.getElementById('verdictTagline').textContent = isDIY ? "You've got this." : "Know your limits.";
-  document.getElementById('verdictTagline').style.color = isDIY ? '#22c55e' : '#ef4444';
-
-  document.getElementById('reasoningLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
-  document.getElementById('reasoningText').textContent = data.reasoning;
-  document.getElementById('costText').textContent = data.cost;
-
-  if (isDIY && data.resources) {
-    document.getElementById('resourcesText').textContent = data.resources;
-    document.getElementById('resourcesBlock').classList.remove('hidden');
-  } else {
-    document.getElementById('resourcesBlock').classList.add('hidden');
-  }
-
-  gtag('event', 'verdict_received', { verdict: data.verdict });
-  showStage('verdict');
-}
-
-function reset() {
-  stopWheel();
-  questions = []; answers = []; currentQ = 0;
-  wheelDone = false; pendingResult = null; wheelRotation = 0;
-  document.getElementById('projectInput').value = '';
-  hideError();
-  showStage('input');
-}
-
-document.getElementById('projectInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') startProject();
+startOverBtn.addEventListener('click', () => {
+  // Reset everything
+  uploadedFiles = [];
+  analysisData = null;
+  currentQuestion = 0;
+  answers = [];
+  
+  filePreview.innerHTML = '';
+  uploadZone.classList.remove('has-files');
+  textInput.value = '';
+  analyzeBtn.disabled = true;
+  
+  showStage('upload');
 });
 </script>
+
 </body>
 </html>

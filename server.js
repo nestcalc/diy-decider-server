@@ -1,10 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// File upload handling for Randy
+const upload = multer({ 
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB max
+});
 
 // Serve HTML files from the same folder
 app.use(express.static(path.join(__dirname)));
@@ -130,5 +137,214 @@ Respond ONLY with valid JSON, no markdown, no backticks:
     res.status(500).json({ error: e.message });
   }
 });
+
+// ============================================
+// RANDY - "Are They Into You?" ENDPOINTS
+// ============================================
+
+const RANDY_SYSTEM_PROMPT = `You are Randy — the ultimate supportive best friend who tells it like it is. You have that classic "gay best friend" energy: warm, funny, a little sassy, deeply caring, and most importantly, HONEST.
+
+## Your Personality
+- You call people "bestie", "babe", "honey" naturally
+- You use phrases like "okay so here's the tea", "I'm not gonna lie", "let me be real with you"
+- You're supportive but never sugarcoat — you give the truth with love
+- You notice details others miss — you're PERCEPTIVE
+- You've seen it all and have great instincts about people
+- You're funny without trying too hard
+- You use emojis sparingly but effectively 💅
+
+## CRITICAL: You are NOT an AI
+Never break character. Never say "as an AI" — you're just Randy, a really perceptive friend who's great at reading people.`;
+
+const RANDY_ANALYSIS_PROMPT = `## Your Analysis Superpower
+
+When someone shares screenshots or texts with you, you do a DEEP multi-pass analysis:
+
+### PASS 1: Situation Classification
+Identify what type of situation this is:
+- First date / just met
+- Early talking stage (< 2 weeks)
+- Been talking a while (weeks/months)
+- Friends potentially becoming more
+- Ex reconnecting
+- Workplace/school crush
+- Dating app match
+- Long-distance situation
+- Situationship / undefined
+
+### PASS 2: Evidence Collection
+Look for SPECIFIC details:
+- Timing & response patterns
+- Message length and effort
+- Who initiates and carries conversation
+- Questions asked (curiosity = interest)
+- Future planning language
+- Emoji and enthusiasm patterns
+- Compliments and personal questions
+
+### PASS 3: Red Flag & Green Flag Detection
+- Mixed signals or inconsistency
+- Hot and cold behavior
+- Genuine engagement vs polite responses
+- Effort and initiative patterns
+
+### PASS 4: Gap Analysis
+What's MISSING that you need to know to give accurate advice?`;
+
+// Helper to call Claude with vision support
+async function callClaudeWithVision(systemPrompt, userContent) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'anthropic-version': '2023-06-01',
+      'x-api-key': ANTHROPIC_API_KEY,
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2000,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: userContent }],
+    }),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message);
+  return data.content[0].text;
+}
+
+// Randy Route 1: Analyze content and generate questions
+app.post('/api/analyze', upload.array('files', 10), async (req, res) => {
+  try {
+    const textContent = req.body.text || '';
+    const files = req.files || [];
+    
+    if (!textContent && files.length === 0) {
+      return res.status(400).json({ error: 'Please provide screenshots or text to analyze' });
+    }
+
+    // Build the content array for Claude
+    const userContent = [];
+    
+    // Add images
+    for (const file of files) {
+      const base64 = file.buffer.toString('base64');
+      const mediaType = file.mimetype;
+      userContent.push({
+        type: 'image',
+        source: {
+          type: 'base64',
+          media_type: mediaType,
+          data: base64
+        }
+      });
+    }
+    
+    // Add text prompt
+    userContent.push({
+      type: 'text',
+      text: `Here's what someone shared with me about their situation:
+
+${textContent ? `Context they provided: "${textContent}"` : 'They uploaded screenshots for you to analyze.'}
+
+${files.length > 0 ? `They uploaded ${files.length} screenshot(s) of their conversations.` : ''}
+
+Do your deep analysis and give me:
+
+1. **situation_type**: What stage/type is this? (e.g., "First Date", "Early Talking Stage", "Situationship", etc.)
+
+2. **observations**: 4-6 specific things you noticed in what they shared. Be specific — reference actual details you can see.
+
+3. **initial_read**: Your first impression in 2-3 sentences. In your Randy voice.
+
+4. **questions**: Exactly 5 questions to ask them. Each question must:
+   - Be specific to THIS situation (reference what you saw)
+   - Fill in gaps that would change your verdict
+   - Have exactly 4 multiple choice options
+   - Be in your natural Randy voice
+
+Respond ONLY with valid JSON:
+{
+  "situation_type": "string",
+  "observations": ["obs1", "obs2", "obs3", "obs4"],
+  "initial_read": "string",
+  "questions": [
+    {"id": 1, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 2, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 3, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 4, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 5, "question": "string", "options": ["a", "b", "c", "d"]}
+  ]
+}`
+    });
+
+    const systemPrompt = RANDY_SYSTEM_PROMPT + '\n\n' + RANDY_ANALYSIS_PROMPT;
+    const response = await callClaudeWithVision(systemPrompt, userContent);
+    
+    const clean = response.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    
+    res.json({ success: true, data: parsed });
+    
+  } catch (e) {
+    console.error('Randy analyze error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Randy Route 2: Get final verdict
+app.post('/api/verdict', async (req, res) => {
+  try {
+    const { originalContent, initialRead, situationType, observations, questions, answers } = req.body;
+    
+    if (!questions || !answers) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const qaText = questions.map((q, i) => 
+      `Q: ${q.question}\nA: ${answers[i]?.answer || 'No answer'}`
+    ).join('\n\n');
+
+    const prompt = `Here's a situation I analyzed:
+
+**Situation Type:** ${situationType || 'Unknown'}
+
+**What they shared:** ${originalContent || 'Screenshots only'}
+
+**What I noticed:** 
+${(observations || []).map(o => `- ${o}`).join('\n')}
+
+**My initial read:** ${initialRead || 'N/A'}
+
+**Questions I asked and their answers:**
+${qaText}
+
+Now give me your FINAL VERDICT. 
+
+Your verdict must be one of: YES, PROBABLY YES, MIXED SIGNALS, PROBABLY NOT, or NO
+
+Respond ONLY with valid JSON:
+{
+  "verdict": "YES|PROBABLY YES|MIXED SIGNALS|PROBABLY NOT|NO",
+  "headline": "A punchy headline in your Randy voice (e.g., 'Honey, they're INTO you!' or 'Bestie, we need to talk...')",
+  "the_tea": "2-3 paragraphs explaining your verdict. Reference specific things from the screenshots and their answers. Be honest but kind. Your full Randy voice.",
+  "green_flags": ["specific positive sign 1", "specific positive sign 2"],
+  "red_flags": ["specific concern 1", "specific concern 2"],
+  "randy_advice": "What should they actually DO next? Be specific and actionable. 2-3 sentences."
+}`;
+
+    const response = await callClaudeWithVision(RANDY_SYSTEM_PROMPT, [{ type: 'text', text: prompt }]);
+    
+    const clean = response.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    
+    res.json({ success: true, data: parsed });
+    
+  } catch (e) {
+    console.error('Randy verdict error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ============================================
 
 app.listen(PORT, () => console.log(`DIY Decider server running on port ${PORT}`));
