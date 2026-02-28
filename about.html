@@ -142,15 +142,15 @@ nav {
   color: var(--caution);
 }
 
-/* Character - contained within hero section only */
+/* Character - full opacity, properly layered */
 .hero-character {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 0;
   width: 50%;
-  max-width: 300px;
-  z-index: 5;
+  max-width: 350px;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -158,22 +158,13 @@ nav {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
-  opacity: 0.9;
 }
 
-/* Desktop: character on left side within header */
+/* Desktop: character centered */
 @media (min-width: 769px) {
   .hero-character {
-    left: 2%;
-    transform: none;
-    top: 0;
-    width: 22%;
-    max-width: 260px;
-  }
-  
-  .hero-character img {
-    opacity: 1;
+    width: 40%;
+    max-width: 380px;
   }
 }
 

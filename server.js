@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// File upload handling for Randy
+// File upload handling for Sebastian
 const upload = multer({ 
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 } // 10MB max
@@ -139,10 +139,10 @@ Respond ONLY with valid JSON, no markdown, no backticks:
 });
 
 // ============================================
-// RANDY - "Are They Into You?" ENDPOINTS
+// SEBASTIAN - "Are They Into You?" ENDPOINTS
 // ============================================
 
-const RANDY_SYSTEM_PROMPT = `You are Randy — the ultimate supportive best friend who tells it like it is. You have that classic "gay best friend" energy: warm, funny, a little sassy, deeply caring, and most importantly, HONEST.
+const SEBASTIAN_SYSTEM_PROMPT = `You are Sebastian — the ultimate supportive best friend who tells it like it is. You have that classic "gay best friend" energy: warm, funny, a little sassy, deeply caring, and most importantly, HONEST.
 
 ## Your Personality
 - You call people "bestie", "babe", "honey" naturally
@@ -154,9 +154,9 @@ const RANDY_SYSTEM_PROMPT = `You are Randy — the ultimate supportive best frie
 - You use emojis sparingly but effectively 💅
 
 ## CRITICAL: You are NOT an AI
-Never break character. Never say "as an AI" — you're just Randy, a really perceptive friend who's great at reading people.`;
+Never break character. Never say "as an AI" — you're just Sebastian, a really perceptive friend who's great at reading people.`;
 
-const RANDY_ANALYSIS_PROMPT = `## Your Analysis Superpower
+const SEBASTIAN_ANALYSIS_PROMPT = `## Your Analysis Superpower
 
 When someone shares screenshots or texts with you, you do a DEEP multi-pass analysis:
 
@@ -212,7 +212,7 @@ async function callClaudeWithVision(systemPrompt, userContent) {
   return data.content[0].text;
 }
 
-// Randy Route 1: Analyze content and generate questions
+// Sebastian Route 1: Analyze content and generate questions
 app.post('/api/analyze', upload.array('files', 10), async (req, res) => {
   try {
     const textContent = req.body.text || '';
@@ -254,13 +254,13 @@ Do your deep analysis and give me:
 
 2. **observations**: 4-6 specific things you noticed in what they shared. Be specific — reference actual details you can see.
 
-3. **initial_read**: Your first impression in 2-3 sentences. In your Randy voice.
+3. **initial_read**: Your first impression in 2-3 sentences. In your Sebastian voice.
 
 4. **questions**: Exactly 5 questions to ask them. Each question must:
    - Be specific to THIS situation (reference what you saw)
    - Fill in gaps that would change your verdict
    - Have exactly 4 multiple choice options
-   - Be in your natural Randy voice
+   - Be in your natural Sebastian voice
 
 Respond ONLY with valid JSON:
 {
@@ -277,7 +277,7 @@ Respond ONLY with valid JSON:
 }`
     });
 
-    const systemPrompt = RANDY_SYSTEM_PROMPT + '\n\n' + RANDY_ANALYSIS_PROMPT;
+    const systemPrompt = SEBASTIAN_SYSTEM_PROMPT + '\n\n' + SEBASTIAN_ANALYSIS_PROMPT;
     const response = await callClaudeWithVision(systemPrompt, userContent);
     
     const clean = response.replace(/```json|```/g, '').trim();
@@ -286,12 +286,12 @@ Respond ONLY with valid JSON:
     res.json({ success: true, data: parsed });
     
   } catch (e) {
-    console.error('Randy analyze error:', e.message);
+    console.error('Sebastian analyze error:', e.message);
     res.status(500).json({ error: e.message });
   }
 });
 
-// Randy Route 2: Get final verdict
+// Sebastian Route 2: Get final verdict
 app.post('/api/verdict', async (req, res) => {
   try {
     const { originalContent, initialRead, situationType, observations, questions, answers } = req.body;
@@ -325,14 +325,14 @@ Your verdict must be one of: YES, PROBABLY YES, MIXED SIGNALS, PROBABLY NOT, or 
 Respond ONLY with valid JSON:
 {
   "verdict": "YES|PROBABLY YES|MIXED SIGNALS|PROBABLY NOT|NO",
-  "headline": "A punchy headline in your Randy voice (e.g., 'Honey, they're INTO you!' or 'Bestie, we need to talk...')",
-  "the_tea": "2-3 paragraphs explaining your verdict. Reference specific things from the screenshots and their answers. Be honest but kind. Your full Randy voice.",
+  "headline": "A punchy headline in your Sebastian voice (e.g., 'Honey, they're INTO you!' or 'Bestie, we need to talk...')",
+  "the_tea": "2-3 paragraphs explaining your verdict. Reference specific things from the screenshots and their answers. Be honest but kind. Your full Sebastian voice.",
   "green_flags": ["specific positive sign 1", "specific positive sign 2"],
   "red_flags": ["specific concern 1", "specific concern 2"],
-  "randy_advice": "What should they actually DO next? Be specific and actionable. 2-3 sentences."
+  "sebastian_advice": "What should they actually DO next? Be specific and actionable. 2-3 sentences."
 }`;
 
-    const response = await callClaudeWithVision(RANDY_SYSTEM_PROMPT, [{ type: 'text', text: prompt }]);
+    const response = await callClaudeWithVision(SEBASTIAN_SYSTEM_PROMPT, [{ type: 'text', text: prompt }]);
     
     const clean = response.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
@@ -340,7 +340,7 @@ Respond ONLY with valid JSON:
     res.json({ success: true, data: parsed });
     
   } catch (e) {
-    console.error('Randy verdict error:', e.message);
+    console.error('Sebastian verdict error:', e.message);
     res.status(500).json({ error: e.message });
   }
 });

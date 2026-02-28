@@ -124,7 +124,8 @@ nav {
   flex: 1;
   text-align: center;
   padding-bottom: 2rem;
-  z-index: 2;
+  z-index: 3;
+  position: relative;
 }
 
 .hero-text h1 {
@@ -151,15 +152,15 @@ nav {
 }
 
 /* Character on left */
-/* Character - contained within hero section only */
+/* Character - full opacity, properly layered */
 .hero-character {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 0;
   width: 55%;
-  max-width: 350px;
-  z-index: 5;
+  max-width: 400px;
+  z-index: 2; /* behind text (z-index 3), in front of background */
   pointer-events: none;
 }
 
@@ -167,22 +168,13 @@ nav {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
-  opacity: 0.9;
 }
 
-/* Desktop: character on left side within header */
+/* Desktop: character centered, larger */
 @media (min-width: 769px) {
   .hero-character {
-    left: 2%;
-    transform: none;
-    top: 0;
-    width: 28%;
-    max-width: 320px;
-  }
-  
-  .hero-character img {
-    opacity: 1;
+    width: 45%;
+    max-width: 450px;
   }
 }
 
@@ -235,9 +227,7 @@ main {
 .card-wrapper {
   width: 100%;
   max-width: 480px;
-  margin: -3rem auto 2rem;
-  margin-left: auto;
-  margin-right: 1.5rem;
+  margin: 2rem auto;
   position: relative;
   z-index: 10;
 }
@@ -729,7 +719,7 @@ input[type="text"]:focus {
 </div>
 <div class="caution-stripe"></div>
 
-<main style="margin-top: 1.5rem;">
+<main>
   <div class="card-wrapper">
     <div class="card">
       <div class="card-body">

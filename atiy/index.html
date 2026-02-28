@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Are They Into You? 💅</title>
-<meta name="description" content="Upload your texts and let Randy tell you the truth about whether they're into you.">
+<meta name="description" content="Upload your texts and let Sebastian tell you the truth about whether they're into you.">
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Google tag (gtag.js) - same as main site -->
@@ -55,7 +55,7 @@ body {
   position: relative;
 }
 
-.randy-bg {
+.sebastian-bg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -267,7 +267,7 @@ main {
   padding: 3rem 1rem;
 }
 
-.loading-randy {
+.loading-sebastian {
   width: 100px;
   height: 100px;
   margin: 0 auto 20px;
@@ -521,9 +521,9 @@ main {
 <body>
 
 <header class="header">
-  <img src="randy.jpg" alt="Randy" class="randy-bg">
+  <img src="sebastian.png" alt="Sebastian" class="sebastian-bg">
   <h1 class="logo">Are <em>They</em> Into You?</h1>
-  <p class="tagline">Let Randy read the situation 💅</p>
+  <p class="tagline">Let Sebastian read the situation 💅</p>
 </header>
 
 <main>
@@ -543,18 +543,18 @@ main {
 
       <div class="card">
         <h2 class="card-title">💬 Or paste the conversation</h2>
-        <textarea class="text-input" id="text-input" placeholder="Copy and paste texts here, or give Randy some context about the situation..."></textarea>
+        <textarea class="text-input" id="text-input" placeholder="Copy and paste texts here, or give Sebastian some context about the situation..."></textarea>
       </div>
 
-      <button class="btn-primary" id="analyze-btn" disabled>Let Randy Analyze This 🔮</button>
+      <button class="btn-primary" id="analyze-btn" disabled>Let Sebastian Analyze This 🔮</button>
     </div>
 
     <!-- Loading Stage -->
     <div id="loading-stage" style="display: none;">
       <div class="card">
         <div class="loading-container">
-          <img src="randy.jpg" alt="Randy thinking" class="loading-randy">
-          <p class="loading-text">Randy is studying every detail<span class="loading-dots"></span></p>
+          <img src="sebastian.png" alt="Sebastian thinking" class="loading-sebastian">
+          <p class="loading-text">Sebastian is studying every detail<span class="loading-dots"></span></p>
         </div>
       </div>
     </div>
@@ -564,7 +564,7 @@ main {
       <div class="card" id="analysis-card">
         <div id="situation-container"></div>
         <div class="analysis-preview" id="observations-container">
-          <div class="analysis-preview-title">👀 What Randy Noticed</div>
+          <div class="analysis-preview-title">👀 What Sebastian Noticed</div>
           <div id="observations-list"></div>
         </div>
         <div id="initial-read"></div>
@@ -589,7 +589,7 @@ main {
 // ============================================
 // CONFIG - Same server, use relative URLs
 // ============================================
-const API_BASE_URL = ''; // Empty = same origin (your server handles both DIY + Randy)
+const API_BASE_URL = ''; // Empty = same origin (your server handles both DIY + Sebastian)
 
 // ============================================
 // STATE
@@ -712,7 +712,7 @@ function renderAnalysis() {
   if (analysisData.initial_read) {
     initialRead.innerHTML = `
       <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E7E5E4;">
-        <div style="font-size: 0.85rem; font-weight: 700; color: var(--purple); margin-bottom: 10px;">💬 Randy's First Take</div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--purple); margin-bottom: 10px;">💬 Sebastian's First Take</div>
         <p style="font-size: 1.05rem; color: var(--text-dark); line-height: 1.6; font-style: italic;">"${analysisData.initial_read}"</p>
       </div>
     `;
@@ -787,7 +787,7 @@ async function getVerdict() {
     
   } catch (error) {
     console.error('Error:', error);
-    alert('Oops! Randy got distracted. Please try again.');
+    alert('Oops! Sebastian got distracted. Please try again.');
     showStage('upload');
   }
 }
@@ -825,8 +825,8 @@ function renderVerdict(verdict) {
     ` : ''}
     
     <div class="verdict-section">
-      <div class="verdict-section-title">💅 Randy's Advice</div>
-      <p>${verdict.randy_advice}</p>
+      <div class="verdict-section-title">💅 Sebastian's Advice</div>
+      <p>${verdict.sebastian_advice}</p>
     </div>
   `;
 }
