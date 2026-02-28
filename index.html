@@ -150,17 +150,16 @@ nav {
 }
 
 /* Character on left */
-/* Character on left - positioned at page level to extend across sections */
+/* Character centered behind content */
 .hero-character {
   position: absolute;
-  left: 2%;
-  top: 60px; /* below nav */
-  width: 38%;
-  max-width: 380px;
-  z-index: 50;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+  width: 70%;
+  max-width: 520px;
+  z-index: 5;
   pointer-events: none;
-  background: linear-gradient(180deg, var(--rust) 0%, var(--rust) 60%, var(--bg-dark) 100%);
-  border-radius: 0 0 20px 20px;
 }
 
 .hero-character img {
@@ -168,6 +167,9 @@ nav {
   height: auto;
   display: block;
   mix-blend-mode: multiply;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 40%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 40%, transparent 75%);
 }
 
 /* Caution stripe */

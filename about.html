@@ -141,17 +141,16 @@ nav {
   color: var(--caution);
 }
 
-/* Character on left - positioned at page level */
+/* Character centered behind content */
 .hero-character {
   position: absolute;
-  left: 2%;
-  top: 60px;
-  width: 30%;
-  max-width: 280px;
-  z-index: 50;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+  width: 60%;
+  max-width: 400px;
+  z-index: 5;
   pointer-events: none;
-  background: linear-gradient(180deg, var(--rust) 0%, var(--rust) 60%, var(--bg-dark) 100%);
-  border-radius: 0 0 20px 20px;
 }
 
 .hero-character img {
@@ -159,6 +158,9 @@ nav {
   height: auto;
   display: block;
   mix-blend-mode: multiply;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 40%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 40%, transparent 75%);
 }
 
 .caution-stripe {
