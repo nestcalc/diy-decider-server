@@ -117,7 +117,8 @@ nav {
   flex: 1;
   text-align: center;
   padding-bottom: 1.5rem;
-  z-index: 2;
+  z-index: 10;
+  position: relative;
 }
 
 .hero-text .eyebrow {
@@ -142,15 +143,15 @@ nav {
   color: var(--caution);
 }
 
-/* Character - full opacity, properly layered */
+/* Character - at page level, extends below banner */
 .hero-character {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  top: 60px;
   width: 50%;
-  max-width: 350px;
-  z-index: 2;
+  max-width: 400px;
+  z-index: 5;
   pointer-events: none;
 }
 
@@ -163,8 +164,8 @@ nav {
 /* Desktop: character centered */
 @media (min-width: 769px) {
   .hero-character {
-    width: 40%;
-    max-width: 380px;
+    width: 30%;
+    max-width: 420px;
   }
 }
 
@@ -178,6 +179,8 @@ nav {
     #111 14px,
     #111 28px
   );
+  position: relative;
+  z-index: 10;
 }
 
 /* MAIN */
@@ -383,10 +386,12 @@ main {
   </div>
 </nav>
 
+<!-- Character at page level -->
+<div class="hero-character">
+  <img src="decider.png" alt="The Decider">
+</div>
+
 <div class="hero-section">
-  <div class="hero-character">
-    <img src="decider.png" alt="The Decider">
-  </div>
   <div class="hero-content">
     <div class="hero-text">
       <div class="eyebrow">The Story Behind It</div>
