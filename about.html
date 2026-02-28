@@ -145,16 +145,21 @@ nav {
 .hero-character {
   position: absolute;
   left: 0;
+  top: 0;
   bottom: 0;
   width: 35%;
   max-width: 300px;
   z-index: 3;
+  overflow: hidden;
 }
 
 .hero-character img {
   width: 100%;
   height: auto;
   display: block;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .caution-stripe {
