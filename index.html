@@ -172,6 +172,23 @@ nav {
   mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 50%, transparent 80%);
 }
 
+/* Desktop: character on left side */
+@media (min-width: 769px) {
+  .hero-character {
+    left: 0;
+    transform: none;
+    top: 40px;
+    width: 35%;
+    max-width: 400px;
+  }
+  
+  .hero-character img {
+    opacity: 0.9;
+    -webkit-mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
+    mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
+  }
+}
+
 /* Caution stripe */
 .caution-stripe {
   width: 100%;
