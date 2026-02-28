@@ -99,7 +99,6 @@ nav {
   width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
   position: relative;
-  overflow: visible;
   z-index: 6;
 }
 
@@ -149,7 +148,7 @@ nav {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 60px;
+  top: 50px;
   width: 50%;
   max-width: 400px;
   z-index: 5;
@@ -165,6 +164,7 @@ nav {
 /* Desktop: character centered */
 @media (min-width: 769px) {
   .hero-character {
+    top: 55px;
     width: 30%;
     max-width: 420px;
   }
@@ -291,18 +291,18 @@ main {
 }
 
 .btn-coffee-big {
-  display: block;
+  display: inline-block;
   background: var(--caution);
   color: #1c1917;
   border: none;
-  padding: 1rem;
+  padding: 0.6rem 1rem;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  border-radius: 14px;
-  box-shadow: 0 4px 0 #ca8a04;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #ca8a04;
   transition: transform 0.1s;
 }
 
@@ -345,7 +345,6 @@ main {
     transform: translateX(-50%);
     width: 50%;
     max-width: 200px;
-    opacity: 0.2;
     z-index: 1;
   }
   
@@ -403,7 +402,6 @@ main {
 
 <main>
   <div class="card">
-    <div class="card-header"><span class="card-header-label">What This Is</span></div>
     <div class="card-body">
       <div class="about-text">
         <p>The DIY Decider was built to give you straight advice — whether that's the confidence to grab your tools or the good sense to put them down.</p>
