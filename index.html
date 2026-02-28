@@ -11,7 +11,7 @@
 <meta name="keywords" content="DIY or hire a pro, should I DIY, home improvement advice, DIY home repair, hire a contractor, DIY vs professional">
 <link rel="canonical" href="https://thediydecider.com/" />
 
-<!-- Open Graph (Facebook, iMessage, LinkedIn) -->
+<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://thediydecider.com/" />
 <meta property="og:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
@@ -33,537 +33,754 @@
   gtag('config', 'G-THPQQG9ZB4');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Barlow:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-body {
-  background: #f5f0e8;
-  font-family: 'Barlow Condensed', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+:root {
+  --bg-dark: #1c1917;
+  --rust: #c0392b;
+  --rust-dark: #991b1b;
+  --caution: #facc15;
+  --text-light: #fafaf9;
+  --text-muted: #a8a29e;
+  --card-bg: #292524;
+  --radius: 24px;
 }
 
-/* NAV */
+html, body {
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  background: var(--bg-dark);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   NAV
+   ======================================== */
 nav {
   width: 100%;
-  background: #1a1a1a;
+  background: var(--bg-dark);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 1.5rem;
+  position: relative;
+  z-index: 100;
 }
+
 .nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: 0.04em;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
   color: #fff;
   text-decoration: none;
 }
-.nav-logo span { color: #ffd700; }
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-logo span { color: var(--caution); }
+
+.nav-links { display: flex; gap: 2rem; }
 .nav-links a {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #888;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
-.nav-links a:hover, .nav-links a.active { color: #ffd700; }
+.nav-links a:hover, .nav-links a.active { color: var(--caution); }
 
-/* HEADER BANNER */
-.site-header {
+/* ========================================
+   HEADER BANNER
+   ======================================== */
+.hero-section {
   width: 100%;
-  background: #c0392b;
-  padding: 1.5rem 1.5rem 1.2rem;
-  text-align: center;
-  border-bottom: 4px solid #1a1a1a;
-}
-.site-header .eyebrow {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  margin-bottom: 0.3rem;
-}
-.site-header h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.4rem, 8vw, 3.8rem);
-  letter-spacing: 0.04em;
-  color: #fff;
-  line-height: 1;
-}
-.site-header h1 span { color: #ffd700; }
-.site-header .tagline {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.55);
-  text-transform: uppercase;
-  margin-top: 0.4rem;
-}
-
-/* MAIN CONTENT */
-main {
-  width: 100%;
-  max-width: 520px;
-  padding: 1.8rem 1rem 3rem;
-  flex: 1;
-}
-
-/* CARD */
-.card {
-  background: #fff;
-  border: 2px solid #1a1a1a;
-  border-radius: 2px;
-  box-shadow: 4px 4px 0 #1a1a1a;
+  background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
+  position: relative;
   overflow: hidden;
 }
 
-.card-header {
-  background: #1a1a1a;
-  padding: 0.6rem 1rem;
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  padding: 2rem 1.5rem 0;
+  position: relative;
+  min-height: 280px;
 }
-.card-header-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: #ffd700;
+
+.hero-text {
+  flex: 1;
+  text-align: center;
+  padding-bottom: 2rem;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(3rem, 12vw, 5rem);
+  color: #fff;
+  line-height: 0.9;
   text-transform: uppercase;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }
-.card-header-dots {
-  display: flex; gap: 4px;
+
+.hero-text h1 span { 
+  color: var(--caution);
+  display: block;
 }
-.card-header-dots span {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #333;
+
+.hero-text .tagline {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+/* Character on left */
+.hero-character {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 45%;
+  max-width: 400px;
+  z-index: 3;
+}
+
+.hero-character img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Caution stripe */
+.caution-stripe {
+  width: 100%;
+  height: 14px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--caution) 0px,
+    var(--caution) 14px,
+    #111 14px,
+    #111 28px
+  );
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+  position: relative;
+}
+
+/* Character that extends into main area */
+.character-extension {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  max-width: 350px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.character-extension img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateY(-20%);
+}
+
+/* ========================================
+   CARD
+   ======================================== */
+.card-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: -3rem auto 2rem;
+  margin-left: auto;
+  margin-right: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
 }
 
 .card-body {
-  padding: 1.5rem;
+  padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  min-height: 280px;
-  justify-content: center;
+  gap: 1rem;
 }
 
-/* INPUT */
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
 .field-label {
-  font-size: 0.65rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #999;
+  letter-spacing: 0.04em;
+  color: var(--text-light);
   text-transform: uppercase;
-  margin-bottom: 0.4rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
+
 input[type="text"] {
-  background: #f9f9f9;
-  border: 2px solid #1a1a1a;
-  border-radius: 0;
-  padding: 0.85rem 1rem;
-  color: #1a1a1a;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  background: #44403c;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  color: var(--text-light);
+  font-family: 'Barlow', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
   width: 100%;
   outline: none;
   -webkit-appearance: none;
-  transition: border-color 0.15s;
+  transition: box-shadow 0.2s;
 }
-input[type="text"]:focus { border-color: #c0392b; }
+
+input[type="text"]::placeholder {
+  color: #78716c;
+}
+
+input[type="text"]:focus { 
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.3);
+}
 
 .error-msg {
-  color: #c0392b;
-  font-size: 0.75rem;
+  color: #fca5a5;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  word-break: break-word;
+  text-align: center;
 }
 
-/* BUTTONS */
+/* ========================================
+   BUTTONS
+   ======================================== */
 .btn-main {
-  background: #1a1a1a;
-  color: #ffd700;
-  border: 2px solid #1a1a1a;
-  border-radius: 0;
-  padding: 0.95rem;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
+  background: var(--caution);
+  color: #1c1917;
+  border: none;
+  border-radius: 16px;
+  padding: 1.1rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.25rem;
   text-transform: uppercase;
   cursor: pointer;
   width: 100%;
-  transition: opacity 0.1s, transform 0.1s;
-  box-shadow: 3px 3px 0 #c0392b;
+  transition: transform 0.1s, filter 0.1s;
+  box-shadow: 0 4px 0 #ca8a04;
 }
+
+.btn-main:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #ca8a04;
+}
+
 .btn-main:disabled {
-  background: #ddd;
-  color: #aaa;
-  border-color: #ddd;
+  background: #57534e;
+  color: #a8a29e;
   box-shadow: none;
   cursor: not-allowed;
 }
-.btn-main:active { opacity: 0.85; transform: scale(0.98); }
 
-/* DIVIDER */
-.hw-divider {
-  height: 2px;
-  background: repeating-linear-gradient(90deg, #1a1a1a 0, #1a1a1a 8px, transparent 8px, transparent 14px);
-  margin: 0.2rem 0;
+/* ========================================
+   LOADING
+   ======================================== */
+.loading-section { 
+  text-align: center; 
+  padding: 2.5rem 0; 
 }
 
-/* LOADING */
-.loading-section { text-align: center; padding: 1rem 0; }
 .spinner {
   display: inline-block;
-  width: 32px; height: 32px;
-  border: 3px solid #eee;
-  border-top-color: #c0392b;
+  width: 48px; 
+  height: 48px;
+  border: 4px solid #44403c;
+  border-top-color: var(--caution);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
+
 @keyframes spin { to { transform: rotate(360deg); } }
+
 .loading-section p {
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #999;
-  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-/* QUESTIONS */
+/* ========================================
+   QUESTIONS
+   ======================================== */
 .progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
+
 .progress-badge {
-  background: #c0392b;
-  color: #fff;
-  font-size: 0.55rem;
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
+  color: var(--caution);
   text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
 }
+
 .progress-pct {
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #bbb;
-  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
 }
-.progress-track {
-  height: 5px;
-  background: #eee;
-  border: 1px solid #ddd;
+
+.progress-bar {
+  height: 8px;
+  background: #44403c;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
-  background: #c0392b;
+  background: linear-gradient(90deg, var(--rust) 0%, var(--caution) 100%);
+  width: 0%;
   transition: width 0.4s ease;
+  border-radius: 8px;
 }
 
 .question-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 4.5vw, 1.5rem);
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-light);
   line-height: 1.4;
-  min-height: 3.6em;
+  text-align: center;
+  min-height: 3.5rem;
 }
 
-.yn-buttons { display: flex; gap: 0.8rem; }
+.question-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-yes, .btn-no {
+  flex: 1;
+  padding: 1rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.15rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  transition: transform 0.1s;
+}
+
 .btn-yes {
-  flex: 1;
-  background: #2d7a2d;
+  background: #22c55e;
   color: #fff;
-  border: 2px solid #1a1510;
-  border-radius: 0;
-  padding: 1rem;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 3px 3px 0 #1a1a1a;
-  transition: opacity 0.1s, transform 0.1s;
+  box-shadow: 0 4px 0 #15803d;
 }
+
 .btn-no {
-  flex: 1;
-  background: #c0392b;
+  background: var(--rust);
   color: #fff;
-  border: 2px solid #1a1a1a;
-  border-radius: 0;
-  padding: 1rem;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 3px 3px 0 #1a1a1a;
-  transition: opacity 0.1s, transform 0.1s;
+  box-shadow: 0 4px 0 var(--rust-dark);
 }
-.btn-yes:active, .btn-no:active { opacity: 0.8; transform: scale(0.97); box-shadow: 1px 1px 0 #1a1a1a; }
 
-.dots { display: flex; gap: 5px; justify-content: center; align-items: center; }
+.btn-yes:active, .btn-no:active {
+  transform: translateY(2px);
+}
+
+.btn-yes:active { box-shadow: 0 2px 0 #15803d; }
+.btn-no:active { box-shadow: 0 2px 0 var(--rust-dark); }
+
+/* DOTS */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.25rem;
+}
+
 .dot {
-  height: 6px; border-radius: 1px;
-  background: #ddd;
-  transition: all 0.3s ease;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #44403c;
+  transition: all 0.3s;
 }
-.dot.done { background: #c0392b; width: 6px; }
-.dot.active { background: #1a1a1a; width: 20px; }
-.dot.upcoming { width: 6px; }
 
-/* DELIBERATING */
-.deliberating-section { text-align: center; padding: 1rem 0; }
-.wheel-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 1.5rem; }
+.dot.done { 
+  background: var(--caution); 
+}
+
+.dot.active { 
+  background: var(--rust); 
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
+}
+
+/* ========================================
+   DELIBERATING
+   ======================================== */
+.deliberating-section {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.wheel-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.25rem;
+}
+
 .wheel-glow {
   position: absolute;
-  top: -4px; right: -4px; bottom: -4px; left: -4px;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(250,204,21,0.2) 0%, transparent 70%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(192,57,43,0.1) 0%, transparent 70%);
-  pointer-events: none;
 }
+
 #wheelSvg {
-  transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
-  -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
+
 .wheel-pointer {
   position: absolute;
-  top: -10px; left: 50%;
+  top: -8px;
+  left: 50%;
   transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 16px solid #c0392b;
-  z-index: 10;
-}
-.deliberating-phrase {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #999;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  min-height: 1.3em;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid var(--caution);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
 }
 
-/* VERDICT */
-.verdict-section { display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.5s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.deliberating-phrase {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   VERDICT
+   ======================================== */
+.verdict-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
 .verdict-banner {
-  padding: 1.5rem 1.2rem;
+  padding: 1.5rem;
   text-align: center;
-  border: 2px solid #1a1a1a;
+  border-radius: 16px;
 }
-.verdict-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.verdict-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.25rem;
+}
+
 .verdict-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.6rem, 6vw, 2.2rem);
-  letter-spacing: 0.04em;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.6rem, 6vw, 2rem);
   line-height: 1;
 }
+
 .verdict-tagline {
-  font-size: 0.6rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-top: 0.4rem;
-  opacity: 0.6;
+  margin-top: 0.3rem;
+  opacity: 0.85;
 }
 
+/* INFO BLOCKS */
 .info-block {
-  background: #f9f9f9;
-  border: 2px solid #1a1a1a;
-  border-left: 5px solid #c0392b;
-  padding: 0.9rem 1rem;
+  background: #1c1917;
+  border-left: 4px solid var(--rust);
+  padding: 1rem 1.25rem;
+  border-radius: 0 12px 12px 0;
 }
+
 .info-block-label {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #c0392b;
+  color: var(--rust);
   margin-bottom: 0.4rem;
 }
+
 .info-block p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #333;
-  line-height: 1.6;
+  color: var(--text-light);
+  line-height: 1.55;
 }
 
+/* RESET */
 .btn-reset {
+  display: block;
+  width: 100%;
   background: transparent;
-  border: 2px solid #ddd;
-  border-radius: 0;
-  padding: 0.8rem;
-  color: #aaa;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  width: 100%;
-  transition: border-color 0.2s, color 0.2s;
-  -webkit-appearance: none;
-}
-.btn-reset:active { opacity: 0.7; }
-
-/* FOOTER */
-footer {
-  width: 100%;
-  background: #1a1a1a;
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: auto;
-}
-.footer-left {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #444;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.btn-coffee {
-  display: inline-block;
-  background: #ffd700;
-  color: #1a1a1a;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
+  border: 2px solid #44403c;
+  border-radius: 14px;
+  padding: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.45rem 0.9rem;
-  border: 2px solid #ffd700;
-  transition: opacity 0.15s;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.btn-coffee:active { opacity: 0.8; }
 
+.btn-reset:hover {
+  border-color: var(--caution);
+  color: var(--caution);
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
 .hidden { display: none !important; }
+
+/* ========================================
+   RESPONSIVE - MOBILE FIRST
+   ======================================== */
+
+/* Mobile: stack layout, character behind */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    min-height: 220px;
+    padding: 1.5rem 1rem 0;
+  }
+  
+  .hero-text {
+    padding-bottom: 1.5rem;
+  }
+  
+  .hero-character {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 280px;
+    opacity: 0.2;
+    z-index: 1;
+  }
+  
+  .hero-text {
+    z-index: 2;
+  }
+  
+  .character-extension {
+    display: none;
+  }
+  
+  .card-wrapper {
+    margin: -2rem auto 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 420px;
+  }
+  
+  .card-body {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  nav {
+    padding: 0.9rem 1rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+  
+  .nav-links {
+    gap: 1.25rem;
+  }
+  
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+}
+
+/* Desktop: side by side layout */
+@media (min-width: 769px) {
+  .hero-content {
+    padding: 0 2rem;
+  }
+  
+  .hero-text {
+    margin-left: 35%;
+    text-align: center;
+  }
+  
+  .card-wrapper {
+    max-width: 440px;
+    margin-right: 5%;
+  }
+  
+  main {
+    align-items: flex-end;
+    padding-right: 2rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1024px) {
+  .hero-character {
+    max-width: 450px;
+    width: 40%;
+  }
+  
+  .card-wrapper {
+    margin-right: 8%;
+  }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">The DIY <span>Decider</span></a>
+  <a href="index.html" class="nav-logo">THE DIY <span>DECIDER</span></a>
   <div class="nav-links">
     <a href="index.html" class="active">Tool</a>
     <a href="about.html">About</a>
   </div>
 </nav>
 
-<div class="site-header">
-  <div class="eyebrow">Est. 2025 · Straight Talk Only</div>
-  <h1>THE DIY <span>DECIDER</span></h1>
-  <div class="tagline">5 questions · 1 straight answer · no ego</div>
-</div>
-
-<main>
-  <div class="card">
-    <div class="card-header">
-      <span class="card-header-label" id="cardHeaderLabel">Start Your Assessment</span>
-      <div class="card-header-dots">
-        <span></span><span></span><span></span>
-      </div>
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="hero-character">
+      <img src="decider.png" alt="The Decider">
     </div>
+    <div class="hero-text">
+      <h1>THE DIY <span>DECIDER</span></h1>
+      <div class="tagline">5 Questions · 1 Verdict · Zero BS</div>
+    </div>
+  </div>
+</div>
+<div class="caution-stripe"></div>
 
-    <div class="card-body">
+<main style="margin-top: 1.5rem;">
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="card-body">
 
-      <!-- INPUT -->
-      <div id="stage-input">
-        <div class="field-label">What's the project?</div>
-        <input type="text" id="projectInput" placeholder="e.g. Replace a bathroom faucet..." />
-        <div id="errorMsg" class="error-msg hidden"></div>
-        <div class="hw-divider"></div>
-        <button class="btn-main" id="btnStart" onclick="startProject()">Let's Find Out →</button>
+        <!-- STAGE: INPUT -->
+        <div id="stage-input">
+          <label class="field-label" for="projectInput">What's the project?</label>
+          <input type="text" id="projectInput" placeholder="e.g. Replace a leaky faucet..." autocomplete="off" />
+          <p class="error-msg hidden" id="errorMsg"></p>
+          <button class="btn-main" onclick="startProject()">Size Me Up</button>
+        </div>
+
+        <!-- STAGE: LOADING -->
+        <div id="stage-loading-q" class="loading-section hidden">
+          <div class="spinner"></div>
+          <p>Analyzing your project...</p>
+        </div>
+
+        <!-- STAGE: QUESTIONS -->
+        <div id="stage-questions" class="hidden">
+          <div class="progress-header">
+            <span class="progress-badge" id="progressBadge">Question 1 of 5</span>
+            <span class="progress-pct" id="progressPct">Just getting started</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="question-text" id="questionText"></p>
+          <div class="question-buttons">
+            <button class="btn-yes" onclick="submitAnswer('Yes')">✓ Yes</button>
+            <button class="btn-no" onclick="submitAnswer('No')">✗ No</button>
+          </div>
+          <div class="dots" id="dots"></div>
+        </div>
+
+        <!-- DELIBERATING -->
+        <div id="stage-deliberating" class="deliberating-section hidden">
+          <div class="wheel-wrap">
+            <div class="wheel-glow"></div>
+            <svg id="wheelSvg" width="130" height="130" viewBox="0 0 130 130"></svg>
+            <div class="wheel-pointer"></div>
+          </div>
+          <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
+        </div>
+
+        <!-- VERDICT -->
+        <div id="stage-verdict" class="verdict-section hidden">
+          <div class="verdict-banner" id="verdictBanner">
+            <div class="verdict-emoji" id="verdictEmoji"></div>
+            <div class="verdict-label" id="verdictLabel"></div>
+            <div class="verdict-tagline" id="verdictTagline"></div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label" id="reasoningLabel">💬 The Verdict</div>
+            <p id="reasoningText"></p>
+          </div>
+          <div class="info-block" style="border-left-color:#78716c">
+            <div class="info-block-label" style="color:#78716c">💰 Pro Cost</div>
+            <p id="costText"></p>
+          </div>
+          <div class="info-block hidden" id="resourcesBlock" style="border-left-color:#22c55e">
+            <div class="info-block-label" style="color:#22c55e">📚 Where to Learn</div>
+            <p id="resourcesText"></p>
+          </div>
+          <button class="btn-reset" onclick="reset()">← Try Another Project</button>
+        </div>
+
       </div>
-
-      <!-- LOADING -->
-      <div id="stage-loading-q" class="loading-section hidden">
-        <div class="spinner"></div>
-        <p>Sizing up your project...</p>
-      </div>
-
-      <!-- QUESTIONS -->
-      <div id="stage-questions" class="hidden">
-        <div class="progress-header">
-          <span class="progress-badge" id="progressBadge">Question 1 of 5</span>
-          <span class="progress-pct" id="progressPct">Just getting started</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill" style="width:0%"></div>
-        </div>
-        <div class="hw-divider" style="margin-top:0.8rem"></div>
-        <p class="question-text" id="questionText"></p>
-        <div class="yn-buttons">
-          <button class="btn-yes" onclick="submitAnswer('Yes')">✓ &nbsp;Yes</button>
-          <button class="btn-no"  onclick="submitAnswer('No')">✗ &nbsp;No</button>
-        </div>
-        <div class="dots" id="dots"></div>
-      </div>
-
-      <!-- DELIBERATING -->
-      <div id="stage-deliberating" class="deliberating-section hidden">
-        <div class="wheel-wrap">
-          <div class="wheel-glow"></div>
-          <svg id="wheelSvg" width="140" height="140" viewBox="0 0 140 140"></svg>
-          <div class="wheel-pointer"></div>
-        </div>
-        <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
-      </div>
-
-      <!-- VERDICT -->
-      <div id="stage-verdict" class="verdict-section hidden">
-        <div class="verdict-banner" id="verdictBanner">
-          <div class="verdict-emoji" id="verdictEmoji"></div>
-          <div class="verdict-label" id="verdictLabel"></div>
-          <div class="verdict-tagline" id="verdictTagline"></div>
-        </div>
-        <div class="info-block">
-          <div class="info-block-label" id="reasoningLabel">💬 &nbsp;The Verdict</div>
-          <p id="reasoningText"></p>
-        </div>
-        <div class="info-block" style="border-left-color:#888">
-          <div class="info-block-label" style="color:#888">💰 &nbsp;What a Pro Would Cost You</div>
-          <p id="costText"></p>
-        </div>
-        <div class="info-block hidden" id="resourcesBlock" style="border-left-color:#2d7a2d">
-          <div class="info-block-label" style="color:#2d7a2d">📚 &nbsp;Where to Learn</div>
-          <p id="resourcesText"></p>
-        </div>
-        <button class="btn-reset" onclick="reset()">← Try Another Project</button>
-      </div>
-
     </div>
   </div>
 </main>
-
-<footer>
-  <span class="footer-left">The DIY Decider · Powered by Claude</span>
-  <a href="https://buymeacoffee.com/thediydecider" target="_blank" class="btn-coffee">☕ Buy Dave a Coffee</a>
-</footer>
 
 <script>
 const PHRASES = [
@@ -582,8 +799,8 @@ let phraseIndex = 0, pendingResult = null, wheelDone = false;
 // Build wheel
 (function buildWheel() {
   const svg = document.getElementById('wheelSvg');
-  const fills = ["#c0392b","#1a1a1a","#e74c3c","#111","#c0392b","#1a1a1a","#e74c3c","#111"];
-  const count = fills.length, r = 58, cx = 70, cy = 70;
+  const fills = ["#c0392b","#1c1917","#dc2626","#0c0a09","#c0392b","#1c1917","#dc2626","#0c0a09"];
+  const count = fills.length, r = 54, cx = 65, cy = 65;
   fills.forEach((fill, i) => {
     const angle = 360 / count;
     const s = (i * angle - 90) * Math.PI / 180;
@@ -593,16 +810,16 @@ let phraseIndex = 0, pendingResult = null, wheelDone = false;
     const path = document.createElementNS("http://www.w3.org/2000/svg","path");
     path.setAttribute("d", `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`);
     path.setAttribute("fill", fill);
-    path.setAttribute("stroke", "#f5f0e8");
-    path.setAttribute("stroke-width", "1.5");
+    path.setAttribute("stroke", "#292524");
+    path.setAttribute("stroke-width", "2");
     svg.appendChild(path);
   });
   const hub = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  hub.setAttribute("cx",70); hub.setAttribute("cy",70); hub.setAttribute("r",16);
-  hub.setAttribute("fill","#f5f0e8"); hub.setAttribute("stroke","#ddd"); hub.setAttribute("stroke-width","1.5");
+  hub.setAttribute("cx",65); hub.setAttribute("cy",65); hub.setAttribute("r",16);
+  hub.setAttribute("fill","#292524"); hub.setAttribute("stroke","#44403c"); hub.setAttribute("stroke-width","2");
   svg.appendChild(hub);
   const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  dot.setAttribute("cx",70); dot.setAttribute("cy",70); dot.setAttribute("r",7); dot.setAttribute("fill","#c0392b");
+  dot.setAttribute("cx",65); dot.setAttribute("cy",65); dot.setAttribute("r",7); dot.setAttribute("fill","#facc15");
   svg.appendChild(dot);
 })();
 
@@ -611,14 +828,6 @@ function showStage(name) {
     document.getElementById('stage-'+s).classList.add('hidden');
   });
   document.getElementById('stage-'+name).classList.remove('hidden');
-  const labels = {
-    'input': 'Start Your Assessment',
-    'loading-q': 'Analyzing Project...',
-    'questions': 'Answer Honestly',
-    'deliberating': 'Rendering Judgment...',
-    'verdict': 'The Verdict Is In'
-  };
-  document.getElementById('cardHeaderLabel').textContent = labels[name] || '';
 }
 
 function showError(msg) {
@@ -633,7 +842,7 @@ function updateDots() {
   c.innerHTML = '';
   for (let i = 0; i < 5; i++) {
     const d = document.createElement('div');
-    d.className = 'dot ' + (i < currentQ ? 'done' : i === currentQ ? 'active' : 'upcoming');
+    d.className = 'dot ' + (i < currentQ ? 'done' : i === currentQ ? 'active' : '');
     c.appendChild(d);
   }
 }
@@ -651,8 +860,6 @@ async function startProject() {
   if (!project) return;
   hideError();
   showStage('loading-q');
-
-  // Track event
   gtag('event', 'project_started', { project_name: project });
 
   try {
@@ -711,7 +918,6 @@ function startWheel() {
     document.getElementById('deliberatingPhrase').textContent = PHRASES[phraseIndex];
     wheelRotation += 55 + Math.random() * 30;
     svg.style.transform = `rotate(${wheelRotation}deg)`;
-    svg.style.webkitTransform = `rotate(${wheelRotation}deg)`;
   }, 1100);
   wheelTimeout = setTimeout(() => {
     stopWheel();
@@ -729,16 +935,15 @@ function showVerdict(data) {
   const isDIY = data.verdict === "DIY";
 
   const banner = document.getElementById('verdictBanner');
-  banner.style.background = isDIY ? '#f0fdf4' : '#fff5f5';
-  banner.style.borderColor = isDIY ? '#2d7a2d' : '#c0392b';
+  banner.style.background = isDIY ? 'rgba(34, 197, 94, 0.15)' : 'rgba(192, 57, 43, 0.15)';
 
   document.getElementById('verdictEmoji').textContent = isDIY ? "🔨" : "📞";
   document.getElementById('verdictLabel').textContent = isDIY ? "DO IT YOURSELF" : "CALL A PRO";
-  document.getElementById('verdictLabel').style.color = isDIY ? '#2d7a2d' : '#c0392b';
-  document.getElementById('verdictTagline').textContent = isDIY ? "You've got this one." : "Nothing wrong with knowing your limits.";
-  document.getElementById('verdictTagline').style.color = isDIY ? '#2d7a2d' : '#c0392b';
+  document.getElementById('verdictLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
+  document.getElementById('verdictTagline').textContent = isDIY ? "You've got this." : "Know your limits.";
+  document.getElementById('verdictTagline').style.color = isDIY ? '#22c55e' : '#ef4444';
 
-  document.getElementById('reasoningLabel').style.color = isDIY ? '#2d7a2d' : '#c0392b';
+  document.getElementById('reasoningLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
   document.getElementById('reasoningText').textContent = data.reasoning;
   document.getElementById('costText').textContent = data.cost;
 
@@ -749,9 +954,7 @@ function showVerdict(data) {
     document.getElementById('resourcesBlock').classList.add('hidden');
   }
 
-  // Track verdict
   gtag('event', 'verdict_received', { verdict: data.verdict });
-
   showStage('verdict');
 }
 
