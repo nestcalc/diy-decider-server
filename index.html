@@ -106,6 +106,7 @@ nav {
   width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
   position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -150,14 +151,14 @@ nav {
 }
 
 /* Character on left */
-/* Character centered behind content */
+/* Character - contained within hero section only */
 .hero-character {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 50px;
-  width: 70%;
-  max-width: 520px;
+  top: 0;
+  width: 55%;
+  max-width: 350px;
   z-index: 5;
   pointer-events: none;
 }
@@ -167,25 +168,21 @@ nav {
   height: auto;
   display: block;
   mix-blend-mode: multiply;
-  opacity: 0.85;
-  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 50%, transparent 80%);
-  mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 50%, transparent 80%);
+  opacity: 0.9;
 }
 
-/* Desktop: character on left side */
+/* Desktop: character on left side within header */
 @media (min-width: 769px) {
   .hero-character {
-    left: 0;
+    left: 2%;
     transform: none;
-    top: 40px;
-    width: 35%;
-    max-width: 400px;
+    top: 0;
+    width: 28%;
+    max-width: 320px;
   }
   
   .hero-character img {
-    opacity: 0.9;
-    -webkit-mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
-    mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
+    opacity: 1;
   }
 }
 
@@ -719,12 +716,10 @@ input[type="text"]:focus {
   </div>
 </nav>
 
-<!-- Character positioned at page level so it can extend across sections -->
-<div class="hero-character">
-  <img src="decider.png" alt="The Decider">
-</div>
-
 <div class="hero-section">
+  <div class="hero-character">
+    <img src="decider.png" alt="The Decider">
+  </div>
   <div class="hero-content">
     <div class="hero-text">
       <h1>THE DIY <span>DECIDER</span></h1>

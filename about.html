@@ -99,6 +99,7 @@ nav {
   width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
   position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -141,14 +142,14 @@ nav {
   color: var(--caution);
 }
 
-/* Character centered behind content */
+/* Character - contained within hero section only */
 .hero-character {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 50px;
-  width: 60%;
-  max-width: 400px;
+  top: 0;
+  width: 50%;
+  max-width: 300px;
   z-index: 5;
   pointer-events: none;
 }
@@ -158,25 +159,21 @@ nav {
   height: auto;
   display: block;
   mix-blend-mode: multiply;
-  opacity: 0.85;
-  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 50%, transparent 80%);
-  mask-image: radial-gradient(ellipse 80% 90% at 50% 40%, black 50%, transparent 80%);
+  opacity: 0.9;
 }
 
-/* Desktop: character on left side */
+/* Desktop: character on left side within header */
 @media (min-width: 769px) {
   .hero-character {
-    left: 0;
+    left: 2%;
     transform: none;
-    top: 40px;
-    width: 28%;
-    max-width: 320px;
+    top: 0;
+    width: 22%;
+    max-width: 260px;
   }
   
   .hero-character img {
-    opacity: 0.9;
-    -webkit-mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
-    mask-image: radial-gradient(ellipse 90% 95% at 50% 45%, black 60%, transparent 85%);
+    opacity: 1;
   }
 }
 
@@ -395,12 +392,10 @@ main {
   </div>
 </nav>
 
-<!-- Character positioned at page level -->
-<div class="hero-character">
-  <img src="decider.png" alt="The Decider">
-</div>
-
 <div class="hero-section">
+  <div class="hero-character">
+    <img src="decider.png" alt="The Decider">
+  </div>
   <div class="hero-content">
     <div class="hero-text">
       <div class="eyebrow">The Story Behind It</div>
