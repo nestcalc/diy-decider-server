@@ -106,7 +106,6 @@ nav {
   width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
   position: relative;
-  overflow: hidden;
 }
 
 .hero-content {
@@ -151,20 +150,21 @@ nav {
 }
 
 /* Character on left */
+/* Character on left - positioned at page level to extend across sections */
 .hero-character {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 45%;
-  max-width: 400px;
-  z-index: 10;
+  left: 2%;
+  top: 60px; /* below nav */
+  width: 38%;
+  max-width: 380px;
+  z-index: 50;
+  pointer-events: none;
 }
 
 .hero-character img {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 /* Caution stripe */
@@ -697,11 +697,13 @@ input[type="text"]:focus {
   </div>
 </nav>
 
+<!-- Character positioned at page level so it can extend across sections -->
+<div class="hero-character">
+  <img src="decider.png" alt="The Decider">
+</div>
+
 <div class="hero-section">
   <div class="hero-content">
-    <div class="hero-character">
-      <img src="decider.png" alt="The Decider">
-    </div>
     <div class="hero-text">
       <h1>THE DIY <span>DECIDER</span></h1>
       <div class="tagline">5 Questions · 1 Verdict · Zero BS</div>

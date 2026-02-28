@@ -99,7 +99,6 @@ nav {
   width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
   position: relative;
-  overflow: hidden;
 }
 
 .hero-content {
@@ -142,20 +141,21 @@ nav {
   color: var(--caution);
 }
 
+/* Character on left - positioned at page level */
 .hero-character {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 35%;
-  max-width: 300px;
-  z-index: 10;
+  left: 2%;
+  top: 60px;
+  width: 30%;
+  max-width: 280px;
+  z-index: 50;
+  pointer-events: none;
 }
 
 .hero-character img {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 .caution-stripe {
@@ -373,11 +373,13 @@ main {
   </div>
 </nav>
 
+<!-- Character positioned at page level -->
+<div class="hero-character">
+  <img src="decider.png" alt="The Decider">
+</div>
+
 <div class="hero-section">
   <div class="hero-content">
-    <div class="hero-character">
-      <img src="decider.png" alt="The Decider">
-    </div>
     <div class="hero-text">
       <div class="eyebrow">The Story Behind It</div>
       <h1>ABOUT THE <span>DECIDER</span></h1>
