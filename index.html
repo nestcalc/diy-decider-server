@@ -5,26 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
-<!-- SEO -->
 <title>The DIY Decider — Should You DIY or Hire a Pro?</title>
-<meta name="description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro. Free AI-powered home improvement guidance with zero sugarcoating.">
-<meta name="keywords" content="DIY or hire a pro, should I DIY, home improvement advice, DIY home repair, hire a contractor, DIY vs professional">
+<meta name="description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro.">
 <link rel="canonical" href="https://thediydecider.com/" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://thediydecider.com/" />
 <meta property="og:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta property="og:description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro." />
-<meta property="og:site_name" content="The DIY Decider" />
+<meta property="og:description" content="Describe your project and get straight advice from 40 years of trade experience." />
 
-<!-- Twitter/X Card -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="https://thediydecider.com/" />
-<meta name="twitter:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta name="twitter:description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro." />
-
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-THPQQG9ZB4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -47,29 +36,22 @@
   --text-muted: #a8a29e;
   --card-bg: #292524;
   --green: #22c55e;
-  --green-dim: #166534;
   --red: #ef4444;
   --radius: 20px;
 }
 
-html, body {
-  min-height: 100%;
-  min-height: 100dvh;
-}
+html, body { min-height: 100%; min-height: 100dvh; }
 
 body {
   background: var(--bg-dark);
   font-family: 'Barlow', sans-serif;
   min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
 }
 
-/* ========================================
-   NAV
-   ======================================== */
+/* NAV */
 nav {
   width: 100%;
   background: var(--bg-dark);
@@ -77,14 +59,11 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  position: relative;
-  z-index: 100;
 }
 
 .nav-logo {
   font-family: 'Anton', sans-serif;
   font-size: 1.4rem;
-  letter-spacing: 0.02em;
   color: #fff;
   text-decoration: none;
 }
@@ -98,132 +77,112 @@ nav {
   letter-spacing: 0.08em;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.2s;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--caution); }
 
-/* ========================================
-   HERO
-   ======================================== */
+/* HERO - Character + Title centered together */
 .hero-section {
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
-  padding: 1.75rem 1.5rem;
-  text-align: center;
+  padding: 1.25rem 1rem 0;
+}
+
+.hero-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.hero-character {
+  width: 110px;
+  flex-shrink: 0;
+  margin-bottom: -14px;
+}
+
+.hero-character img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+}
+
+.hero-text {
+  padding-bottom: 1rem;
 }
 
 .hero-text h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2rem, 8vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
   color: white;
   line-height: 0.95;
   text-transform: uppercase;
-  text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
 }
 
-.hero-text h1 span {
-  color: var(--caution);
-}
+.hero-text h1 span { color: var(--caution); }
 
 .hero-text .tagline {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: rgba(255,255,255,0.85);
-  margin-top: 0.6rem;
+  margin-top: 0.4rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .caution-stripe {
   width: 100%;
   height: 14px;
-  background: repeating-linear-gradient(
-    -55deg,
-    var(--caution) 0px,
-    var(--caution) 14px,
-    #111 14px,
-    #111 28px
-  );
+  background: repeating-linear-gradient(-55deg, var(--caution) 0px, var(--caution) 14px, #111 14px, #111 28px);
+  position: relative;
+  z-index: 5;
 }
 
-/* ========================================
-   MAIN LAYOUT
-   ======================================== */
+/* MAIN */
 .main-wrapper {
   flex: 1;
   background: var(--bg-dark);
-  padding: 2rem 1.5rem;
-}
-
-.main-content {
-  max-width: 820px;
-  margin: 0 auto;
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-.character-column {
-  flex-shrink: 0;
-  position: sticky;
-  top: 20px;
-  width: 180px;
-}
-
-.character-column img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+  padding: 1.5rem 1rem 2rem;
 }
 
 .card-container {
-  flex: 1;
-  max-width: 560px;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
-/* ========================================
-   CARDS
-   ======================================== */
+/* CARD */
 .card {
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-  animation: slideUp 0.4s ease-out;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
 .card-header {
   background: #1c1917;
-  padding: 1rem 1.5rem;
+  padding: 0.9rem 1.25rem;
 }
 
 .card-header-label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--caution);
   text-transform: uppercase;
 }
 
-.card-body {
-  padding: 1.5rem;
-}
+.card-body { padding: 1.25rem; }
 
-/* ========================================
-   INTRO QUOTE
-   ======================================== */
+/* INTRO */
 .intro-quote {
   background: rgba(0,0,0,0.3);
   border-left: 3px solid var(--rust);
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 0 8px 8px 0;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-light);
   line-height: 1.6;
 }
@@ -233,45 +192,39 @@ nav {
   font-style: normal;
 }
 
-/* ========================================
-   FORM ELEMENTS
-   ======================================== */
-.form-group {
-  margin-bottom: 20px;
-}
+/* FORM */
+.form-group { margin-bottom: 18px; }
 
 .form-label {
   display: block;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-light);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-hint {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 .text-input {
   width: 100%;
-  min-height: 110px;
+  min-height: 100px;
   background: #1c1917;
   border: 2px solid #44403c;
   border-radius: 8px;
-  padding: 14px;
+  padding: 12px;
   font-family: 'Barlow', sans-serif;
   font-size: 1rem;
   color: var(--text-light);
   resize: vertical;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .text-input:focus {
   outline: none;
   border-color: var(--rust);
-  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
 }
 
 .text-input::placeholder {
@@ -279,81 +232,59 @@ nav {
   opacity: 0.6;
 }
 
-/* Upload Zone */
+/* Upload */
 .upload-zone {
   border: 2px dashed #44403c;
   border-radius: 8px;
-  padding: 20px 16px;
+  padding: 16px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
   background: rgba(0,0,0,0.15);
 }
 
-.upload-zone:hover {
-  border-color: var(--rust);
-  background: rgba(192, 57, 43, 0.1);
-}
+.upload-zone:hover { border-color: var(--rust); }
+.upload-zone.has-files { border-color: var(--green); border-style: solid; }
 
-.upload-zone.has-files {
-  border-color: var(--green);
-  border-style: solid;
-}
-
-.upload-icon {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
-}
-
-.upload-text {
-  font-weight: 600;
-  color: var(--text-light);
-}
-
-.upload-hint {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
+.upload-icon { font-size: 1.6rem; margin-bottom: 4px; }
+.upload-text { font-weight: 600; font-size: 0.9rem; color: var(--text-light); }
+.upload-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
 
 .file-preview {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 6px;
+  margin-top: 10px;
   justify-content: center;
 }
 
 .file-thumb {
-  width: 60px;
-  height: 60px;
-  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
   object-fit: cover;
   border: 2px solid var(--rust);
 }
 
-/* Experience Options */
+/* Experience - 2x2 GRID */
 .experience-options {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
 
 .experience-option {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 8px;
+  padding: 10px;
   background: #1c1917;
   border: 2px solid #44403c;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .experience-option:hover {
   border-color: var(--rust);
-  background: rgba(192, 57, 43, 0.1);
 }
 
 .experience-option.selected {
@@ -364,15 +295,14 @@ nav {
 .experience-option input { display: none; }
 
 .experience-radio {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border: 2px solid var(--text-muted);
   border-radius: 50%;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.2s;
 }
 
 .experience-option.selected .experience-radio {
@@ -381,50 +311,37 @@ nav {
 
 .experience-option.selected .experience-radio::after {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: var(--rust);
   border-radius: 50%;
 }
 
-.experience-text {
-  flex: 1;
-}
-
 .experience-label {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--text-light);
 }
 
-.experience-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-/* Motivation Chips */
+/* Motivation */
 .motivation-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .motivation-chip {
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: #1c1917;
   border: 2px solid #44403c;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 18px;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-light);
   cursor: pointer;
-  transition: all 0.2s;
 }
 
-.motivation-chip:hover {
-  border-color: var(--rust);
-}
+.motivation-chip:hover { border-color: var(--rust); }
 
 .motivation-chip.selected {
   border-color: var(--caution);
@@ -432,39 +349,31 @@ nav {
   color: var(--caution);
 }
 
-/* ========================================
-   BUTTONS
-   ======================================== */
+/* BUTTONS */
 .btn-primary {
   width: 100%;
   background: linear-gradient(135deg, var(--rust) 0%, var(--rust-dark) 100%);
   color: white;
   border: none;
-  padding: 16px;
+  padding: 14px;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
-  transition: transform 0.1s, box-shadow 0.1s;
-  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+  margin-top: 8px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.5);
-}
-
-.btn-primary:active {
-  transform: translateY(1px);
+  box-shadow: 0 6px 16px rgba(192, 57, 43, 0.5);
 }
 
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
 .btn-secondary {
@@ -472,15 +381,13 @@ nav {
   background: transparent;
   color: var(--text-muted);
   border: 2px solid #44403c;
-  padding: 14px;
+  padding: 12px;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
+  font-size: 0.9rem;
   text-transform: uppercase;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .btn-secondary:hover {
@@ -488,98 +395,77 @@ nav {
   color: var(--caution);
 }
 
-/* ========================================
-   LOADING STATE
-   ======================================== */
-.loading-section {
+/* Requirement hint */
+.requirements-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
   text-align: center;
-  padding: 2.5rem 1rem;
+  margin-top: 10px;
 }
 
+.requirements-hint .done { color: var(--green); }
+
+/* LOADING */
+.loading-section { text-align: center; padding: 2rem 1rem; }
+
 .loading-spinner {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: 4px solid #44403c;
   border-top-color: var(--caution);
   border-radius: 50%;
-  margin: 0 auto 20px;
+  margin: 0 auto 16px;
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.loading-text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-light);
-}
+.loading-text { font-size: 1rem; font-weight: 600; color: var(--text-light); }
+.loading-quip { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 10px; }
 
-.loading-quip {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-top: 12px;
-  min-height: 1.5em;
-  transition: opacity 0.2s;
-}
-
-/* ========================================
-   FIRST TAKE STAGE
-   ======================================== */
+/* FIRST TAKE */
 .situation-badge {
   display: inline-block;
   background: var(--rust);
   color: white;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 4px;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .observations-section {
   background: rgba(0,0,0,0.25);
   border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
+  padding: 14px;
+  margin-bottom: 16px;
 }
 
 .observations-title {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
   color: var(--caution);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .observation {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 0;
-  font-size: 0.95rem;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.9rem;
   color: var(--text-light);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   line-height: 1.5;
 }
 
-.observation:last-child {
-  border-bottom: none;
-}
-
-.observation::before {
-  content: '▸';
-  color: var(--rust);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+.observation:last-child { border-bottom: none; }
+.observation::before { content: '▸'; color: var(--rust); }
 
 .first-take-quote {
-  padding: 16px;
+  padding: 14px;
   background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, rgba(192,57,43,0.05) 100%);
   border-left: 4px solid var(--rust);
   border-radius: 0 8px 8px 0;
@@ -587,67 +473,53 @@ nav {
 
 .first-take-label {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  font-size: 0.8rem;
   color: var(--rust);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
 .first-take-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text-light);
   font-style: italic;
 }
 
-/* ========================================
-   QUESTIONS STAGE
-   ======================================== */
-.question-progress {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
+/* QUESTIONS */
+.question-progress { display: flex; gap: 6px; margin-bottom: 16px; }
 
 .progress-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(255,255,255,0.15);
-  transition: all 0.3s;
 }
 
-.progress-dot.done {
-  background: var(--green);
-}
-
-.progress-dot.active {
-  background: var(--caution);
-  box-shadow: 0 0 10px var(--caution);
-}
+.progress-dot.done { background: var(--green); }
+.progress-dot.active { background: var(--caution); box-shadow: 0 0 8px var(--caution); }
 
 .question-context {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   font-style: italic;
-  margin-bottom: 12px;
-  padding-left: 12px;
+  margin-bottom: 10px;
+  padding-left: 10px;
   border-left: 2px solid var(--rust);
 }
 
 .question-text {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--text-light);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1.5;
 }
 
 .answer-btn {
   width: 100%;
-  padding: 16px;
-  margin-bottom: 10px;
+  padding: 14px;
+  margin-bottom: 8px;
   background: #1c1917;
   border: 2px solid #44403c;
   border-radius: 8px;
@@ -656,235 +528,135 @@ nav {
   font-weight: 700;
   color: var(--text-light);
   cursor: pointer;
-  transition: all 0.2s;
-  text-align: left;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .answer-btn:hover {
   border-color: var(--rust);
   background: rgba(192, 57, 43, 0.1);
-  transform: translateX(4px);
 }
 
-.answer-btn .icon {
-  font-size: 1.2rem;
-}
-
-/* ========================================
-   VERDICT STAGE
-   ======================================== */
+/* VERDICT */
 .verdict-header {
-  padding: 24px;
+  padding: 20px;
   text-align: center;
   border-bottom: 3px solid var(--rust);
 }
 
 .verdict-badge {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 8px 20px;
   border-radius: 4px;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   letter-spacing: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.verdict-diy {
-  background: var(--green);
-  color: white;
-}
-
-.verdict-hire {
-  background: var(--red);
-  color: white;
-}
-
-.verdict-hybrid {
-  background: var(--caution);
-  color: var(--bg-dark);
-}
+.verdict-diy { background: var(--green); color: white; }
+.verdict-hire { background: var(--red); color: white; }
+.verdict-hybrid { background: var(--caution); color: var(--bg-dark); }
 
 .verdict-headline {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--text-light);
-  line-height: 1.3;
   text-transform: uppercase;
 }
 
-.verdict-body {
-  padding: 20px;
-}
-
-.verdict-section {
-  margin-bottom: 20px;
-}
-
-.verdict-section:last-child {
-  margin-bottom: 0;
-}
+.verdict-body { padding: 16px; }
+.verdict-section { margin-bottom: 16px; }
+.verdict-section:last-child { margin-bottom: 0; }
 
 .verdict-section-title {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
   color: var(--caution);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
-.verdict-section p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-light);
-}
+.verdict-section p { font-size: 0.95rem; line-height: 1.6; color: var(--text-light); }
 
-.flags-list {
-  list-style: none;
-  padding: 0;
-}
+.flags-list { list-style: none; }
 
 .flags-list li {
-  padding: 10px 0;
-  padding-left: 24px;
+  padding: 8px 0 8px 20px;
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-light);
   border-bottom: 1px solid rgba(255,255,255,0.05);
-  line-height: 1.5;
 }
 
-.flags-list li:last-child {
-  border-bottom: none;
-}
-
-.green-flags li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-weight: bold;
-}
-
-.red-flags li::before {
-  content: '✗';
-  position: absolute;
-  left: 0;
-  color: var(--red);
-  font-weight: bold;
-}
+.flags-list li:last-child { border-bottom: none; }
+.green-flags li::before { content: '✓'; position: absolute; left: 0; color: var(--green); }
+.red-flags li::before { content: '✗'; position: absolute; left: 0; color: var(--red); }
 
 .cost-breakdown {
   background: rgba(0,0,0,0.25);
   border-radius: 8px;
-  padding: 14px;
+  padding: 12px;
 }
 
 .cost-row {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
 }
 
-.cost-row:last-child {
-  border-bottom: none;
-}
-
-.cost-label {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.cost-value {
-  font-weight: 700;
-  color: var(--text-light);
-}
+.cost-row:last-child { border-bottom: none; }
+.cost-label { color: var(--text-muted); }
+.cost-value { font-weight: 700; color: var(--text-light); }
 
 .final-word {
-  padding: 16px;
+  padding: 14px;
   background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, rgba(192,57,43,0.05) 100%);
   border-left: 4px solid var(--rust);
   border-radius: 0 8px 8px 0;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .final-word-label {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  font-size: 0.8rem;
   color: var(--rust);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
 .final-word-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text-light);
   font-style: italic;
 }
 
-/* ========================================
-   UTILITIES
-   ======================================== */
 .hidden { display: none !important; }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 768px) {
-  nav {
-    padding: 0.9rem 1rem;
-  }
+/* MOBILE */
+@media (max-width: 480px) {
+  nav { padding: 0.8rem 1rem; }
+  .nav-logo { font-size: 1.2rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.75rem; }
   
-  .nav-logo {
-    font-size: 1.2rem;
-  }
+  .hero-section { padding: 1rem 0.75rem 0; }
+  .hero-character { width: 90px; }
+  .hero-text h1 { font-size: 1.4rem; }
+  .hero-text .tagline { font-size: 0.7rem; }
   
-  .nav-links {
-    gap: 1.25rem;
-  }
+  .main-wrapper { padding: 1.25rem 0.75rem; }
+  .card-body { padding: 1rem; }
   
-  .nav-links a {
-    font-size: 0.8rem;
-  }
+  .experience-options { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .experience-option { padding: 8px; }
+  .experience-label { font-size: 0.8rem; }
   
-  .hero-section {
-    padding: 1.25rem 1rem;
-  }
-  
-  .main-wrapper {
-    padding: 1.5rem 1rem;
-  }
-  
-  .main-content {
-    flex-direction: column;
-  }
-  
-  .character-column {
-    display: none;
-  }
-  
-  .card-container {
-    max-width: 100%;
-  }
-  
-  .card-body {
-    padding: 1.25rem;
-  }
-  
-  .experience-option {
-    padding: 10px 12px;
-  }
-  
-  .motivation-chip {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
+  .motivation-chip { padding: 6px 10px; font-size: 0.8rem; }
 }
 </style>
 </head>
@@ -899,204 +671,153 @@ nav {
 </nav>
 
 <div class="hero-section">
-  <div class="hero-text">
-    <h1>THE DIY <span>DECIDER</span></h1>
-    <p class="tagline">40 Years Experience. Zero BS.</p>
+  <div class="hero-content">
+    <div class="hero-character">
+      <img src="decider.png" alt="The Decider">
+    </div>
+    <div class="hero-text">
+      <h1>THE DIY <span>DECIDER</span></h1>
+      <p class="tagline">40 Years Experience. Zero BS.</p>
+    </div>
   </div>
 </div>
 <div class="caution-stripe"></div>
 
 <div class="main-wrapper">
-  <div class="main-content">
-    <!-- Character Column -->
-    <div class="character-column">
-      <img src="decider.png" alt="The Decider">
-    </div>
+  <div class="card-container">
     
-    <!-- Card Container -->
-    <div class="card-container">
-      
-      <!-- ============================================
-           STAGE: INPUT
-           ============================================ -->
-      <div id="stage-input">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-header-label">Tell Me About Your Project</span>
-          </div>
-          <div class="card-body">
-            
-            <div class="intro-quote">
-              "Alright, tell me what you're thinking about tackling. Don't sugarcoat it — <strong>give me the real picture</strong> and I'll tell you straight whether you should grab your tools or grab your phone."
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">What's the project?</label>
-              <textarea 
-                class="text-input" 
-                id="project-input"
-                placeholder="Example: I want to install a new bathroom vanity. The current one is original from 1985. There's some water damage on the floor underneath and I think the plumbing might need updating too..."
-              ></textarea>
-              <p class="form-hint">The more detail, the better advice I can give you.</p>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Got photos? (optional but helpful)</label>
-              <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">📸</div>
-                <div class="upload-text">Tap to add photos</div>
-                <div class="upload-hint">Show me what you're working with</div>
-                <div class="file-preview" id="file-preview"></div>
-              </div>
-              <input type="file" id="file-input" accept="image/*" multiple hidden>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">How handy are you?</label>
-              <div class="experience-options" id="experience-options">
-                <label class="experience-option" data-value="novice">
-                  <input type="radio" name="experience" value="novice">
-                  <div class="experience-radio"></div>
-                  <div class="experience-text">
-                    <div class="experience-label">🔰 New to this</div>
-                    <div class="experience-desc">Owned a screwdriver, maybe used it twice</div>
-                  </div>
-                </label>
-                <label class="experience-option" data-value="some">
-                  <input type="radio" name="experience" value="some">
-                  <div class="experience-radio"></div>
-                  <div class="experience-text">
-                    <div class="experience-label">🔧 Done a few projects</div>
-                    <div class="experience-desc">Painted rooms, assembled furniture, minor repairs</div>
-                  </div>
-                </label>
-                <label class="experience-option" data-value="handy">
-                  <input type="radio" name="experience" value="handy">
-                  <div class="experience-radio"></div>
-                  <div class="experience-text">
-                    <div class="experience-label">🛠️ Pretty handy</div>
-                    <div class="experience-desc">Done some real projects, comfortable with tools</div>
-                  </div>
-                </label>
-                <label class="experience-option" data-value="experienced">
-                  <input type="radio" name="experience" value="experienced">
-                  <div class="experience-radio"></div>
-                  <div class="experience-text">
-                    <div class="experience-label">⚡ Experienced</div>
-                    <div class="experience-desc">Built things, done electrical or plumbing, know my way around</div>
-                  </div>
-                </label>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Why DIY? (pick all that apply)</label>
-              <div class="motivation-chips" id="motivation-chips">
-                <button type="button" class="motivation-chip" data-value="save-money">💰 Save money</button>
-                <button type="button" class="motivation-chip" data-value="learn">📚 Want to learn</button>
-                <button type="button" class="motivation-chip" data-value="enjoy">😊 Enjoy the work</button>
-                <button type="button" class="motivation-chip" data-value="timeline">⏰ Need it done fast</button>
-                <button type="button" class="motivation-chip" data-value="trust">🤔 Don't trust contractors</button>
-                <button type="button" class="motivation-chip" data-value="small">🔍 Seems simple enough</button>
-              </div>
-            </div>
-            
-            <button class="btn-primary" id="analyze-btn" disabled>
-              LET'S SEE WHAT WE'VE GOT →
-            </button>
-            
-          </div>
+    <!-- INPUT -->
+    <div id="stage-input">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-header-label">Tell Me About Your Project</span>
         </div>
-      </div>
-
-      <!-- ============================================
-           STAGE: LOADING
-           ============================================ -->
-      <div id="stage-loading" class="hidden">
-        <div class="card">
-          <div class="card-body">
-            <div class="loading-section">
-              <div class="loading-spinner"></div>
-              <p class="loading-text">The Decider is sizing up your project<span class="loading-dots"></span></p>
-              <p class="loading-quip" id="loading-quip"></p>
+        <div class="card-body">
+          
+          <div class="intro-quote">
+            "Tell me what you're tackling. <strong>Give me the real picture</strong> and I'll tell you straight."
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">What's the project?</label>
+            <textarea class="text-input" id="project-input" placeholder="Example: Replace bathroom vanity, fix leaky faucet, install ceiling fan, build a deck..."></textarea>
+            <p class="form-hint">A sentence or two is all I need.</p>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Got photos? (optional)</label>
+            <div class="upload-zone" id="upload-zone">
+              <div class="upload-icon">📸</div>
+              <div class="upload-text">Tap to add photos</div>
+              <div class="upload-hint">Show me what you're working with</div>
+              <div class="file-preview" id="file-preview"></div>
+            </div>
+            <input type="file" id="file-input" accept="image/*" multiple hidden>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">How handy are you?</label>
+            <div class="experience-options">
+              <label class="experience-option" data-value="novice">
+                <input type="radio" name="experience" value="novice">
+                <div class="experience-radio"></div>
+                <span class="experience-label">🔰 New to this</span>
+              </label>
+              <label class="experience-option" data-value="some">
+                <input type="radio" name="experience" value="some">
+                <div class="experience-radio"></div>
+                <span class="experience-label">🔧 Some experience</span>
+              </label>
+              <label class="experience-option" data-value="handy">
+                <input type="radio" name="experience" value="handy">
+                <div class="experience-radio"></div>
+                <span class="experience-label">🛠️ Pretty handy</span>
+              </label>
+              <label class="experience-option" data-value="experienced">
+                <input type="radio" name="experience" value="experienced">
+                <div class="experience-radio"></div>
+                <span class="experience-label">⚡ Experienced</span>
+              </label>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- ============================================
-           STAGE: FIRST TAKE
-           ============================================ -->
-      <div id="stage-first-take" class="hidden">
-        <div class="card">
-          <div class="card-body">
-            <span class="situation-badge" id="situation-badge">PROJECT TYPE</span>
-            
-            <div class="observations-section">
-              <div class="observations-title">🔍 What I'm Seeing</div>
-              <div id="observations-list"></div>
-            </div>
-            
-            <div class="first-take-quote">
-              <div class="first-take-label">🗣️ The Decider's First Take</div>
-              <p class="first-take-text" id="first-take-text"></p>
+          
+          <div class="form-group">
+            <label class="form-label">Why DIY?</label>
+            <div class="motivation-chips">
+              <button type="button" class="motivation-chip" data-value="save-money">💰 Save money</button>
+              <button type="button" class="motivation-chip" data-value="learn">📚 Learn</button>
+              <button type="button" class="motivation-chip" data-value="enjoy">😊 Enjoy it</button>
+              <button type="button" class="motivation-chip" data-value="timeline">⏰ Fast</button>
+              <button type="button" class="motivation-chip" data-value="small">🔍 Seems simple</button>
             </div>
           </div>
-        </div>
-        
-        <button class="btn-primary" id="continue-btn">
-          ALRIGHT, HIT ME WITH THE QUESTIONS →
-        </button>
-      </div>
-
-      <!-- ============================================
-           STAGE: QUESTIONS
-           ============================================ -->
-      <div id="stage-questions" class="hidden">
-        <div class="card">
-          <div class="card-body" id="question-container">
-            <!-- Populated by JS -->
-          </div>
+          
+          <button class="btn-primary" id="analyze-btn" disabled>LET'S SEE WHAT WE'VE GOT →</button>
+          
+          <p class="requirements-hint" id="requirements-hint">
+            <span id="req-project">✗ Describe your project</span> · <span id="req-exp">✗ Select experience</span>
+          </p>
         </div>
       </div>
-
-      <!-- ============================================
-           STAGE: VERDICT
-           ============================================ -->
-      <div id="stage-verdict" class="hidden">
-        <div class="card" id="verdict-card">
-          <!-- Populated by JS -->
-        </div>
-        <button class="btn-secondary" id="start-over-btn">← START A NEW PROJECT</button>
-      </div>
-
     </div>
+
+    <!-- LOADING -->
+    <div id="stage-loading" class="hidden">
+      <div class="card">
+        <div class="card-body">
+          <div class="loading-section">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Sizing up your project...</p>
+            <p class="loading-quip" id="loading-quip"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIRST TAKE -->
+    <div id="stage-first-take" class="hidden">
+      <div class="card">
+        <div class="card-body">
+          <span class="situation-badge" id="situation-badge">PROJECT</span>
+          <div class="observations-section">
+            <div class="observations-title">🔍 What I'm Seeing</div>
+            <div id="observations-list"></div>
+          </div>
+          <div class="first-take-quote">
+            <div class="first-take-label">🗣️ The Decider's First Take</div>
+            <p class="first-take-text" id="first-take-text"></p>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary" id="continue-btn">HIT ME WITH THE QUESTIONS →</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="stage-questions" class="hidden">
+      <div class="card">
+        <div class="card-body" id="question-container"></div>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div id="stage-verdict" class="hidden">
+      <div class="card" id="verdict-card"></div>
+      <button class="btn-secondary" id="start-over-btn">← NEW PROJECT</button>
+    </div>
+
   </div>
 </div>
 
 <script>
-// ============================================
-// CONFIG
-// ============================================
 const API_BASE_URL = '';
-
-// ============================================
-// LOADING QUIPS
-// ============================================
 const LOADING_QUIPS = [
-  "Checking if this is a 'quick weekend job' or a 'what have I gotten myself into'...",
-  "Running this through 40 years of 'I've seen this before'...",
-  "Calculating the odds you'll need a second trip to the hardware store...",
+  "Checking if this is a weekend job or a month-long ordeal...",
+  "Running this through 40 years of experience...",
+  "Calculating hardware store trips...",
   "Consulting my mental database of DIY disasters...",
-  "Measuring twice so you don't have to cut three times...",
-  "Checking if YouTube tutorials will actually help here...",
-  "Assessing the 'honey, I can fix this' risk level...",
-  "Cross-referencing with every 'it's just a small job' I've ever heard..."
+  "Checking if YouTube can actually help here..."
 ];
 
-// ============================================
-// STATE
-// ============================================
 let uploadedFiles = [];
 let selectedExperience = null;
 let selectedMotivations = [];
@@ -1104,161 +825,118 @@ let analysisData = null;
 let currentQuestion = 0;
 let answers = [];
 
-// ============================================
-// DOM ELEMENTS
-// ============================================
 const projectInput = document.getElementById('project-input');
 const uploadZone = document.getElementById('upload-zone');
 const fileInput = document.getElementById('file-input');
 const filePreview = document.getElementById('file-preview');
 const analyzeBtn = document.getElementById('analyze-btn');
 const loadingQuip = document.getElementById('loading-quip');
+const reqProject = document.getElementById('req-project');
+const reqExp = document.getElementById('req-exp');
 
-// ============================================
-// FILE UPLOAD
-// ============================================
+// File upload
 uploadZone.addEventListener('click', () => fileInput.click());
-
 fileInput.addEventListener('change', (e) => {
-  const files = Array.from(e.target.files);
-  uploadedFiles = [...uploadedFiles, ...files];
-  renderFilePreviews();
-});
-
-function renderFilePreviews() {
+  uploadedFiles = [...uploadedFiles, ...Array.from(e.target.files)];
   filePreview.innerHTML = '';
   uploadedFiles.forEach((file, i) => {
     const img = document.createElement('img');
     img.className = 'file-thumb';
     img.src = URL.createObjectURL(file);
-    img.alt = `Photo ${i + 1}`;
     filePreview.appendChild(img);
   });
-  
   uploadZone.classList.toggle('has-files', uploadedFiles.length > 0);
-}
+});
 
-// ============================================
-// EXPERIENCE SELECTION
-// ============================================
-document.querySelectorAll('.experience-option').forEach(option => {
-  option.addEventListener('click', () => {
+// Experience
+document.querySelectorAll('.experience-option').forEach(opt => {
+  opt.addEventListener('click', () => {
     document.querySelectorAll('.experience-option').forEach(o => o.classList.remove('selected'));
-    option.classList.add('selected');
-    option.querySelector('input').checked = true;
-    selectedExperience = option.dataset.value;
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+    selectedExperience = opt.dataset.value;
     checkCanAnalyze();
   });
 });
 
-// ============================================
-// MOTIVATION CHIPS
-// ============================================
+// Motivation
 document.querySelectorAll('.motivation-chip').forEach(chip => {
   chip.addEventListener('click', () => {
     chip.classList.toggle('selected');
-    const value = chip.dataset.value;
-    if (selectedMotivations.includes(value)) {
-      selectedMotivations = selectedMotivations.filter(m => m !== value);
+    const val = chip.dataset.value;
+    if (selectedMotivations.includes(val)) {
+      selectedMotivations = selectedMotivations.filter(m => m !== val);
     } else {
-      selectedMotivations.push(value);
+      selectedMotivations.push(val);
     }
   });
 });
 
-// ============================================
-// FORM VALIDATION
-// ============================================
+// Validation
 projectInput.addEventListener('input', checkCanAnalyze);
 
 function checkCanAnalyze() {
-  const hasProject = projectInput.value.trim().length > 20;
-  const hasExperience = selectedExperience !== null;
-  analyzeBtn.disabled = !(hasProject && hasExperience);
-}
-
-// ============================================
-// STAGE NAVIGATION
-// ============================================
-function showStage(stage) {
-  ['input', 'loading', 'first-take', 'questions', 'verdict'].forEach(s => {
-    document.getElementById('stage-' + s).classList.add('hidden');
-  });
-  document.getElementById('stage-' + stage).classList.remove('hidden');
-}
-
-// ============================================
-// LOADING QUIPS ANIMATION
-// ============================================
-let quipInterval;
-
-function startLoadingQuips() {
-  let quipIndex = 0;
-  loadingQuip.textContent = LOADING_QUIPS[0];
+  const hasProject = projectInput.value.trim().length >= 10;
+  const hasExp = selectedExperience !== null;
   
+  reqProject.textContent = hasProject ? '✓ Project' : '✗ Describe project';
+  reqProject.className = hasProject ? 'done' : '';
+  reqExp.textContent = hasExp ? '✓ Experience' : '✗ Select experience';
+  reqExp.className = hasExp ? 'done' : '';
+  
+  analyzeBtn.disabled = !(hasProject && hasExp);
+}
+
+// Stages
+function showStage(s) {
+  ['input','loading','first-take','questions','verdict'].forEach(x => {
+    document.getElementById('stage-'+x).classList.add('hidden');
+  });
+  document.getElementById('stage-'+s).classList.remove('hidden');
+}
+
+// Loading quips
+let quipInterval;
+function startQuips() {
+  let i = 0;
+  loadingQuip.textContent = LOADING_QUIPS[0];
   quipInterval = setInterval(() => {
-    quipIndex = (quipIndex + 1) % LOADING_QUIPS.length;
-    loadingQuip.style.opacity = 0;
-    setTimeout(() => {
-      loadingQuip.textContent = LOADING_QUIPS[quipIndex];
-      loadingQuip.style.opacity = 1;
-    }, 200);
-  }, 3000);
+    i = (i + 1) % LOADING_QUIPS.length;
+    loadingQuip.textContent = LOADING_QUIPS[i];
+  }, 2500);
 }
+function stopQuips() { clearInterval(quipInterval); }
 
-function stopLoadingQuips() {
-  clearInterval(quipInterval);
-}
-
-// ============================================
-// ANALYZE - First API call
-// ============================================
+// Analyze
 analyzeBtn.addEventListener('click', async () => {
   showStage('loading');
-  startLoadingQuips();
+  startQuips();
   
   try {
     const formData = new FormData();
-    uploadedFiles.forEach(file => formData.append('files', file));
+    uploadedFiles.forEach(f => formData.append('files', f));
     formData.append('project', projectInput.value);
     formData.append('experience', selectedExperience);
     formData.append('motivations', JSON.stringify(selectedMotivations));
     
-    const response = await fetch(`${API_BASE_URL}/api/analyze`, {
-      method: 'POST',
-      body: formData
-    });
+    const res = await fetch(API_BASE_URL + '/api/analyze', { method: 'POST', body: formData });
+    if (!res.ok) throw new Error('Failed');
     
-    if (!response.ok) throw new Error('Analysis failed');
-    
-    const result = await response.json();
+    const result = await res.json();
     analysisData = result.data;
+    stopQuips();
     
-    stopLoadingQuips();
-    renderFirstTake();
+    document.getElementById('situation-badge').textContent = analysisData.situation_type || 'PROJECT';
+    document.getElementById('observations-list').innerHTML = analysisData.observations.map(o => `<div class="observation">${o}</div>`).join('');
+    document.getElementById('first-take-text').textContent = analysisData.first_take;
+    
     showStage('first-take');
-    
-  } catch (error) {
-    console.error('Error:', error);
-    stopLoadingQuips();
-    alert('Something went sideways. Give it another shot.');
+  } catch (e) {
+    stopQuips();
+    alert('Something went wrong. Try again.');
     showStage('input');
   }
 });
-
-// ============================================
-// RENDER FIRST TAKE
-// ============================================
-function renderFirstTake() {
-  document.getElementById('situation-badge').textContent = analysisData.situation_type || 'HOME PROJECT';
-  
-  const obsList = document.getElementById('observations-list');
-  obsList.innerHTML = analysisData.observations
-    .map(obs => `<div class="observation">${obs}</div>`)
-    .join('');
-  
-  document.getElementById('first-take-text').textContent = analysisData.first_take;
-}
 
 // Continue to questions
 document.getElementById('continue-btn').addEventListener('click', () => {
@@ -1266,58 +944,38 @@ document.getElementById('continue-btn').addEventListener('click', () => {
   renderQuestion();
 });
 
-// ============================================
-// QUESTIONS
-// ============================================
 function renderQuestion() {
-  const questions = analysisData.questions;
-  if (currentQuestion >= questions.length) {
+  if (currentQuestion >= analysisData.questions.length) {
     getVerdict();
     return;
   }
   
-  const q = questions[currentQuestion];
-  
+  const q = analysisData.questions[currentQuestion];
   document.getElementById('question-container').innerHTML = `
     <div class="question-progress">
-      ${questions.map((_, i) => `
-        <div class="progress-dot ${i < currentQuestion ? 'done' : ''} ${i === currentQuestion ? 'active' : ''}"></div>
-      `).join('')}
+      ${analysisData.questions.map((_, i) => `<div class="progress-dot ${i < currentQuestion ? 'done' : ''} ${i === currentQuestion ? 'active' : ''}"></div>`).join('')}
     </div>
-    
     ${q.context ? `<p class="question-context">${q.context}</p>` : ''}
-    
     <p class="question-text">${q.question}</p>
-    
-    <button class="answer-btn" data-answer="yes">
-      <span class="icon">✓</span> Yes
-    </button>
-    <button class="answer-btn" data-answer="no">
-      <span class="icon">✗</span> No
-    </button>
+    <button class="answer-btn" data-answer="yes"><span>✓</span> Yes</button>
+    <button class="answer-btn" data-answer="no"><span>✗</span> No</button>
   `;
   
   document.querySelectorAll('.answer-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      answers.push({
-        question: q.question,
-        answer: btn.dataset.answer
-      });
+      answers.push({ question: q.question, answer: btn.dataset.answer });
       currentQuestion++;
       renderQuestion();
     });
   });
 }
 
-// ============================================
-// VERDICT
-// ============================================
 async function getVerdict() {
   showStage('loading');
-  startLoadingQuips();
+  startQuips();
   
   try {
-    const response = await fetch(`${API_BASE_URL}/api/verdict`, {
+    const res = await fetch(API_BASE_URL + '/api/verdict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1328,132 +986,65 @@ async function getVerdict() {
         observations: analysisData.observations,
         firstTake: analysisData.first_take,
         questions: analysisData.questions,
-        answers: answers
+        answers
       })
     });
     
-    if (!response.ok) throw new Error('Verdict failed');
+    if (!res.ok) throw new Error('Failed');
+    const result = await res.json();
+    stopQuips();
     
-    const result = await response.json();
-    stopLoadingQuips();
-    renderVerdict(result.data);
+    const v = result.data;
+    let vc = 'diy';
+    if (v.verdict.toLowerCase().includes('pro') || v.verdict.toLowerCase().includes('hire')) vc = 'hire';
+    else if (v.verdict.toLowerCase().includes('hybrid')) vc = 'hybrid';
+    
+    document.getElementById('verdict-card').innerHTML = `
+      <div class="verdict-header">
+        <div class="verdict-badge verdict-${vc}">${v.verdict}</div>
+        <h2 class="verdict-headline">${v.headline}</h2>
+      </div>
+      <div class="verdict-body">
+        <div class="verdict-section">
+          <div class="verdict-section-title">📋 The Breakdown</div>
+          <p>${v.breakdown}</p>
+        </div>
+        ${v.green_flags?.length ? `<div class="verdict-section"><div class="verdict-section-title">✓ In Your Favor</div><ul class="flags-list green-flags">${v.green_flags.map(f=>`<li>${f}</li>`).join('')}</ul></div>` : ''}
+        ${v.red_flags?.length ? `<div class="verdict-section"><div class="verdict-section-title">⚠️ Watch Out</div><ul class="flags-list red-flags">${v.red_flags.map(f=>`<li>${f}</li>`).join('')}</ul></div>` : ''}
+        ${v.cost_estimate ? `<div class="verdict-section"><div class="verdict-section-title">💵 Costs</div><div class="cost-breakdown"><div class="cost-row"><span class="cost-label">DIY</span><span class="cost-value">${v.cost_estimate.diy}</span></div><div class="cost-row"><span class="cost-label">Pro</span><span class="cost-value">${v.cost_estimate.pro}</span></div><div class="cost-row"><span class="cost-label">Time</span><span class="cost-value">${v.cost_estimate.time}</span></div></div></div>` : ''}
+        <div class="final-word">
+          <div class="final-word-label">🗣️ Final Word</div>
+          <p class="final-word-text">"${v.final_word}"</p>
+        </div>
+      </div>
+    `;
     showStage('verdict');
-    
-  } catch (error) {
-    console.error('Error:', error);
-    stopLoadingQuips();
-    alert('Hit a snag getting your verdict. Try again.');
+  } catch (e) {
+    stopQuips();
+    alert('Something went wrong. Try again.');
     showStage('input');
   }
 }
 
-function renderVerdict(verdict) {
-  let verdictClass = 'diy';
-  if (verdict.verdict.toLowerCase().includes('pro') || verdict.verdict.toLowerCase().includes('hire')) {
-    verdictClass = 'hire';
-  } else if (verdict.verdict.toLowerCase().includes('hybrid')) {
-    verdictClass = 'hybrid';
-  }
-  
-  document.getElementById('verdict-card').innerHTML = `
-    <div class="verdict-header">
-      <div class="verdict-badge verdict-${verdictClass}">${verdict.verdict}</div>
-      <h2 class="verdict-headline">${verdict.headline}</h2>
-    </div>
-    
-    <div class="verdict-body">
-      <div class="verdict-section">
-        <div class="verdict-section-title">📋 The Breakdown</div>
-        <p>${verdict.breakdown}</p>
-      </div>
-      
-      ${verdict.green_flags && verdict.green_flags.length > 0 ? `
-        <div class="verdict-section">
-          <div class="verdict-section-title">✓ Working In Your Favor</div>
-          <ul class="flags-list green-flags">
-            ${verdict.green_flags.map(f => `<li>${f}</li>`).join('')}
-          </ul>
-        </div>
-      ` : ''}
-      
-      ${verdict.red_flags && verdict.red_flags.length > 0 ? `
-        <div class="verdict-section">
-          <div class="verdict-section-title">⚠️ Watch Out For</div>
-          <ul class="flags-list red-flags">
-            ${verdict.red_flags.map(f => `<li>${f}</li>`).join('')}
-          </ul>
-        </div>
-      ` : ''}
-      
-      ${verdict.cost_estimate ? `
-        <div class="verdict-section">
-          <div class="verdict-section-title">💵 Cost Comparison</div>
-          <div class="cost-breakdown">
-            <div class="cost-row">
-              <span class="cost-label">DIY Cost (materials + tools)</span>
-              <span class="cost-value">${verdict.cost_estimate.diy}</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Pro Cost (labor + materials)</span>
-              <span class="cost-value">${verdict.cost_estimate.pro}</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Your Time Investment</span>
-              <span class="cost-value">${verdict.cost_estimate.time}</span>
-            </div>
-          </div>
-        </div>
-      ` : ''}
-      
-      <div class="final-word">
-        <div class="final-word-label">🗣️ The Decider's Final Word</div>
-        <p class="final-word-text">"${verdict.final_word}"</p>
-      </div>
-    </div>
-  `;
-}
-
-// ============================================
-// START OVER
-// ============================================
 document.getElementById('start-over-btn').addEventListener('click', () => {
-  // Reset state
   uploadedFiles = [];
   selectedExperience = null;
   selectedMotivations = [];
   analysisData = null;
   currentQuestion = 0;
   answers = [];
-  
-  // Reset UI
   filePreview.innerHTML = '';
   uploadZone.classList.remove('has-files');
   projectInput.value = '';
   document.querySelectorAll('.experience-option').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('.motivation-chip').forEach(c => c.classList.remove('selected'));
   analyzeBtn.disabled = true;
-  
+  reqProject.textContent = '✗ Describe project';
+  reqProject.className = '';
+  reqExp.textContent = '✗ Select experience';
+  reqExp.className = '';
   showStage('input');
 });
-
-// ============================================
-// LOADING DOTS CSS
-// ============================================
-const style = document.createElement('style');
-style.textContent = `
-  .loading-dots::after {
-    content: '';
-    animation: dots 1.5s steps(4, end) infinite;
-  }
-  @keyframes dots {
-    0% { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
-  }
-`;
-document.head.appendChild(style);
 </script>
-
 </body>
 </html>
