@@ -554,24 +554,39 @@ nav {
 
 .answer-btn {
   width: 100%;
-  padding: 14px;
+  padding: 12px 14px;
   margin-bottom: 8px;
   background: #1c1917;
   border: 2px solid #44403c;
   border-radius: 8px;
   font-family: 'Barlow', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-light);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
+  text-align: left;
 }
 
 .answer-btn:hover {
   border-color: var(--rust);
   background: rgba(192, 57, 43, 0.1);
+}
+
+.answer-btn span {
+  background: #44403c;
+  color: var(--caution);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.75rem;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* VERDICT */
@@ -853,6 +868,14 @@ const LOADING_QUIPS = [
   "Seeing if YouTube can actually save you here..."
 ];
 
+const VERDICT_QUIPS = [
+  "Adding up what you just told me...",
+  "Cross-referencing with 40 years of hard knocks...",
+  "Separating the good news from the bad...",
+  "Deciding if you're gonna regret this or not...",
+  "Running the numbers on your odds of success..."
+];
+
 let uploadedFiles = [];
 let selectedExperience = null;
 let selectedMotivations = [];
@@ -981,12 +1004,17 @@ function showStage(s) {
 
 // Loading quips
 let quipInterval;
-function startQuips() {
+function startQuips(isVerdict = false) {
+  const quips = isVerdict ? VERDICT_QUIPS : LOADING_QUIPS;
+  const loadingText = document.querySelector('.loading-text');
+  if (loadingText) {
+    loadingText.textContent = isVerdict ? "Tallying up the verdict..." : "Sizing up your project...";
+  }
   let i = 0;
-  loadingQuip.textContent = LOADING_QUIPS[0];
+  loadingQuip.textContent = quips[0];
   quipInterval = setInterval(() => {
-    i = (i + 1) % LOADING_QUIPS.length;
-    loadingQuip.textContent = LOADING_QUIPS[i];
+    i = (i + 1) % quips.length;
+    loadingQuip.textContent = quips[i];
   }, 2500);
 }
 function stopQuips() { clearInterval(quipInterval); }
@@ -1042,14 +1070,14 @@ function renderQuestion() {
   }
   
   const q = analysisData.questions[currentQuestion];
+  const labels = ['A', 'B', 'C', 'D'];
   document.getElementById('question-container').innerHTML = `
     <div class="question-progress">
       ${analysisData.questions.map((_, i) => `<div class="progress-dot ${i < currentQuestion ? 'done' : ''} ${i === currentQuestion ? 'active' : ''}"></div>`).join('')}
     </div>
     ${q.context ? `<p class="question-context">${q.context}</p>` : ''}
     <p class="question-text">${q.question}</p>
-    <button class="answer-btn" data-answer="yes"><span>✓</span> Yes</button>
-    <button class="answer-btn" data-answer="no"><span>✗</span> No</button>
+    ${(q.options || ['Yes', 'No']).map((opt, i) => `<button class="answer-btn" data-answer="${opt.replace(/"/g, '&quot;')}"><span>${labels[i] || i+1}</span> ${opt}</button>`).join('')}
   `;
   
   document.querySelectorAll('.answer-btn').forEach(btn => {
@@ -1063,7 +1091,7 @@ function renderQuestion() {
 
 async function getVerdict() {
   showStage('loading');
-  startQuips();
+  startQuips(true);
   
   try {
     const res = await fetch(API_BASE_URL + '/api/verdict', {
