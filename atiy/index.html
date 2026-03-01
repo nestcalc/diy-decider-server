@@ -388,6 +388,95 @@ main {
 .verdict-PROBABLY-NOT { background: linear-gradient(135deg, #FB923C, #EA580C); color: white; }
 .verdict-NO { background: linear-gradient(135deg, #EF4444, #DC2626); color: white; }
 
+/* HEAT GAUGE */
+.heat-gauge {
+  text-align: center;
+  padding: 10px 0 20px;
+}
+
+.gauge-wrapper {
+  position: relative;
+  width: 220px;
+  height: 130px;
+  margin: 0 auto;
+}
+
+.gauge-arc {
+  width: 220px;
+  height: 110px;
+  border-radius: 110px 110px 0 0;
+  background: linear-gradient(to right, 
+    #3B82F6 0%, 
+    #8B5CF6 25%, 
+    #EC4899 50%, 
+    #F97316 75%, 
+    #EF4444 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.gauge-arc::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 70px;
+  background: white;
+  border-radius: 70px 70px 0 0;
+}
+
+.gauge-needle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  height: 85px;
+  background: linear-gradient(to top, #4A1259, #7B2D8E);
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(-70deg);
+  border-radius: 3px;
+  transition: transform 1.2s cubic-bezier(0.68, -0.15, 0.27, 1.15);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.gauge-needle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #7B2D8E, #4A1259);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.gauge-emojis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.gauge-emoji {
+  position: absolute;
+  font-size: 1.4rem;
+  transform: translate(-50%, -50%);
+}
+
+.gauge-emoji.pos-1 { top: 80%; left: 5%; }
+.gauge-emoji.pos-2 { top: 38%; left: 12%; }
+.gauge-emoji.pos-3 { top: 5%; left: 32%; }
+.gauge-emoji.pos-4 { top: 5%; left: 68%; }
+.gauge-emoji.pos-5 { top: 38%; left: 88%; }
+.gauge-emoji.pos-6 { top: 80%; left: 95%; }
+
 .verdict-headline {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
@@ -792,9 +881,32 @@ async function getVerdict() {
 function renderVerdict(verdict) {
   const verdictClass = verdict.verdict.replace(/\s+/g, '-');
   
+  // Map verdict to needle rotation (-70 = cold, 70 = hot)
+  const needleRotation = {
+    'NO': -70,
+    'PROBABLY NOT': -35,
+    'MIXED SIGNALS': 0,
+    'PROBABLY YES': 35,
+    'YES': 70
+  };
+  const rotation = needleRotation[verdict.verdict] || 0;
+  
   document.getElementById('verdict-card').innerHTML = `
     <div class="verdict-header">
-      <div class="verdict-badge verdict-${verdictClass}">${verdict.verdict}</div>
+      <div class="heat-gauge">
+        <div class="gauge-wrapper">
+          <div class="gauge-arc"></div>
+          <div class="gauge-needle" id="verdict-needle"></div>
+          <div class="gauge-emojis">
+            <span class="gauge-emoji pos-1">🥶</span>
+            <span class="gauge-emoji pos-2">😬</span>
+            <span class="gauge-emoji pos-3">🤔</span>
+            <span class="gauge-emoji pos-4">💕</span>
+            <span class="gauge-emoji pos-5">😍</span>
+            <span class="gauge-emoji pos-6">🔥</span>
+          </div>
+        </div>
+      </div>
       <h2 class="verdict-headline">${verdict.headline}</h2>
     </div>
     
@@ -826,6 +938,14 @@ function renderVerdict(verdict) {
       <p>${verdict.sebastian_advice}</p>
     </div>
   `;
+  
+  // Animate the needle after a short delay for dramatic effect
+  setTimeout(() => {
+    const needle = document.getElementById('verdict-needle');
+    if (needle) {
+      needle.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+    }
+  }, 300);
 }
 
 // ============================================

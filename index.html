@@ -7,7 +7,7 @@
 
 <!-- SEO -->
 <title>The DIY Decider — Should You DIY or Hire a Pro?</title>
-<meta name="description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating.">
+<meta name="description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro. Free AI-powered home improvement guidance with zero sugarcoating.">
 <meta name="keywords" content="DIY or hire a pro, should I DIY, home improvement advice, DIY home repair, hire a contractor, DIY vs professional">
 <link rel="canonical" href="https://thediydecider.com/" />
 
@@ -15,14 +15,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://thediydecider.com/" />
 <meta property="og:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta property="og:description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating." />
+<meta property="og:description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro." />
 <meta property="og:site_name" content="The DIY Decider" />
 
 <!-- Twitter/X Card -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:url" content="https://thediydecider.com/" />
 <meta name="twitter:title" content="The DIY Decider — Should You DIY or Hire a Pro?" />
-<meta name="twitter:description" content="Answer 5 quick questions and get a straight verdict — DIY or call a pro. Free AI-powered home improvement advice with no sugarcoating." />
+<meta name="twitter:description" content="Describe your project and get straight advice from 40 years of trade experience — DIY or call a pro." />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-THPQQG9ZB4"></script>
@@ -46,7 +46,10 @@
   --text-light: #fafaf9;
   --text-muted: #a8a29e;
   --card-bg: #292524;
-  --radius: 24px;
+  --green: #22c55e;
+  --green-dim: #166534;
+  --red: #ef4444;
+  --radius: 20px;
 }
 
 html, body {
@@ -100,85 +103,36 @@ nav {
 .nav-links a:hover, .nav-links a.active { color: var(--caution); }
 
 /* ========================================
-   HEADER BANNER
+   HERO
    ======================================== */
 .hero-section {
-  width: 100%;
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 2rem 1.5rem 0;
-  position: relative;
-  min-height: 280px;
-}
-
-.hero-text {
-  flex: 1;
+  padding: 1.75rem 1.5rem;
   text-align: center;
-  padding-bottom: 2rem;
-  z-index: 10;
-  position: relative;
 }
 
 .hero-text h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3rem, 12vw, 5rem);
-  color: #fff;
-  line-height: 0.9;
+  font-size: clamp(2rem, 8vw, 3rem);
+  color: white;
+  line-height: 0.95;
   text-transform: uppercase;
-  text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
 }
 
-.hero-text h1 span { 
+.hero-text h1 span {
   color: var(--caution);
-  display: block;
 }
 
 .hero-text .tagline {
-  font-size: clamp(1rem, 3vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-size: 1rem;
   color: rgba(255,255,255,0.85);
+  margin-top: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 1rem;
 }
 
-/* Character on left */
-/* Character - at page level, extends below banner */
-.hero-character {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 60px; /* below nav */
-  width: 55%;
-  max-width: 450px;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.hero-character img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Desktop: character centered, larger */
-@media (min-width: 769px) {
-  .hero-character {
-    width: 35%;
-    max-width: 500px;
-  }
-}
-
-/* Caution stripe */
 .caution-stripe {
   width: 100%;
   height: 14px;
@@ -189,425 +143,689 @@ nav {
     #111 14px,
     #111 28px
   );
-  position: relative;
-  z-index: 2;
 }
 
 /* ========================================
-   MAIN CONTENT
+   MAIN LAYOUT
    ======================================== */
-main {
+.main-wrapper {
   flex: 1;
+  background: var(--bg-dark);
+  padding: 2rem 1.5rem;
+}
+
+.main-content {
+  max-width: 820px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
-  position: relative;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-/* Character that extends into main area */
-.character-extension {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40%;
-  max-width: 350px;
-  pointer-events: none;
-  z-index: 1;
+.character-column {
+  flex-shrink: 0;
+  position: sticky;
+  top: 20px;
+  width: 180px;
 }
 
-.character-extension img {
+.character-column img {
   width: 100%;
   height: auto;
-  display: block;
-  transform: translateY(-20%);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+}
+
+.card-container {
+  flex: 1;
+  max-width: 560px;
 }
 
 /* ========================================
-   CARD
+   CARDS
    ======================================== */
-.card-wrapper {
-  width: 100%;
-  max-width: 480px;
-  margin: 2.5rem auto;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 20;
-}
-
-/* Desktop adjustments */
-@media (min-width: 769px) {
-  main {
-    align-items: center;
-    justify-content: flex-start;
-  }
-  
-  .card-wrapper {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .card {
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+  background: #1c1917;
+  padding: 1rem 1.5rem;
+}
+
+.card-header-label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--caution);
+  text-transform: uppercase;
 }
 
 .card-body {
-  padding: 2rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  padding: 1.5rem;
+}
+
+/* ========================================
+   INTRO QUOTE
+   ======================================== */
+.intro-quote {
+  background: rgba(0,0,0,0.3);
+  border-left: 3px solid var(--rust);
+  padding: 14px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.intro-quote strong {
+  color: var(--caution);
+  font-style: normal;
 }
 
 /* ========================================
    FORM ELEMENTS
    ======================================== */
-.field-label {
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--text-light);
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 0.5rem;
+.form-group {
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
-  background: #44403c;
-  border: none;
-  border-radius: 16px;
-  padding: 1rem 1.25rem;
-  color: var(--text-light);
-  font-family: 'Barlow', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  width: 100%;
-  outline: none;
-  -webkit-appearance: none;
-  transition: box-shadow 0.2s;
-}
-
-input[type="text"]::placeholder {
-  color: #78716c;
-}
-
-input[type="text"]:focus { 
-  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.3);
-}
-
-.error-msg {
-  color: #fca5a5;
-  font-size: 0.95rem;
+.form-label {
+  display: block;
   font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.text-input {
+  width: 100%;
+  min-height: 110px;
+  background: #1c1917;
+  border: 2px solid #44403c;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--text-light);
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--rust);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+}
+
+.text-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Upload Zone */
+.upload-zone {
+  border: 2px dashed #44403c;
+  border-radius: 8px;
+  padding: 20px 16px;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(0,0,0,0.15);
+}
+
+.upload-zone:hover {
+  border-color: var(--rust);
+  background: rgba(192, 57, 43, 0.1);
+}
+
+.upload-zone.has-files {
+  border-color: var(--green);
+  border-style: solid;
+}
+
+.upload-icon {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.upload-text {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.upload-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.file-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.file-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 2px solid var(--rust);
+}
+
+/* Experience Options */
+.experience-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.experience-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #1c1917;
+  border: 2px solid #44403c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.experience-option:hover {
+  border-color: var(--rust);
+  background: rgba(192, 57, 43, 0.1);
+}
+
+.experience-option.selected {
+  border-color: var(--rust);
+  background: rgba(192, 57, 43, 0.15);
+}
+
+.experience-option input { display: none; }
+
+.experience-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.experience-option.selected .experience-radio {
+  border-color: var(--rust);
+}
+
+.experience-option.selected .experience-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--rust);
+  border-radius: 50%;
+}
+
+.experience-text {
+  flex: 1;
+}
+
+.experience-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.experience-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Motivation Chips */
+.motivation-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.motivation-chip {
+  padding: 10px 14px;
+  background: #1c1917;
+  border: 2px solid #44403c;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.motivation-chip:hover {
+  border-color: var(--rust);
+}
+
+.motivation-chip.selected {
+  border-color: var(--caution);
+  background: rgba(250, 204, 21, 0.15);
+  color: var(--caution);
 }
 
 /* ========================================
    BUTTONS
    ======================================== */
-.btn-main {
-  background: var(--caution);
-  color: #1c1917;
-  border: none;
-  border-radius: 16px;
-  padding: 1.1rem;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  cursor: pointer;
+.btn-primary {
   width: 100%;
-  transition: transform 0.1s, filter 0.1s;
-  box-shadow: 0 4px 0 #ca8a04;
+  background: linear-gradient(135deg, var(--rust) 0%, var(--rust-dark) 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+  margin-top: 10px;
 }
 
-.btn-main:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #ca8a04;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.5);
 }
 
-.btn-main:disabled {
-  background: #57534e;
-  color: #a8a29e;
-  box-shadow: none;
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  border: 2px solid #44403c;
+  padding: 14px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--caution);
+  color: var(--caution);
 }
 
 /* ========================================
-   LOADING
+   LOADING STATE
    ======================================== */
-.loading-section { 
-  text-align: center; 
-  padding: 2.5rem 0; 
+.loading-section {
+  text-align: center;
+  padding: 2.5rem 1rem;
 }
 
-.spinner {
-  display: inline-block;
-  width: 48px; 
-  height: 48px;
+.loading-spinner {
+  width: 50px;
+  height: 50px;
   border: 4px solid #44403c;
   border-top-color: var(--caution);
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  margin-bottom: 1.25rem;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-.loading-section p {
-  font-size: 1rem;
-  font-weight: 700;
+.loading-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.loading-quip {
+  font-size: 0.95rem;
   color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-style: italic;
+  margin-top: 12px;
+  min-height: 1.5em;
+  transition: opacity 0.2s;
 }
 
 /* ========================================
-   QUESTIONS
+   FIRST TAKE STAGE
    ======================================== */
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.progress-badge {
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--caution);
-  text-transform: uppercase;
-}
-
-.progress-pct {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-.progress-bar {
-  height: 8px;
-  background: #44403c;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--rust) 0%, var(--caution) 100%);
-  width: 0%;
-  transition: width 0.4s ease;
-  border-radius: 8px;
-}
-
-.question-text {
-  font-size: clamp(1.25rem, 4.5vw, 1.5rem);
-  font-weight: 700;
-  color: var(--text-light);
-  line-height: 1.4;
-  text-align: center;
-  min-height: 3.5rem;
-}
-
-.question-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.btn-yes, .btn-no {
-  flex: 1;
-  padding: 1rem;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.15rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 14px;
-  transition: transform 0.1s;
-}
-
-.btn-yes {
-  background: #22c55e;
-  color: #fff;
-  box-shadow: 0 4px 0 #15803d;
-}
-
-.btn-no {
+.situation-badge {
+  display: inline-block;
   background: var(--rust);
-  color: #fff;
-  box-shadow: 0 4px 0 var(--rust-dark);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
 }
 
-.btn-yes:active, .btn-no:active {
-  transform: translateY(2px);
+.observations-section {
+  background: rgba(0,0,0,0.25);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
 }
 
-.btn-yes:active { box-shadow: 0 2px 0 #15803d; }
-.btn-no:active { box-shadow: 0 2px 0 var(--rust-dark); }
+.observations-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--caution);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
 
-/* DOTS */
-.dots {
+.observation {
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
   gap: 10px;
-  margin-top: 1.25rem;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  line-height: 1.5;
 }
 
-.dot {
+.observation:last-child {
+  border-bottom: none;
+}
+
+.observation::before {
+  content: '▸';
+  color: var(--rust);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.first-take-quote {
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, rgba(192,57,43,0.05) 100%);
+  border-left: 4px solid var(--rust);
+  border-radius: 0 8px 8px 0;
+}
+
+.first-take-label {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--rust);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.first-take-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ========================================
+   QUESTIONS STAGE
+   ======================================== */
+.question-progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.progress-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #44403c;
+  background: rgba(255,255,255,0.15);
   transition: all 0.3s;
 }
 
-.dot.done { 
-  background: var(--caution); 
+.progress-dot.done {
+  background: var(--green);
 }
 
-.dot.active { 
-  background: var(--rust); 
-  animation: pulse 1.2s infinite;
+.progress-dot.active {
+  background: var(--caution);
+  box-shadow: 0 0 10px var(--caution);
 }
 
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(192,57,43,0); }
-}
-
-/* ========================================
-   DELIBERATING
-   ======================================== */
-.deliberating-section {
-  text-align: center;
-  padding: 1.5rem 0;
-}
-
-.wheel-wrap {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 1.25rem;
-}
-
-.wheel-glow {
-  position: absolute;
-  inset: -15px;
-  background: radial-gradient(circle, rgba(250,204,21,0.2) 0%, transparent 70%);
-  border-radius: 50%;
-}
-
-#wheelSvg {
-  display: block;
-  margin: 0 auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.wheel-pointer {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 16px solid var(--caution);
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
-}
-
-.deliberating-phrase {
-  font-size: 1rem;
-  font-weight: 700;
+.question-context {
+  font-size: 0.9rem;
   color: var(--text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-style: italic;
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 2px solid var(--rust);
 }
 
-/* ========================================
-   VERDICT
-   ======================================== */
-.verdict-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.verdict-banner {
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 16px;
-}
-
-.verdict-emoji {
-  font-size: 3rem;
-  margin-bottom: 0.25rem;
-}
-
-.verdict-label {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.6rem, 6vw, 2rem);
-  line-height: 1;
-}
-
-.verdict-tagline {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-top: 0.3rem;
-  opacity: 0.85;
-}
-
-/* INFO BLOCKS */
-.info-block {
-  background: #1c1917;
-  border-left: 4px solid var(--rust);
-  padding: 1rem 1.25rem;
-  border-radius: 0 12px 12px 0;
-}
-
-.info-block-label {
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--rust);
-  margin-bottom: 0.4rem;
-}
-
-.info-block p {
-  font-size: 1rem;
+.question-text {
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-light);
-  line-height: 1.55;
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
 
-/* RESET */
-.btn-reset {
-  display: block;
+.answer-btn {
   width: 100%;
-  background: transparent;
+  padding: 16px;
+  margin-bottom: 10px;
+  background: #1c1917;
   border: 2px solid #44403c;
-  border-radius: 14px;
-  padding: 0.9rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  border-radius: 8px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-light);
   cursor: pointer;
   transition: all 0.2s;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.btn-reset:hover {
-  border-color: var(--caution);
+.answer-btn:hover {
+  border-color: var(--rust);
+  background: rgba(192, 57, 43, 0.1);
+  transform: translateX(4px);
+}
+
+.answer-btn .icon {
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   VERDICT STAGE
+   ======================================== */
+.verdict-header {
+  padding: 24px;
+  text-align: center;
+  border-bottom: 3px solid var(--rust);
+}
+
+.verdict-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.verdict-diy {
+  background: var(--green);
+  color: white;
+}
+
+.verdict-hire {
+  background: var(--red);
+  color: white;
+}
+
+.verdict-hybrid {
+  background: var(--caution);
+  color: var(--bg-dark);
+}
+
+.verdict-headline {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.verdict-body {
+  padding: 20px;
+}
+
+.verdict-section {
+  margin-bottom: 20px;
+}
+
+.verdict-section:last-child {
+  margin-bottom: 0;
+}
+
+.verdict-section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
   color: var(--caution);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.verdict-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+.flags-list {
+  list-style: none;
+  padding: 0;
+}
+
+.flags-list li {
+  padding: 10px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  line-height: 1.5;
+}
+
+.flags-list li:last-child {
+  border-bottom: none;
+}
+
+.green-flags li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.red-flags li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: bold;
+}
+
+.cost-breakdown {
+  background: rgba(0,0,0,0.25);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.cost-row:last-child {
+  border-bottom: none;
+}
+
+.cost-label {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.cost-value {
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.final-word {
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, rgba(192,57,43,0.05) 100%);
+  border-left: 4px solid var(--rust);
+  border-radius: 0 8px 8px 0;
+  margin-top: 20px;
+}
+
+.final-word-label {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--rust);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.final-word-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  font-style: italic;
 }
 
 /* ========================================
@@ -616,50 +834,9 @@ input[type="text"]:focus {
 .hidden { display: none !important; }
 
 /* ========================================
-   RESPONSIVE - MOBILE FIRST
+   RESPONSIVE
    ======================================== */
-
-/* Mobile: stack layout, character behind */
 @media (max-width: 768px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: center;
-    min-height: 220px;
-    padding: 1.5rem 1rem 0;
-  }
-  
-  .hero-text {
-    padding-bottom: 1.5rem;
-  }
-  
-  .hero-character {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    max-width: 280px;
-    z-index: 1;
-  }
-  
-  .hero-text {
-    z-index: 2;
-  }
-  
-  .character-extension {
-    display: none;
-  }
-  
-  .card-wrapper {
-    margin: 2rem auto;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 420px;
-  }
-  
-  .card-body {
-    padding: 1.75rem 1.5rem;
-  }
-  
   nav {
     padding: 0.9rem 1rem;
   }
@@ -675,39 +852,38 @@ input[type="text"]:focus {
   .nav-links a {
     font-size: 0.8rem;
   }
-}
-
-/* Desktop: side by side layout */
-@media (min-width: 769px) {
-  .hero-content {
-    padding: 0 2rem;
+  
+  .hero-section {
+    padding: 1.25rem 1rem;
   }
   
-  .hero-text {
-    margin-left: 35%;
-    text-align: center;
+  .main-wrapper {
+    padding: 1.5rem 1rem;
   }
   
-  .card-wrapper {
-    max-width: 440px;
-    margin-right: 5%;
+  .main-content {
+    flex-direction: column;
   }
   
-  main {
-    align-items: flex-end;
-    padding-right: 2rem;
-  }
-}
-
-/* Large desktop */
-@media (min-width: 1024px) {
-  .hero-character {
-    max-width: 450px;
-    width: 40%;
+  .character-column {
+    display: none;
   }
   
-  .card-wrapper {
-    margin-right: 8%;
+  .card-container {
+    max-width: 100%;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .experience-option {
+    padding: 10px 12px;
+  }
+  
+  .motivation-chip {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 }
 </style>
@@ -722,282 +898,562 @@ input[type="text"]:focus {
   </div>
 </nav>
 
-<!-- Character at page level to extend across sections -->
-<div class="hero-character">
-  <img src="decider.png" alt="The Decider">
-</div>
-
 <div class="hero-section">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>THE DIY <span>DECIDER</span></h1>
-      <div class="tagline">5 Questions · 1 Verdict · Zero BS</div>
-    </div>
+  <div class="hero-text">
+    <h1>THE DIY <span>DECIDER</span></h1>
+    <p class="tagline">40 Years Experience. Zero BS.</p>
   </div>
 </div>
 <div class="caution-stripe"></div>
 
-<main>
-  <div class="card-wrapper">
-    <div class="card">
-      <div class="card-body">
-
-        <!-- STAGE: INPUT -->
-        <div id="stage-input">
-          <label class="field-label" for="projectInput">What's the project?</label>
-          <input type="text" id="projectInput" placeholder="e.g. Replace a leaky faucet..." autocomplete="off" />
-          <p class="error-msg hidden" id="errorMsg"></p>
-          <button class="btn-main" onclick="startProject()">Size Me Up</button>
+<div class="main-wrapper">
+  <div class="main-content">
+    <!-- Character Column -->
+    <div class="character-column">
+      <img src="decider.png" alt="The Decider">
+    </div>
+    
+    <!-- Card Container -->
+    <div class="card-container">
+      
+      <!-- ============================================
+           STAGE: INPUT
+           ============================================ -->
+      <div id="stage-input">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-header-label">Tell Me About Your Project</span>
+          </div>
+          <div class="card-body">
+            
+            <div class="intro-quote">
+              "Alright, tell me what you're thinking about tackling. Don't sugarcoat it — <strong>give me the real picture</strong> and I'll tell you straight whether you should grab your tools or grab your phone."
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">What's the project?</label>
+              <textarea 
+                class="text-input" 
+                id="project-input"
+                placeholder="Example: I want to install a new bathroom vanity. The current one is original from 1985. There's some water damage on the floor underneath and I think the plumbing might need updating too..."
+              ></textarea>
+              <p class="form-hint">The more detail, the better advice I can give you.</p>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Got photos? (optional but helpful)</label>
+              <div class="upload-zone" id="upload-zone">
+                <div class="upload-icon">📸</div>
+                <div class="upload-text">Tap to add photos</div>
+                <div class="upload-hint">Show me what you're working with</div>
+                <div class="file-preview" id="file-preview"></div>
+              </div>
+              <input type="file" id="file-input" accept="image/*" multiple hidden>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">How handy are you?</label>
+              <div class="experience-options" id="experience-options">
+                <label class="experience-option" data-value="novice">
+                  <input type="radio" name="experience" value="novice">
+                  <div class="experience-radio"></div>
+                  <div class="experience-text">
+                    <div class="experience-label">🔰 New to this</div>
+                    <div class="experience-desc">Owned a screwdriver, maybe used it twice</div>
+                  </div>
+                </label>
+                <label class="experience-option" data-value="some">
+                  <input type="radio" name="experience" value="some">
+                  <div class="experience-radio"></div>
+                  <div class="experience-text">
+                    <div class="experience-label">🔧 Done a few projects</div>
+                    <div class="experience-desc">Painted rooms, assembled furniture, minor repairs</div>
+                  </div>
+                </label>
+                <label class="experience-option" data-value="handy">
+                  <input type="radio" name="experience" value="handy">
+                  <div class="experience-radio"></div>
+                  <div class="experience-text">
+                    <div class="experience-label">🛠️ Pretty handy</div>
+                    <div class="experience-desc">Done some real projects, comfortable with tools</div>
+                  </div>
+                </label>
+                <label class="experience-option" data-value="experienced">
+                  <input type="radio" name="experience" value="experienced">
+                  <div class="experience-radio"></div>
+                  <div class="experience-text">
+                    <div class="experience-label">⚡ Experienced</div>
+                    <div class="experience-desc">Built things, done electrical or plumbing, know my way around</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Why DIY? (pick all that apply)</label>
+              <div class="motivation-chips" id="motivation-chips">
+                <button type="button" class="motivation-chip" data-value="save-money">💰 Save money</button>
+                <button type="button" class="motivation-chip" data-value="learn">📚 Want to learn</button>
+                <button type="button" class="motivation-chip" data-value="enjoy">😊 Enjoy the work</button>
+                <button type="button" class="motivation-chip" data-value="timeline">⏰ Need it done fast</button>
+                <button type="button" class="motivation-chip" data-value="trust">🤔 Don't trust contractors</button>
+                <button type="button" class="motivation-chip" data-value="small">🔍 Seems simple enough</button>
+              </div>
+            </div>
+            
+            <button class="btn-primary" id="analyze-btn" disabled>
+              LET'S SEE WHAT WE'VE GOT →
+            </button>
+            
+          </div>
         </div>
-
-        <!-- STAGE: LOADING -->
-        <div id="stage-loading-q" class="loading-section hidden">
-          <div class="spinner"></div>
-          <p>Analyzing your project...</p>
-        </div>
-
-        <!-- STAGE: QUESTIONS -->
-        <div id="stage-questions" class="hidden">
-          <div class="progress-header">
-            <span class="progress-badge" id="progressBadge">Question 1 of 5</span>
-            <span class="progress-pct" id="progressPct">Just getting started</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-          <p class="question-text" id="questionText"></p>
-          <div class="question-buttons">
-            <button class="btn-yes" onclick="submitAnswer('Yes')">✓ Yes</button>
-            <button class="btn-no" onclick="submitAnswer('No')">✗ No</button>
-          </div>
-          <div class="dots" id="dots"></div>
-        </div>
-
-        <!-- DELIBERATING -->
-        <div id="stage-deliberating" class="deliberating-section hidden">
-          <div class="wheel-wrap">
-            <div class="wheel-glow"></div>
-            <svg id="wheelSvg" width="130" height="130" viewBox="0 0 130 130"></svg>
-            <div class="wheel-pointer"></div>
-          </div>
-          <p class="deliberating-phrase" id="deliberatingPhrase">Cross-referencing your answers...</p>
-        </div>
-
-        <!-- VERDICT -->
-        <div id="stage-verdict" class="verdict-section hidden">
-          <div class="verdict-banner" id="verdictBanner">
-            <div class="verdict-emoji" id="verdictEmoji"></div>
-            <div class="verdict-label" id="verdictLabel"></div>
-            <div class="verdict-tagline" id="verdictTagline"></div>
-          </div>
-          <div class="info-block">
-            <div class="info-block-label" id="reasoningLabel">💬 The Verdict</div>
-            <p id="reasoningText"></p>
-          </div>
-          <div class="info-block" style="border-left-color:#78716c">
-            <div class="info-block-label" style="color:#78716c">💰 Pro Cost</div>
-            <p id="costText"></p>
-          </div>
-          <div class="info-block hidden" id="resourcesBlock" style="border-left-color:#22c55e">
-            <div class="info-block-label" style="color:#22c55e">📚 Where to Learn</div>
-            <p id="resourcesText"></p>
-          </div>
-          <button class="btn-reset" onclick="reset()">← Try Another Project</button>
-        </div>
-
       </div>
+
+      <!-- ============================================
+           STAGE: LOADING
+           ============================================ -->
+      <div id="stage-loading" class="hidden">
+        <div class="card">
+          <div class="card-body">
+            <div class="loading-section">
+              <div class="loading-spinner"></div>
+              <p class="loading-text">The Decider is sizing up your project<span class="loading-dots"></span></p>
+              <p class="loading-quip" id="loading-quip"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           STAGE: FIRST TAKE
+           ============================================ -->
+      <div id="stage-first-take" class="hidden">
+        <div class="card">
+          <div class="card-body">
+            <span class="situation-badge" id="situation-badge">PROJECT TYPE</span>
+            
+            <div class="observations-section">
+              <div class="observations-title">🔍 What I'm Seeing</div>
+              <div id="observations-list"></div>
+            </div>
+            
+            <div class="first-take-quote">
+              <div class="first-take-label">🗣️ The Decider's First Take</div>
+              <p class="first-take-text" id="first-take-text"></p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn-primary" id="continue-btn">
+          ALRIGHT, HIT ME WITH THE QUESTIONS →
+        </button>
+      </div>
+
+      <!-- ============================================
+           STAGE: QUESTIONS
+           ============================================ -->
+      <div id="stage-questions" class="hidden">
+        <div class="card">
+          <div class="card-body" id="question-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           STAGE: VERDICT
+           ============================================ -->
+      <div id="stage-verdict" class="hidden">
+        <div class="card" id="verdict-card">
+          <!-- Populated by JS -->
+        </div>
+        <button class="btn-secondary" id="start-over-btn">← START A NEW PROJECT</button>
+      </div>
+
     </div>
   </div>
-</main>
+</div>
 
 <script>
-const PHRASES = [
-  "Cross-referencing your answers...",
-  "Consulting 40 years of experience...",
-  "Running the numbers...",
-  "Checking if you're kidding...",
-  "Almost ready to judge you...",
-  "The verdict is in.",
+// ============================================
+// CONFIG
+// ============================================
+const API_BASE_URL = '';
+
+// ============================================
+// LOADING QUIPS
+// ============================================
+const LOADING_QUIPS = [
+  "Checking if this is a 'quick weekend job' or a 'what have I gotten myself into'...",
+  "Running this through 40 years of 'I've seen this before'...",
+  "Calculating the odds you'll need a second trip to the hardware store...",
+  "Consulting my mental database of DIY disasters...",
+  "Measuring twice so you don't have to cut three times...",
+  "Checking if YouTube tutorials will actually help here...",
+  "Assessing the 'honey, I can fix this' risk level...",
+  "Cross-referencing with every 'it's just a small job' I've ever heard..."
 ];
 
-let questions = [], answers = [], currentQ = 0;
-let wheelRotation = 0, wheelInterval = null, wheelTimeout = null;
-let phraseIndex = 0, pendingResult = null, wheelDone = false;
+// ============================================
+// STATE
+// ============================================
+let uploadedFiles = [];
+let selectedExperience = null;
+let selectedMotivations = [];
+let analysisData = null;
+let currentQuestion = 0;
+let answers = [];
 
-// Build wheel
-(function buildWheel() {
-  const svg = document.getElementById('wheelSvg');
-  const fills = ["#c0392b","#1c1917","#dc2626","#0c0a09","#c0392b","#1c1917","#dc2626","#0c0a09"];
-  const count = fills.length, r = 54, cx = 65, cy = 65;
-  fills.forEach((fill, i) => {
-    const angle = 360 / count;
-    const s = (i * angle - 90) * Math.PI / 180;
-    const e = ((i * angle - 90) + angle) * Math.PI / 180;
-    const x1 = cx + r * Math.cos(s), y1 = cy + r * Math.sin(s);
-    const x2 = cx + r * Math.cos(e), y2 = cy + r * Math.sin(e);
-    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-    path.setAttribute("d", `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`);
-    path.setAttribute("fill", fill);
-    path.setAttribute("stroke", "#292524");
-    path.setAttribute("stroke-width", "2");
-    svg.appendChild(path);
+// ============================================
+// DOM ELEMENTS
+// ============================================
+const projectInput = document.getElementById('project-input');
+const uploadZone = document.getElementById('upload-zone');
+const fileInput = document.getElementById('file-input');
+const filePreview = document.getElementById('file-preview');
+const analyzeBtn = document.getElementById('analyze-btn');
+const loadingQuip = document.getElementById('loading-quip');
+
+// ============================================
+// FILE UPLOAD
+// ============================================
+uploadZone.addEventListener('click', () => fileInput.click());
+
+fileInput.addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+  uploadedFiles = [...uploadedFiles, ...files];
+  renderFilePreviews();
+});
+
+function renderFilePreviews() {
+  filePreview.innerHTML = '';
+  uploadedFiles.forEach((file, i) => {
+    const img = document.createElement('img');
+    img.className = 'file-thumb';
+    img.src = URL.createObjectURL(file);
+    img.alt = `Photo ${i + 1}`;
+    filePreview.appendChild(img);
   });
-  const hub = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  hub.setAttribute("cx",65); hub.setAttribute("cy",65); hub.setAttribute("r",16);
-  hub.setAttribute("fill","#292524"); hub.setAttribute("stroke","#44403c"); hub.setAttribute("stroke-width","2");
-  svg.appendChild(hub);
-  const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  dot.setAttribute("cx",65); dot.setAttribute("cy",65); dot.setAttribute("r",7); dot.setAttribute("fill","#facc15");
-  svg.appendChild(dot);
-})();
+  
+  uploadZone.classList.toggle('has-files', uploadedFiles.length > 0);
+}
 
-function showStage(name) {
-  ['input','loading-q','questions','deliberating','verdict'].forEach(s => {
-    document.getElementById('stage-'+s).classList.add('hidden');
+// ============================================
+// EXPERIENCE SELECTION
+// ============================================
+document.querySelectorAll('.experience-option').forEach(option => {
+  option.addEventListener('click', () => {
+    document.querySelectorAll('.experience-option').forEach(o => o.classList.remove('selected'));
+    option.classList.add('selected');
+    option.querySelector('input').checked = true;
+    selectedExperience = option.dataset.value;
+    checkCanAnalyze();
   });
-  document.getElementById('stage-'+name).classList.remove('hidden');
+});
+
+// ============================================
+// MOTIVATION CHIPS
+// ============================================
+document.querySelectorAll('.motivation-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    chip.classList.toggle('selected');
+    const value = chip.dataset.value;
+    if (selectedMotivations.includes(value)) {
+      selectedMotivations = selectedMotivations.filter(m => m !== value);
+    } else {
+      selectedMotivations.push(value);
+    }
+  });
+});
+
+// ============================================
+// FORM VALIDATION
+// ============================================
+projectInput.addEventListener('input', checkCanAnalyze);
+
+function checkCanAnalyze() {
+  const hasProject = projectInput.value.trim().length > 20;
+  const hasExperience = selectedExperience !== null;
+  analyzeBtn.disabled = !(hasProject && hasExperience);
 }
 
-function showError(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg;
-  el.classList.remove('hidden');
-}
-function hideError() { document.getElementById('errorMsg').classList.add('hidden'); }
-
-function updateDots() {
-  const c = document.getElementById('dots');
-  c.innerHTML = '';
-  for (let i = 0; i < 5; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot ' + (i < currentQ ? 'done' : i === currentQ ? 'active' : '');
-    c.appendChild(d);
-  }
+// ============================================
+// STAGE NAVIGATION
+// ============================================
+function showStage(stage) {
+  ['input', 'loading', 'first-take', 'questions', 'verdict'].forEach(s => {
+    document.getElementById('stage-' + s).classList.add('hidden');
+  });
+  document.getElementById('stage-' + stage).classList.remove('hidden');
 }
 
-function updateProgress() {
-  document.getElementById('progressBadge').textContent = `Question ${currentQ+1} of 5`;
-  const labels = ["Just getting started", "25% done", "Halfway there", "Almost done", "Last one"];
-  document.getElementById('progressPct').textContent = labels[currentQ] || '';
-  document.getElementById('progressFill').style.width = `${(currentQ/5)*100}%`;
-  updateDots();
+// ============================================
+// LOADING QUIPS ANIMATION
+// ============================================
+let quipInterval;
+
+function startLoadingQuips() {
+  let quipIndex = 0;
+  loadingQuip.textContent = LOADING_QUIPS[0];
+  
+  quipInterval = setInterval(() => {
+    quipIndex = (quipIndex + 1) % LOADING_QUIPS.length;
+    loadingQuip.style.opacity = 0;
+    setTimeout(() => {
+      loadingQuip.textContent = LOADING_QUIPS[quipIndex];
+      loadingQuip.style.opacity = 1;
+    }, 200);
+  }, 3000);
 }
 
-async function startProject() {
-  const project = document.getElementById('projectInput').value.trim();
-  if (!project) return;
-  hideError();
-  showStage('loading-q');
-  gtag('event', 'project_started', { project_name: project });
+function stopLoadingQuips() {
+  clearInterval(quipInterval);
+}
 
+// ============================================
+// ANALYZE - First API call
+// ============================================
+analyzeBtn.addEventListener('click', async () => {
+  showStage('loading');
+  startLoadingQuips();
+  
   try {
-    const res = await fetch("/questions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ project })
+    const formData = new FormData();
+    uploadedFiles.forEach(file => formData.append('files', file));
+    formData.append('project', projectInput.value);
+    formData.append('experience', selectedExperience);
+    formData.append('motivations', JSON.stringify(selectedMotivations));
+    
+    const response = await fetch(`${API_BASE_URL}/api/analyze`, {
+      method: 'POST',
+      body: formData
     });
-    const data = await res.json();
-    if (data.error) { showError("Error: " + data.error); showStage('input'); return; }
-    questions = data.questions.slice(0, 5);
-    answers = []; currentQ = 0;
-    showStage('questions');
-    document.getElementById('questionText').textContent = questions[0].q;
-    updateProgress();
-  } catch(e) {
-    showError("Error: " + (e.message || "Something went wrong"));
+    
+    if (!response.ok) throw new Error('Analysis failed');
+    
+    const result = await response.json();
+    analysisData = result.data;
+    
+    stopLoadingQuips();
+    renderFirstTake();
+    showStage('first-take');
+    
+  } catch (error) {
+    console.error('Error:', error);
+    stopLoadingQuips();
+    alert('Something went sideways. Give it another shot.');
+    showStage('input');
+  }
+});
+
+// ============================================
+// RENDER FIRST TAKE
+// ============================================
+function renderFirstTake() {
+  document.getElementById('situation-badge').textContent = analysisData.situation_type || 'HOME PROJECT';
+  
+  const obsList = document.getElementById('observations-list');
+  obsList.innerHTML = analysisData.observations
+    .map(obs => `<div class="observation">${obs}</div>`)
+    .join('');
+  
+  document.getElementById('first-take-text').textContent = analysisData.first_take;
+}
+
+// Continue to questions
+document.getElementById('continue-btn').addEventListener('click', () => {
+  showStage('questions');
+  renderQuestion();
+});
+
+// ============================================
+// QUESTIONS
+// ============================================
+function renderQuestion() {
+  const questions = analysisData.questions;
+  if (currentQuestion >= questions.length) {
+    getVerdict();
+    return;
+  }
+  
+  const q = questions[currentQuestion];
+  
+  document.getElementById('question-container').innerHTML = `
+    <div class="question-progress">
+      ${questions.map((_, i) => `
+        <div class="progress-dot ${i < currentQuestion ? 'done' : ''} ${i === currentQuestion ? 'active' : ''}"></div>
+      `).join('')}
+    </div>
+    
+    ${q.context ? `<p class="question-context">${q.context}</p>` : ''}
+    
+    <p class="question-text">${q.question}</p>
+    
+    <button class="answer-btn" data-answer="yes">
+      <span class="icon">✓</span> Yes
+    </button>
+    <button class="answer-btn" data-answer="no">
+      <span class="icon">✗</span> No
+    </button>
+  `;
+  
+  document.querySelectorAll('.answer-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      answers.push({
+        question: q.question,
+        answer: btn.dataset.answer
+      });
+      currentQuestion++;
+      renderQuestion();
+    });
+  });
+}
+
+// ============================================
+// VERDICT
+// ============================================
+async function getVerdict() {
+  showStage('loading');
+  startLoadingQuips();
+  
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/verdict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        project: projectInput.value,
+        experience: selectedExperience,
+        motivations: selectedMotivations,
+        situationType: analysisData.situation_type,
+        observations: analysisData.observations,
+        firstTake: analysisData.first_take,
+        questions: analysisData.questions,
+        answers: answers
+      })
+    });
+    
+    if (!response.ok) throw new Error('Verdict failed');
+    
+    const result = await response.json();
+    stopLoadingQuips();
+    renderVerdict(result.data);
+    showStage('verdict');
+    
+  } catch (error) {
+    console.error('Error:', error);
+    stopLoadingQuips();
+    alert('Hit a snag getting your verdict. Try again.');
     showStage('input');
   }
 }
 
-async function submitAnswer(answer) {
-  answers.push(answer);
-  if (currentQ < 4) {
-    currentQ++;
-    document.getElementById('questionText').textContent = questions[currentQ].q;
-    updateProgress();
-  } else {
-    wheelDone = false; pendingResult = null;
-    showStage('deliberating');
-    startWheel();
-    const project = document.getElementById('projectInput').value.trim();
-    try {
-      const res = await fetch("/verdict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ project, questions, answers })
-      });
-      const data = await res.json();
-      if (data.error) { stopWheel(); showError("Error: " + data.error); showStage('input'); return; }
-      if (wheelDone) { showVerdict(data); } else { pendingResult = data; }
-    } catch(e) {
-      stopWheel();
-      showError("Couldn't get verdict: " + (e.message || "Try again"));
-      showStage('input');
-    }
+function renderVerdict(verdict) {
+  let verdictClass = 'diy';
+  if (verdict.verdict.toLowerCase().includes('pro') || verdict.verdict.toLowerCase().includes('hire')) {
+    verdictClass = 'hire';
+  } else if (verdict.verdict.toLowerCase().includes('hybrid')) {
+    verdictClass = 'hybrid';
   }
+  
+  document.getElementById('verdict-card').innerHTML = `
+    <div class="verdict-header">
+      <div class="verdict-badge verdict-${verdictClass}">${verdict.verdict}</div>
+      <h2 class="verdict-headline">${verdict.headline}</h2>
+    </div>
+    
+    <div class="verdict-body">
+      <div class="verdict-section">
+        <div class="verdict-section-title">📋 The Breakdown</div>
+        <p>${verdict.breakdown}</p>
+      </div>
+      
+      ${verdict.green_flags && verdict.green_flags.length > 0 ? `
+        <div class="verdict-section">
+          <div class="verdict-section-title">✓ Working In Your Favor</div>
+          <ul class="flags-list green-flags">
+            ${verdict.green_flags.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
+      
+      ${verdict.red_flags && verdict.red_flags.length > 0 ? `
+        <div class="verdict-section">
+          <div class="verdict-section-title">⚠️ Watch Out For</div>
+          <ul class="flags-list red-flags">
+            ${verdict.red_flags.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
+      
+      ${verdict.cost_estimate ? `
+        <div class="verdict-section">
+          <div class="verdict-section-title">💵 Cost Comparison</div>
+          <div class="cost-breakdown">
+            <div class="cost-row">
+              <span class="cost-label">DIY Cost (materials + tools)</span>
+              <span class="cost-value">${verdict.cost_estimate.diy}</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-label">Pro Cost (labor + materials)</span>
+              <span class="cost-value">${verdict.cost_estimate.pro}</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-label">Your Time Investment</span>
+              <span class="cost-value">${verdict.cost_estimate.time}</span>
+            </div>
+          </div>
+        </div>
+      ` : ''}
+      
+      <div class="final-word">
+        <div class="final-word-label">🗣️ The Decider's Final Word</div>
+        <p class="final-word-text">"${verdict.final_word}"</p>
+      </div>
+    </div>
+  `;
 }
 
-function startWheel() {
-  const svg = document.getElementById('wheelSvg');
-  phraseIndex = 0;
-  document.getElementById('deliberatingPhrase').textContent = PHRASES[0];
-  wheelInterval = setInterval(() => {
-    phraseIndex = Math.min(phraseIndex + 1, PHRASES.length - 1);
-    document.getElementById('deliberatingPhrase').textContent = PHRASES[phraseIndex];
-    wheelRotation += 55 + Math.random() * 30;
-    svg.style.transform = `rotate(${wheelRotation}deg)`;
-  }, 1100);
-  wheelTimeout = setTimeout(() => {
-    stopWheel();
-    wheelDone = true;
-    if (pendingResult) setTimeout(() => showVerdict(pendingResult), 400);
-  }, 7000);
-}
-
-function stopWheel() {
-  clearInterval(wheelInterval);
-  clearTimeout(wheelTimeout);
-}
-
-function showVerdict(data) {
-  const isDIY = data.verdict === "DIY";
-
-  const banner = document.getElementById('verdictBanner');
-  banner.style.background = isDIY ? 'rgba(34, 197, 94, 0.15)' : 'rgba(192, 57, 43, 0.15)';
-
-  document.getElementById('verdictEmoji').textContent = isDIY ? "🔨" : "📞";
-  document.getElementById('verdictLabel').textContent = isDIY ? "DO IT YOURSELF" : "CALL A PRO";
-  document.getElementById('verdictLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
-  document.getElementById('verdictTagline').textContent = isDIY ? "You've got this." : "Know your limits.";
-  document.getElementById('verdictTagline').style.color = isDIY ? '#22c55e' : '#ef4444';
-
-  document.getElementById('reasoningLabel').style.color = isDIY ? '#22c55e' : '#ef4444';
-  document.getElementById('reasoningText').textContent = data.reasoning;
-  document.getElementById('costText').textContent = data.cost;
-
-  if (isDIY && data.resources) {
-    document.getElementById('resourcesText').textContent = data.resources;
-    document.getElementById('resourcesBlock').classList.remove('hidden');
-  } else {
-    document.getElementById('resourcesBlock').classList.add('hidden');
-  }
-
-  gtag('event', 'verdict_received', { verdict: data.verdict });
-  showStage('verdict');
-}
-
-function reset() {
-  stopWheel();
-  questions = []; answers = []; currentQ = 0;
-  wheelDone = false; pendingResult = null; wheelRotation = 0;
-  document.getElementById('projectInput').value = '';
-  hideError();
+// ============================================
+// START OVER
+// ============================================
+document.getElementById('start-over-btn').addEventListener('click', () => {
+  // Reset state
+  uploadedFiles = [];
+  selectedExperience = null;
+  selectedMotivations = [];
+  analysisData = null;
+  currentQuestion = 0;
+  answers = [];
+  
+  // Reset UI
+  filePreview.innerHTML = '';
+  uploadZone.classList.remove('has-files');
+  projectInput.value = '';
+  document.querySelectorAll('.experience-option').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.motivation-chip').forEach(c => c.classList.remove('selected'));
+  analyzeBtn.disabled = true;
+  
   showStage('input');
-}
-
-document.getElementById('projectInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') startProject();
 });
+
+// ============================================
+// LOADING DOTS CSS
+// ============================================
+const style = document.createElement('style');
+style.textContent = `
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+  @keyframes dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+  }
+`;
+document.head.appendChild(style);
 </script>
+
 </body>
 </html>

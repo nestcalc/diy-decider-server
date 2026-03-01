@@ -102,31 +102,10 @@ nav {
 }
 
 .hero-content {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 2rem 1.5rem 0;
-  position: relative;
-  min-height: 200px;
-}
-
-.hero-text {
-  flex: 1;
+  padding: 3rem 1.5rem;
   text-align: center;
-  padding-bottom: 1.5rem;
-  z-index: 10;
-  position: relative;
-}
-
-.hero-text .eyebrow {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.7);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
 }
 
 .hero-text h1 {
@@ -140,32 +119,6 @@ nav {
 
 .hero-text h1 span { 
   color: var(--caution);
-}
-
-/* Character - at page level, extends below banner */
-.hero-character {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 60px; /* below nav */
-  width: 55%;
-  max-width: 450px;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.hero-character img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Desktop: character centered, larger */
-@media (min-width: 769px) {
-  .hero-character {
-    width: 35%;
-    max-width: 500px;
-  }
 }
 
 .caution-stripe {
@@ -334,20 +287,6 @@ main {
 }
 
 @media (max-width: 768px) {
-  .hero-content {
-    min-height: 160px;
-    padding: 1.5rem 1rem 0;
-  }
-  
-  .hero-character {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    max-width: 200px;
-    z-index: 1;
-  }
-  
   nav {
     padding: 0.9rem 1rem;
   }
@@ -364,14 +303,12 @@ main {
     font-size: 0.8rem;
   }
   
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+  
   main {
     padding: 1.5rem 1rem 2.5rem;
-  }
-}
-
-@media (min-width: 769px) {
-  .hero-text {
-    margin-left: 30%;
   }
 }
 </style>
@@ -385,11 +322,6 @@ main {
     <a href="about.html" class="active">About</a>
   </div>
 </nav>
-
-<!-- Character at page level -->
-<div class="hero-character">
-  <img src="decider.png" alt="The Decider">
-</div>
 
 <div class="hero-section">
   <div class="hero-content">
@@ -418,15 +350,19 @@ main {
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
-          <div class="step-text">Enter your project — be specific. "Fix a leaky faucet" beats "plumbing stuff."</div>
+          <div class="step-text">Describe your project and upload photos if you've got 'em. The more detail, the better.</div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <div class="step-text">Answer 5 yes/no questions designed by a guy who's seen every DIY disaster imaginable.</div>
+          <div class="step-text">Tell me about your experience level and why you want to DIY.</div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <div class="step-text">Get a straight verdict — DIY or call a pro — plus a cost estimate and learning resources if you're going for it.</div>
+          <div class="step-text">Answer a few diagnostic questions from someone who's seen every DIY disaster imaginable.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Get a straight verdict — DIY, call a pro, or a hybrid approach — plus cost estimates and honest advice.</div>
         </div>
       </div>
     </div>
