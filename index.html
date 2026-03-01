@@ -80,40 +80,39 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--caution); }
 
-/* HERO - Character + Title centered together */
+/* HERO - Character + Title centered, character SMALLER */
 .hero-section {
   background: linear-gradient(180deg, var(--rust) 0%, var(--rust-dark) 100%);
-  padding: 1.25rem 1rem 0;
+  padding: 1rem 1rem;
 }
 
 .hero-content {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
 }
 
 .hero-character {
-  width: 110px;
+  width: 75px;
   flex-shrink: 0;
-  margin-bottom: -14px;
 }
 
 .hero-character img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 .hero-text {
-  padding-bottom: 1rem;
+  text-align: left;
 }
 
 .hero-text h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-size: clamp(1.4rem, 5vw, 2rem);
   color: white;
   line-height: 0.95;
   text-transform: uppercase;
@@ -123,20 +122,18 @@ nav {
 .hero-text h1 span { color: var(--caution); }
 
 .hero-text .tagline {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: rgba(255,255,255,0.85);
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .caution-stripe {
   width: 100%;
-  height: 14px;
-  background: repeating-linear-gradient(-55deg, var(--caution) 0px, var(--caution) 14px, #111 14px, #111 28px);
-  position: relative;
-  z-index: 5;
+  height: 12px;
+  background: repeating-linear-gradient(-55deg, var(--caution) 0px, var(--caution) 12px, #111 12px, #111 24px);
 }
 
 /* MAIN */
@@ -147,7 +144,7 @@ nav {
 }
 
 .card-container {
-  max-width: 520px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -161,7 +158,7 @@ nav {
 
 .card-header {
   background: #1c1917;
-  padding: 0.9rem 1.25rem;
+  padding: 0.85rem 1.25rem;
 }
 
 .card-header-label {
@@ -180,11 +177,11 @@ nav {
   border-left: 3px solid var(--rust);
   padding: 12px 14px;
   border-radius: 0 8px 8px 0;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-style: italic;
   font-size: 0.95rem;
   color: var(--text-light);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .intro-quote strong {
@@ -193,7 +190,7 @@ nav {
 }
 
 /* FORM */
-.form-group { margin-bottom: 18px; }
+.form-group { margin-bottom: 16px; }
 
 .form-label {
   display: block;
@@ -211,7 +208,7 @@ nav {
 
 .text-input {
   width: 100%;
-  min-height: 100px;
+  min-height: 90px;
   background: #1c1917;
   border: 2px solid #44403c;
   border-radius: 8px;
@@ -236,7 +233,7 @@ nav {
 .upload-zone {
   border: 2px dashed #44403c;
   border-radius: 8px;
-  padding: 16px;
+  padding: 14px;
   text-align: center;
   cursor: pointer;
   background: rgba(0,0,0,0.15);
@@ -245,9 +242,9 @@ nav {
 .upload-zone:hover { border-color: var(--rust); }
 .upload-zone.has-files { border-color: var(--green); border-style: solid; }
 
-.upload-icon { font-size: 1.6rem; margin-bottom: 4px; }
-.upload-text { font-weight: 600; font-size: 0.9rem; color: var(--text-light); }
-.upload-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.upload-icon { font-size: 1.5rem; margin-bottom: 4px; }
+.upload-text { font-weight: 600; font-size: 0.85rem; color: var(--text-light); }
+.upload-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
 
 .file-preview {
   display: flex;
@@ -257,12 +254,43 @@ nav {
   justify-content: center;
 }
 
+.file-thumb-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .file-thumb {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 4px;
   object-fit: cover;
   border: 2px solid var(--rust);
+  display: block;
+}
+
+.file-delete {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  background: var(--red);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.file-delete:hover {
+  background: #dc2626;
+  transform: scale(1.1);
 }
 
 /* Experience - 2x2 GRID */
@@ -283,9 +311,7 @@ nav {
   cursor: pointer;
 }
 
-.experience-option:hover {
-  border-color: var(--rust);
-}
+.experience-option:hover { border-color: var(--rust); }
 
 .experience-option.selected {
   border-color: var(--rust);
@@ -323,11 +349,11 @@ nav {
   color: var(--text-light);
 }
 
-/* Motivation */
+/* Motivation - SINGLE ROW, CENTERED */
 .motivation-chips {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
 }
 
 .motivation-chip {
@@ -339,6 +365,7 @@ nav {
   font-weight: 600;
   color: var(--text-light);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .motivation-chip:hover { border-color: var(--rust); }
@@ -395,12 +422,12 @@ nav {
   color: var(--caution);
 }
 
-/* Requirement hint */
+/* Requirements */
 .requirements-hint {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .requirements-hint .done { color: var(--green); }
@@ -644,18 +671,20 @@ nav {
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.75rem; }
   
-  .hero-section { padding: 1rem 0.75rem 0; }
-  .hero-character { width: 90px; }
-  .hero-text h1 { font-size: 1.4rem; }
-  .hero-text .tagline { font-size: 0.7rem; }
+  .hero-section { padding: 0.75rem; }
+  .hero-content { gap: 0.75rem; }
+  .hero-character { width: 60px; }
+  .hero-text h1 { font-size: 1.3rem; }
+  .hero-text .tagline { font-size: 0.65rem; }
   
-  .main-wrapper { padding: 1.25rem 0.75rem; }
+  .main-wrapper { padding: 1rem 0.75rem; }
   .card-body { padding: 1rem; }
   
-  .experience-options { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .experience-options { gap: 6px; }
   .experience-option { padding: 8px; }
   .experience-label { font-size: 0.8rem; }
   
+  .motivation-chips { flex-wrap: wrap; justify-content: center; }
   .motivation-chip { padding: 6px 10px; font-size: 0.8rem; }
 }
 </style>
@@ -695,7 +724,7 @@ nav {
         <div class="card-body">
           
           <div class="intro-quote">
-            "Tell me what you're tackling. <strong>Give me the real picture</strong> and I'll tell you straight."
+            "You want the truth or you want me to blow smoke? <strong>Give me the real picture</strong> and I'll tell you straight."
           </div>
           
           <div class="form-group">
@@ -748,14 +777,13 @@ nav {
               <button type="button" class="motivation-chip" data-value="learn">📚 Learn</button>
               <button type="button" class="motivation-chip" data-value="enjoy">😊 Enjoy it</button>
               <button type="button" class="motivation-chip" data-value="timeline">⏰ Fast</button>
-              <button type="button" class="motivation-chip" data-value="small">🔍 Seems simple</button>
             </div>
           </div>
           
           <button class="btn-primary" id="analyze-btn" disabled>LET'S SEE WHAT WE'VE GOT →</button>
           
           <p class="requirements-hint" id="requirements-hint">
-            <span id="req-project">✗ Describe your project</span> · <span id="req-exp">✗ Select experience</span>
+            <span id="req-project">✗ Describe project</span> · <span id="req-exp">✗ Select experience</span>
           </p>
         </div>
       </div>
@@ -784,7 +812,7 @@ nav {
             <div id="observations-list"></div>
           </div>
           <div class="first-take-quote">
-            <div class="first-take-label">🗣️ The Decider's First Take</div>
+            <div class="first-take-label">🗣️ The Decider's Take</div>
             <p class="first-take-text" id="first-take-text"></p>
           </div>
         </div>
@@ -811,11 +839,11 @@ nav {
 <script>
 const API_BASE_URL = '';
 const LOADING_QUIPS = [
-  "Checking if this is a weekend job or a month-long ordeal...",
-  "Running this through 40 years of experience...",
+  "Checking if you're about to make a 'learning experience'...",
+  "Running this through 40 years of 'I told you so'...",
   "Calculating hardware store trips...",
-  "Consulting my mental database of DIY disasters...",
-  "Checking if YouTube can actually help here..."
+  "Consulting my database of DIY disasters...",
+  "Seeing if YouTube can actually save you here..."
 ];
 
 let uploadedFiles = [];
@@ -835,18 +863,43 @@ const reqProject = document.getElementById('req-project');
 const reqExp = document.getElementById('req-exp');
 
 // File upload
-uploadZone.addEventListener('click', () => fileInput.click());
+uploadZone.addEventListener('click', (e) => {
+  // Don't trigger file picker if clicking delete button
+  if (e.target.classList.contains('file-delete')) return;
+  fileInput.click();
+});
+
 fileInput.addEventListener('change', (e) => {
   uploadedFiles = [...uploadedFiles, ...Array.from(e.target.files)];
+  renderFilePreviews();
+});
+
+function renderFilePreviews() {
   filePreview.innerHTML = '';
-  uploadedFiles.forEach((file, i) => {
+  uploadedFiles.forEach((file, index) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'file-thumb-wrapper';
+    
     const img = document.createElement('img');
     img.className = 'file-thumb';
     img.src = URL.createObjectURL(file);
-    filePreview.appendChild(img);
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'file-delete';
+    deleteBtn.innerHTML = '✕';
+    deleteBtn.type = 'button';
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation();
+      uploadedFiles.splice(index, 1);
+      renderFilePreviews();
+    };
+    
+    wrapper.appendChild(img);
+    wrapper.appendChild(deleteBtn);
+    filePreview.appendChild(wrapper);
   });
   uploadZone.classList.toggle('has-files', uploadedFiles.length > 0);
-});
+}
 
 // Experience
 document.querySelectorAll('.experience-option').forEach(opt => {
@@ -938,7 +991,7 @@ analyzeBtn.addEventListener('click', async () => {
   }
 });
 
-// Continue to questions
+// Continue
 document.getElementById('continue-btn').addEventListener('click', () => {
   showStage('questions');
   renderQuestion();

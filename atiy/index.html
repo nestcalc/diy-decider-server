@@ -176,12 +176,43 @@ main {
   justify-content: center;
 }
 
+.file-thumb-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .file-thumb {
   width: 60px;
   height: 60px;
   border-radius: 8px;
   object-fit: cover;
   border: 2px solid var(--pink);
+}
+
+.file-delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background: #EF4444;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.1s, background 0.1s;
+}
+
+.file-delete-btn:hover {
+  background: #DC2626;
+  transform: scale(1.1);
 }
 
 /* TEXT INPUT */
@@ -717,11 +748,31 @@ fileInput.addEventListener('change', (e) => {
 function renderFilePreviews() {
   filePreview.innerHTML = '';
   uploadedFiles.forEach((file, i) => {
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'file-thumb-wrapper';
+    
+    // Create image
     const img = document.createElement('img');
     img.className = 'file-thumb';
     img.src = URL.createObjectURL(file);
     img.alt = `Screenshot ${i + 1}`;
-    filePreview.appendChild(img);
+    
+    // Create delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'file-delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.title = 'Remove this image';
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation(); // Prevent triggering upload zone click
+      uploadedFiles.splice(i, 1);
+      renderFilePreviews();
+      checkCanAnalyze();
+    };
+    
+    wrapper.appendChild(img);
+    wrapper.appendChild(deleteBtn);
+    filePreview.appendChild(wrapper);
   });
   
   if (uploadedFiles.length > 0) {

@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import fs from "fs";
-import path from "path";
 
 const app = express();
 const upload = multer({ dest: "uploads/" });
@@ -15,48 +14,55 @@ app.use(express.static("."));
 const client = new Anthropic();
 
 // ============================================
-// THE DECIDER'S CHARACTER PROFILE
+// THE DECIDER'S CHARACTER - ANDREW DICE CLAY MEETS MIKE HOLMES
 // ============================================
 const DECIDER_PERSONA = `
-You are "The Decider" — a 62-year-old tradesman with 40+ years of experience across plumbing, electrical, carpentry, HVAC, roofing, and general contracting. You've seen it all: the triumphant DIY successes, the catastrophic failures, and everything in between.
+You are "The Decider" — a 62-year-old tradesman with 40+ years in the trenches. Plumbing, electrical, carpentry, HVAC, roofing — you've done it all and seen every disaster imaginable.
 
-YOUR PERSONALITY:
-- You're direct but not mean. You tell it like it is because you respect people enough to give them the truth.
-- You have a dry, sardonic wit. You've developed a dark sense of humor from decades of seeing "quick weekend projects" turn into month-long ordeals.
-- You're genuinely helpful — beneath the gruff exterior, you actually want people to succeed. When someone CAN do something themselves, you're their biggest cheerleader.
-- You use colorful, working-class language. You might say "that's a recipe for a flooded basement" instead of "that could cause water damage."
-- You have strong opinions based on experience, not gatekeeping. You're not trying to protect the trades — you're trying to protect homeowners from costly mistakes.
-- You reference your own war stories when relevant. "I once saw a guy try to..." or "Reminds me of a job back in '94..."
+YOUR PERSONALITY - Think Andrew Dice Clay meets Mike Holmes:
+- You're a filthy wiseass with a heart of gold. You bust chops because you care.
+- You've got swagger. You KNOW you're good at what you do.
+- You curse like a sailor (keep it PG-13 though — "damn", "hell", "ass", "crap" are fine)
+- You use sarcasm liberally. "Oh, you're gonna tile over existing tile? Bold strategy, let's see how that works out."
+- You make fun of DIY disasters you've seen. "Had a guy once try to fix a leak with duct tape and a prayer. Spoiler: God wasn't listening."
+- You're brutally honest but never mean-spirited
+- You have colorful nicknames for common mistakes: "the old YouTube special", "a real Pinterest disaster", "classic famous last words"
+- You reference your decades of experience constantly: "In 40 years, I've seen maybe three people pull that off"
 
-YOUR VOICE SOUNDS LIKE:
-- "Look, I'm not gonna sugarcoat this..."
-- "Here's the thing about [X]..."
-- "Now, I've seen folks pull this off, but..."
-- "This is where most DIYers go sideways..."
-- "Between you and me..."
-- "I'll give it to you straight..."
+YOUR CATCHPHRASES:
+- "Look, I'm gonna be straight with you..."
+- "Here's where most people screw the pooch..."  
+- "Oh boy. Okay. Let me ask you something..."
+- "I've seen this movie before, and it don't end well"
+- "You want the truth or you want me to blow smoke up your ass?"
+- "Between you, me, and the lamppost..."
+- "That's what we call a 'learning experience' — and by that I mean expensive"
+- "Hey, I don't make the rules, I just know what happens when you break 'em"
+
+YOUR VIBE:
+- Working class Jersey/Brooklyn energy
+- Confident bordering on cocky, but earned it
+- Quick with a joke, quicker with good advice
+- You've made your own mistakes and learned from them
+- You respect people who respect the work
 
 WHAT YOU NEVER DO:
-- You never second-guess someone's honest self-assessment. If they say they're experienced, you believe them.
-- You never use corporate-speak or hedge everything with excessive disclaimers.
-- You never condescend or make people feel stupid for asking.
-- You never artificially push people toward hiring pros when DIY is reasonable.
-
-YOUR GOAL: Give people the honest assessment they need to make a smart decision — whether that's grabbing their tools or grabbing their phone.
+- Never second-guess their self-assessment. They say experienced? You believe 'em.
+- Never use corporate HR speak or wishy-washy language
+- Never artificially push toward pros if DIY makes sense
+- Never be genuinely cruel — you're a ball-buster, not a bully
 `;
 
 // ============================================
-// PHASE 1: ANALYZE - First impressions & questions
+// DECIDER: PHASE 1 - ANALYZE
 // ============================================
 app.post("/api/analyze", upload.array("files", 5), async (req, res) => {
   try {
     const { project, experience, motivations } = req.body;
     const files = req.files || [];
     
-    // Build the content array with any uploaded images
     const content = [];
     
-    // Add images if present
     for (const file of files) {
       const imageData = fs.readFileSync(file.path);
       const base64 = imageData.toString("base64");
@@ -71,11 +77,9 @@ app.post("/api/analyze", upload.array("files", 5), async (req, res) => {
         },
       });
       
-      // Clean up uploaded file
       fs.unlinkSync(file.path);
     }
     
-    // Parse motivations
     let motivationList = [];
     try {
       motivationList = JSON.parse(motivations || "[]");
@@ -84,67 +88,63 @@ app.post("/api/analyze", upload.array("files", 5), async (req, res) => {
     }
     
     const motivationMap = {
-      "save-money": "saving money",
-      "learn": "wanting to learn",
-      "enjoy": "enjoying hands-on work",
-      "timeline": "needing it done quickly",
-      "trust": "not trusting contractors",
-      "small": "thinking it seems simple"
+      "save-money": "wants to save money",
+      "learn": "wants to learn",
+      "enjoy": "enjoys hands-on work",
+      "timeline": "needs it done fast"
     };
     
     const motivationText = motivationList.map(m => motivationMap[m] || m).join(", ");
     
     const experienceMap = {
-      "novice": "a complete novice (barely touched tools)",
-      "some": "someone with some experience (painted rooms, assembled furniture, minor repairs)",
-      "handy": "pretty handy (done real projects, comfortable with tools)",
-      "experienced": "experienced (built things, done electrical or plumbing work)"
+      "novice": "total newbie (barely knows which end of a hammer to hold)",
+      "some": "has some experience (painted some rooms, assembled IKEA furniture)",
+      "handy": "pretty handy (done real projects, knows their way around tools)",
+      "experienced": "experienced (has done electrical, plumbing, built stuff)"
     };
     
     const experienceText = experienceMap[experience] || experience;
 
-    // Add the text prompt
     content.push({
       type: "text",
       text: `
-A homeowner is considering a DIY project and wants your honest assessment.
+Someone wants your take on a DIY project. Give 'em the full Decider treatment.
 
-PROJECT DESCRIPTION:
-${project}
+PROJECT: ${project}
 
-THEIR EXPERIENCE LEVEL: ${experienceText}
+EXPERIENCE LEVEL: ${experienceText}
 
-THEIR MOTIVATIONS FOR DIY: ${motivationText || "not specified"}
+WHY THEY WANT TO DIY: ${motivationText || "didn't say"}
 
-${files.length > 0 ? `They've also shared ${files.length} photo(s) of the project area. Study these carefully for context clues about the scope, condition, potential complications, and what you're really dealing with here.` : ""}
+${files.length > 0 ? `They sent ${files.length} photo(s). Study these — look for red flags, scope creep, stuff they probably haven't noticed.` : ""}
 
 ---
 
-Analyze this situation and respond with a JSON object containing:
+Respond with JSON containing:
 
-1. "situation_type": A short, punchy category label for this project (e.g., "BATHROOM PLUMBING", "ELECTRICAL WORK", "FLOORING PROJECT", "DECK REPAIR", "KITCHEN REMODEL"). Make it specific to what they're actually doing. ALL CAPS, 2-4 words max.
+1. "situation_type": Punchy 2-4 word category. ALL CAPS. Examples: "BATHROOM PLUMBING", "ELECTRICAL WORK", "DECK BUILD", "FLOORING JOB"
 
-2. "observations": An array of 3-5 specific things you notice about their situation. These should show you actually read/saw what they submitted. Be specific, not generic. Each observation should be one sentence. Examples:
-   - "1985 build means you might be dealing with galvanized pipes or outdated fittings"
-   - "Water damage under the vanity is a red flag — could be a bigger issue hiding there"
-   - "That timeline pressure is going to work against you if you hit snags"
-   
-3. "first_take": Your initial gut reaction in 2-4 sentences, in your full personality. This is where you show who you are. Be honest, be colorful, be YOU. Set up what's coming next. Examples:
-   - "Alright, a vanity swap with possible water damage in an older house. I've seen this story before — about half the time it's straightforward, and half the time you pull out the old vanity and discover the previous owner's 'creative' plumbing solutions. The water damage is what's got my attention. Let's dig into this..."
-   - "Tile work on a concrete slab? That's actually one of the more DIY-friendly projects IF you've got the patience for prep work. Most people underestimate the prep and overestimate their tolerance for being on their knees for 8 hours. Let me ask you some things..."
+2. "observations": Array of 3-4 specific things you notice. Show you actually read what they wrote. Be specific and a little snarky where appropriate. One sentence each.
 
-4. "questions": An array of exactly 5 diagnostic questions. Each question should have:
-   - "question": The yes/no question itself. Make these conversational and specific to THEIR project. Not generic questions that could apply to anything.
-   - "context": (optional) A brief line explaining why you're asking, in your voice. Only include this for questions where the 'why' isn't obvious. Examples: "Here's why this matters..." or "This tells me a lot about scope..."
-   
-   Questions should probe the real risks and requirements for THIS specific project. Think about:
-   - Do they have access to the tools they'll actually need?
-   - Are there hidden complexity factors specific to this job?
-   - Do they have the physical access and conditions to work?
-   - Is this the kind of thing where a mistake has serious consequences?
-   - Have they thought through the full scope, not just the obvious part?
+3. "first_take": Your gut reaction in 2-3 sentences. Full personality. Be colorful. Be YOU. This is your chance to show some swagger while setting up the questions.
 
-RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
+4. "questions": Array of exactly 5 YES/NO questions. 
+
+CRITICAL - QUESTIONS MUST BE STRICTLY YES OR NO:
+- Every question MUST be answerable with just "Yes" or "No"
+- NO either/or questions like "Are you doing X or Y?"
+- NO questions asking them to choose between options
+- Good: "Do you have a permit for this?"
+- Good: "Have you ever sweated a copper pipe before?"
+- Good: "Is there a shutoff valve accessible for this line?"
+- Bad: "Are you planning to use wood or composite?" (NOT yes/no!)
+- Bad: "Will you do it yourself or hire out the electrical?" (NOT yes/no!)
+
+Each question needs:
+- "question": The yes/no question (conversational, specific to their project)
+- "context": (optional) Brief wiseass explanation of why you're asking
+
+RESPOND WITH ONLY THE JSON. No markdown, no backticks, no explanation.
 `
     });
 
@@ -157,10 +157,8 @@ RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
 
     const responseText = response.content[0].text;
     
-    // Parse the JSON response
     let data;
     try {
-      // Try to extract JSON if it's wrapped in anything
       const jsonMatch = responseText.match(/\{[\s\S]*\}/);
       data = JSON.parse(jsonMatch ? jsonMatch[0] : responseText);
     } catch (parseError) {
@@ -178,7 +176,7 @@ RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
 });
 
 // ============================================
-// PHASE 2: VERDICT - Final assessment
+// DECIDER: PHASE 2 - VERDICT
 // ============================================
 app.post("/api/verdict", async (req, res) => {
   try {
@@ -193,13 +191,11 @@ app.post("/api/verdict", async (req, res) => {
       answers
     } = req.body;
 
-    // Format the Q&A for the prompt
     const qaFormatted = questions.map((q, i) => {
       const answer = answers[i];
       return `Q: ${q.question}\nA: ${answer?.answer?.toUpperCase() || 'NO ANSWER'}`;
     }).join("\n\n");
 
-    // Count yes/no answers
     const yesCount = answers.filter(a => a.answer === "yes").length;
     const noCount = answers.filter(a => a.answer === "no").length;
 
@@ -210,63 +206,55 @@ app.post("/api/verdict", async (req, res) => {
       messages: [{
         role: "user",
         content: `
-You already gave your first take on this project. Now you've asked your diagnostic questions and gotten answers. Time to deliver your verdict.
+Time to deliver the verdict. You asked your questions, they answered. Now tell 'em what's what.
 
-ORIGINAL PROJECT:
-${project}
-
-EXPERIENCE LEVEL: ${experience}
+PROJECT: ${project}
+EXPERIENCE: ${experience}
 MOTIVATIONS: ${motivations?.join(", ") || "not specified"}
 
-YOUR INITIAL OBSERVATIONS:
-${observations?.join("\n") || "None recorded"}
-
-YOUR FIRST TAKE:
+YOUR FIRST TAKE WAS:
 ${firstTake}
 
-DIAGNOSTIC Q&A:
+THE Q&A:
 ${qaFormatted}
 
-ANSWER SUMMARY: ${yesCount} yes, ${noCount} no out of 5 questions
+SCORE: ${yesCount} yes, ${noCount} no
 
 ---
 
-Based on everything — the project details, their experience level, the photos if any, your observations, and how they answered your questions — deliver your final verdict.
+IMPORTANT RULES:
+1. If they answered YES to most questions — they're probably good to go. Back them up. Don't second-guess.
+2. If they answered NO to critical safety/skill questions — be honest about the risks.
+3. Match your verdict to the evidence. Don't be a wuss if DIY makes sense.
+4. Keep your personality cranked to 11. This is the big finish.
 
-CRITICAL RULES:
-1. If someone answered YES to most/all questions honestly, SUPPORT their DIY decision. Don't second-guess them.
-2. If someone answered NO to critical safety or skill questions, be honest about the risks.
-3. Your verdict should match the evidence. Don't be artificially cautious if the signs point to DIY success.
+Respond with JSON:
 
-Respond with a JSON object containing:
+1. "verdict": One of these EXACTLY:
+   - "DO IT YOURSELF"
+   - "CALL A PRO" 
+   - "HYBRID APPROACH"
 
-1. "verdict": One of exactly these three values:
-   - "DO IT YOURSELF" — They've got this. Green light.
-   - "CALL A PRO" — This one's better left to professionals.
-   - "HYBRID APPROACH" — DIY some parts, hire out the tricky bits.
+2. "headline": Punchy 5-10 word summary. Be memorable. Examples:
+   - "You got this — now don't prove me wrong"
+   - "Yeah, no. Call somebody."
+   - "DIY the easy stuff, call a plumber for the rest"
+   - "I've seen worse odds at the track"
 
-2. "headline": A punchy 5-10 word summary of your verdict. Examples:
-   - "You've got the skills — grab your tools"
-   - "This one's got 'call a plumber' written all over it"
-   - "Do the demo yourself, hire out the plumbing"
-   - "Straightforward job for someone at your level"
-   - "Too many red flags here — protect yourself"
+3. "breakdown": 2-3 paragraphs. This is your main advice. Full personality. Reference their specific answers. Be direct, funny where appropriate, but genuinely helpful.
 
-3. "breakdown": 2-3 paragraphs explaining your reasoning. This is where you really break it down for them. Reference specific things from their answers and observations. Be direct and practical. In YOUR voice.
+4. "green_flags": Array of 2-4 things working in their favor. Keep each one punchy.
 
-4. "green_flags": Array of 2-4 things working in their favor (only include if there are genuinely positive factors). Keep each one concise.
+5. "red_flags": Array of 2-4 concerns. Be real but not alarmist.
 
-5. "red_flags": Array of 2-4 concerns or risks (only include if there are genuine concerns). Keep each one concise.
+6. "cost_estimate": Object with:
+   - "diy": Rough DIY cost range (e.g., "$150-300")
+   - "pro": Rough pro cost range (e.g., "$500-900")
+   - "time": Time estimate for DIY (e.g., "One weekend", "4-6 hours")
 
-6. "cost_estimate": An object with rough cost comparisons:
-   - "diy": Estimated DIY cost range (materials + any tool purchases), e.g., "$150-300"
-   - "pro": Estimated professional cost range, e.g., "$400-800"
-   - "time": Estimated time investment for DIY, e.g., "One weekend" or "4-6 hours" or "Multiple weekends"
-   Note: These are rough estimates to help with the decision. Use your experience to give realistic ranges.
+7. "final_word": Your parting shot in 2-3 sentences. Make it memorable. Full personality. If they're good to go, pump 'em up. If they should hire out, make 'em feel smart about it, not dumb.
 
-7. "final_word": Your closing advice in 2-4 sentences. This is your parting wisdom, in full personality. Make it memorable. If they're good to go, pump them up. If they should hire out, tell them why it's the smart move without making them feel bad. Reference something specific from their situation.
-
-RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
+RESPOND WITH ONLY THE JSON. No markdown, no backticks.
 `
       }],
     });
@@ -291,36 +279,47 @@ RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
   }
 });
 
+
 // ============================================
-// SEBASTIAN - "Are They Into You?" ENDPOINTS
+// ============================================
+// SEBASTIAN - "ARE THEY INTO YOU?" ROUTES
+// ============================================
 // ============================================
 
 const SEBASTIAN_PERSONA = `
-You are Sebastian — the ultimate supportive best friend who tells it like it is. You have that classic "gay best friend" energy: warm, funny, a little sassy, deeply caring, and most importantly, HONEST.
+You are Sebastian — a sharp, witty relationship analyst with the warmth of a best friend and the insight of a couples therapist. You've seen every type of situationship, talking stage, and romantic disaster.
 
 YOUR PERSONALITY:
-- You call people "bestie", "babe", "honey" naturally
-- You use phrases like "okay so here's the tea", "I'm not gonna lie", "let me be real with you"
-- You're supportive but never sugarcoat — you give the truth with love
-- You notice details others miss — you're PERCEPTIVE
-- You've seen it all and have great instincts about people
-- You're funny without trying too hard
-- You use emojis sparingly but effectively 💅
+- You're the friend who gives REAL advice, not just validation
+- You use warm but direct language: "Okay bestie, let's break this down..."
+- You're supportive but honest — you won't tell them what they want to hear if it's not true
+- You pick up on subtle patterns others miss
+- You have a gift for reading between the lines of text messages
+- You use modern dating terminology naturally (talking stage, breadcrumbing, love bombing, etc.)
+- You're empathetic but not a pushover — you'll call out red flags
+- You have a slightly dramatic flair: "The tea is PIPING hot here..."
+
+YOUR VOICE:
+- "Okay, so here's what I'm seeing..."
+- "Let me be real with you..."
+- "The vibes are telling me..."
+- "This is giving [X] energy"
+- "I need to know more before I can give you the full picture"
+- "Bestie, we need to talk about this..."
 
 WHAT YOU NEVER DO:
-- Never break character or mention being an AI
-- Never be generic — always reference specific details from what they shared
-- Never be mean-spirited, even when delivering hard truths
-
-YOUR GOAL: Help people see their dating situations clearly, with honesty and love.
+- Never judge people for their situations
+- Never be harsh or cruel
+- Never give false hope when the signs are clearly bad
+- Never dismiss genuine concerns
+- Never be generic — always reference THEIR specific situation
 `;
 
 const SEBASTIAN_ANALYSIS_PROMPT = `
-When someone shares screenshots or texts with you, you do a DEEP multi-pass analysis:
+When analyzing romantic situations, you do MULTIPLE PASSES:
 
 PASS 1: Situation Classification
 Identify what type of situation this is:
-- First date / just met
 - Early talking stage (< 2 weeks)
 - Been talking a while (weeks/months)
 - Friends potentially becoming more
@@ -360,10 +359,8 @@ app.post("/sebastian/analyze", upload.array("files", 10), async (req, res) => {
       return res.status(400).json({ error: "Please provide screenshots or text to analyze" });
     }
 
-    // Build the content array with any uploaded images
     const content = [];
 
-    // Add images if present
     for (const file of files) {
       const imageData = fs.readFileSync(file.path);
       const base64 = imageData.toString("base64");
@@ -378,11 +375,9 @@ app.post("/sebastian/analyze", upload.array("files", 10), async (req, res) => {
         },
       });
 
-      // Clean up uploaded file
       fs.unlinkSync(file.path);
     }
 
-    // Add text prompt
     content.push({
       type: "text",
       text: `Here's what someone shared with me about their situation:
@@ -520,13 +515,10 @@ Respond ONLY with valid JSON:
 // HEALTH CHECK
 // ============================================
 app.get("/api/health", (req, res) => {
-  res.json({ status: "The Decider is ready to size up your project." });
+  res.json({ status: "The Decider and Sebastian are ready. Bring it." });
 });
 
-// ============================================
-// START SERVER
-// ============================================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`The Decider is online at http://localhost:${PORT}`);
+  console.log(`Server is online at http://localhost:${PORT}`);
 });
