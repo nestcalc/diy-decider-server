@@ -128,21 +128,22 @@ Respond with JSON containing:
 
 3. "first_take": Your gut reaction in 2-3 sentences. Full personality. Be colorful. Be YOU. This is your chance to show some swagger while setting up the questions.
 
-4. "questions": Array of exactly 5 YES/NO questions. 
+4. "questions": Array of exactly 5 multiple choice questions.
 
-CRITICAL - QUESTIONS MUST BE STRICTLY YES OR NO:
-- Every question MUST be answerable with just "Yes" or "No"
-- NO either/or questions like "Are you doing X or Y?"
-- NO questions asking them to choose between options
-- Good: "Do you have a permit for this?"
-- Good: "Have you ever sweated a copper pipe before?"
-- Good: "Is there a shutoff valve accessible for this line?"
-- Bad: "Are you planning to use wood or composite?" (NOT yes/no!)
-- Bad: "Will you do it yourself or hire out the electrical?" (NOT yes/no!)
+QUESTIONS ARE MULTIPLE CHOICE — 4 options each:
+- Ask about prior experience with this type of work, tools on hand, specific project details, time/budget reality
+- Options should cover the realistic spectrum from "never done this" to "yeah, I got this"
+- Keep the options conversational — what a real person would actually say, not survey-speak
+- Make sure the options are meaningfully different so the answer actually changes the verdict
+- Good: "Have you ever worked with copper plumbing before?"
+  Options: ["Never touched a pipe in my life", "Watched some YouTube but never tried", "Done some basic plumbing stuff", "Yeah, I've sweated copper before"]
+- Good: "What's your tool situation?"
+  Options: ["Basic household stuff — hammer, screwdrivers", "Got a drill and some hand tools", "Pretty solid setup — power tools, levels, the works", "Full shop, I'm not lacking for anything"]
 
 Each question needs:
-- "question": The yes/no question (conversational, specific to their project)
-- "context": (optional) Brief wiseass explanation of why you're asking
+- "question": The question — conversational, specific to their project, references what they told you
+- "context": (optional) One short wiseass sentence explaining why you're asking
+- "options": Array of exactly 4 strings, ordered roughly from least to most capable/prepared
 
 RESPOND WITH ONLY THE JSON. No markdown, no backticks, no explanation.
 `
@@ -193,11 +194,8 @@ app.post("/api/verdict", async (req, res) => {
 
     const qaFormatted = questions.map((q, i) => {
       const answer = answers[i];
-      return `Q: ${q.question}\nA: ${answer?.answer?.toUpperCase() || 'NO ANSWER'}`;
+      return `Q: ${q.question}\nA: ${answer?.answer || 'NO ANSWER'}`;
     }).join("\n\n");
-
-    const yesCount = answers.filter(a => a.answer === "yes").length;
-    const noCount = answers.filter(a => a.answer === "no").length;
 
     const response = await client.messages.create({
       model: "claude-sonnet-4-20250514",
@@ -218,15 +216,14 @@ ${firstTake}
 THE Q&A:
 ${qaFormatted}
 
-SCORE: ${yesCount} yes, ${noCount} no
-
 ---
 
 IMPORTANT RULES:
-1. If they answered YES to most questions — they're probably good to go. Back them up. Don't second-guess.
-2. If they answered NO to critical safety/skill questions — be honest about the risks.
-3. Match your verdict to the evidence. Don't be a wuss if DIY makes sense.
-4. Keep your personality cranked to 11. This is the big finish.
+1. Read their answers carefully — these are multiple choice, so you can see exactly where they stand on skills, tools, and experience.
+2. Strong answers across the board? Back them up. Don't second-guess.
+3. Weak answers on critical safety/skill questions? Be honest about the risks.
+4. Match your verdict to the evidence. Don't be a wuss if DIY makes sense. Don't fold if it doesn't.
+5. Keep your personality cranked to 11. This is the big finish.
 
 Respond with JSON:
 
