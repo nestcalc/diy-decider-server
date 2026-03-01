@@ -423,14 +423,23 @@ nav {
 }
 
 /* Requirements */
-.requirements-hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+.validation-error {
+  font-size: 0.85rem;
+  color: var(--red);
   text-align: center;
-  margin-top: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  animation: shake 0.4s ease;
 }
 
-.requirements-hint .done { color: var(--green); }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
 
 /* LOADING */
 .loading-section { text-align: center; padding: 2rem 1rem; }
@@ -780,11 +789,9 @@ nav {
             </div>
           </div>
           
-          <button class="btn-primary" id="analyze-btn" disabled>LET'S SEE WHAT WE'VE GOT →</button>
+          <button class="btn-primary" id="analyze-btn">LET'S SEE WHAT WE'VE GOT →</button>
           
-          <p class="requirements-hint" id="requirements-hint">
-            <span id="req-project">✗ Describe project</span> · <span id="req-exp">✗ Select experience</span>
-          </p>
+          <p class="validation-error hidden" id="validation-error"></p>
         </div>
       </div>
     </div>
@@ -859,8 +866,6 @@ const fileInput = document.getElementById('file-input');
 const filePreview = document.getElementById('file-preview');
 const analyzeBtn = document.getElementById('analyze-btn');
 const loadingQuip = document.getElementById('loading-quip');
-const reqProject = document.getElementById('req-project');
-const reqExp = document.getElementById('req-exp');
 
 // File upload
 uploadZone.addEventListener('click', (e) => {
@@ -908,7 +913,7 @@ document.querySelectorAll('.experience-option').forEach(opt => {
     opt.classList.add('selected');
     opt.querySelector('input').checked = true;
     selectedExperience = opt.dataset.value;
-    checkCanAnalyze();
+    hideValidationError();
   });
 });
 
@@ -922,22 +927,48 @@ document.querySelectorAll('.motivation-chip').forEach(chip => {
     } else {
       selectedMotivations.push(val);
     }
+    hideValidationError();
   });
 });
 
 // Validation
-projectInput.addEventListener('input', checkCanAnalyze);
+const validationError = document.getElementById('validation-error');
+const MIN_PROJECT_LENGTH = 10;
 
-function checkCanAnalyze() {
-  const hasProject = projectInput.value.trim().length >= 10;
-  const hasExp = selectedExperience !== null;
+projectInput.addEventListener('input', hideValidationError);
+
+function hideValidationError() {
+  validationError.classList.add('hidden');
+  validationError.textContent = '';
+}
+
+function validateForm() {
+  const projectLength = projectInput.value.trim().length;
+  const errors = [];
   
-  reqProject.textContent = hasProject ? '✓ Project' : '✗ Describe project';
-  reqProject.className = hasProject ? 'done' : '';
-  reqExp.textContent = hasExp ? '✓ Experience' : '✗ Select experience';
-  reqExp.className = hasExp ? 'done' : '';
+  if (projectLength < MIN_PROJECT_LENGTH) {
+    const needed = MIN_PROJECT_LENGTH - projectLength;
+    errors.push(`Describe your project (${needed} more character${needed === 1 ? '' : 's'} needed)`);
+  }
   
-  analyzeBtn.disabled = !(hasProject && hasExp);
+  if (!selectedExperience) {
+    errors.push('Select your experience level');
+  }
+  
+  if (selectedMotivations.length === 0) {
+    errors.push('Pick at least one reason for DIY');
+  }
+  
+  return errors;
+}
+
+function showValidationError(errors) {
+  validationError.textContent = errors.join(' • ');
+  validationError.classList.remove('hidden');
+  // Re-trigger animation
+  validationError.style.animation = 'none';
+  validationError.offsetHeight; // Force reflow
+  validationError.style.animation = null;
 }
 
 // Stages
@@ -962,6 +993,13 @@ function stopQuips() { clearInterval(quipInterval); }
 
 // Analyze
 analyzeBtn.addEventListener('click', async () => {
+  const errors = validateForm();
+  
+  if (errors.length > 0) {
+    showValidationError(errors);
+    return;
+  }
+  
   showStage('loading');
   startQuips();
   
@@ -1091,11 +1129,7 @@ document.getElementById('start-over-btn').addEventListener('click', () => {
   projectInput.value = '';
   document.querySelectorAll('.experience-option').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('.motivation-chip').forEach(c => c.classList.remove('selected'));
-  analyzeBtn.disabled = true;
-  reqProject.textContent = '✗ Describe project';
-  reqProject.className = '';
-  reqExp.textContent = '✗ Select experience';
-  reqExp.className = '';
+  hideValidationError();
   showStage('input');
 });
 </script>
