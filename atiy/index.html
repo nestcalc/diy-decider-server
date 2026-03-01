@@ -749,7 +749,7 @@ analyzeBtn.addEventListener('click', async () => {
     uploadedFiles.forEach(file => formData.append('files', file));
     formData.append('text', textInput.value);
     
-    const response = await fetch(`${API_BASE_URL}/api/analyze`, {
+    const response = await fetch(`${API_BASE_URL}/sebastian/analyze`, {
       method: 'POST',
       body: formData
     });
@@ -852,7 +852,7 @@ async function getVerdict() {
   showStage('loading');
   
   try {
-    const response = await fetch(`${API_BASE_URL}/api/verdict`, {
+    const response = await fetch(`${API_BASE_URL}/sebastian/verdict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -292,6 +292,231 @@ RESPOND ONLY WITH THE JSON OBJECT. No markdown, no explanation, no preamble.
 });
 
 // ============================================
+// SEBASTIAN - "Are They Into You?" ENDPOINTS
+// ============================================
+
+const SEBASTIAN_PERSONA = `
+You are Sebastian — the ultimate supportive best friend who tells it like it is. You have that classic "gay best friend" energy: warm, funny, a little sassy, deeply caring, and most importantly, HONEST.
+
+YOUR PERSONALITY:
+- You call people "bestie", "babe", "honey" naturally
+- You use phrases like "okay so here's the tea", "I'm not gonna lie", "let me be real with you"
+- You're supportive but never sugarcoat — you give the truth with love
+- You notice details others miss — you're PERCEPTIVE
+- You've seen it all and have great instincts about people
+- You're funny without trying too hard
+- You use emojis sparingly but effectively 💅
+
+WHAT YOU NEVER DO:
+- Never break character or mention being an AI
+- Never be generic — always reference specific details from what they shared
+- Never be mean-spirited, even when delivering hard truths
+
+YOUR GOAL: Help people see their dating situations clearly, with honesty and love.
+`;
+
+const SEBASTIAN_ANALYSIS_PROMPT = `
+When someone shares screenshots or texts with you, you do a DEEP multi-pass analysis:
+
+PASS 1: Situation Classification
+Identify what type of situation this is:
+- First date / just met
+- Early talking stage (< 2 weeks)
+- Been talking a while (weeks/months)
+- Friends potentially becoming more
+- Ex reconnecting
+- Workplace/school crush
+- Dating app match
+- Long-distance situation
+- Situationship / undefined
+
+PASS 2: Evidence Collection
+Look for SPECIFIC details:
+- Timing & response patterns
+- Message length and effort
+- Who initiates and carries conversation
+- Questions asked (curiosity = interest)
+- Future planning language
+- Emoji and enthusiasm patterns
+- Compliments and personal questions
+
+PASS 3: Red Flag & Green Flag Detection
+- Mixed signals or inconsistency
+- Hot and cold behavior
+- Genuine engagement vs polite responses
+- Effort and initiative patterns
+
+PASS 4: Gap Analysis
+What's MISSING that you need to know to give accurate advice?
+`;
+
+// Sebastian Route 1: Analyze content and generate questions
+app.post("/sebastian/analyze", upload.array("files", 10), async (req, res) => {
+  try {
+    const textContent = req.body.text || "";
+    const files = req.files || [];
+
+    if (!textContent && files.length === 0) {
+      return res.status(400).json({ error: "Please provide screenshots or text to analyze" });
+    }
+
+    // Build the content array with any uploaded images
+    const content = [];
+
+    // Add images if present
+    for (const file of files) {
+      const imageData = fs.readFileSync(file.path);
+      const base64 = imageData.toString("base64");
+      const mediaType = file.mimetype || "image/jpeg";
+
+      content.push({
+        type: "image",
+        source: {
+          type: "base64",
+          media_type: mediaType,
+          data: base64,
+        },
+      });
+
+      // Clean up uploaded file
+      fs.unlinkSync(file.path);
+    }
+
+    // Add text prompt
+    content.push({
+      type: "text",
+      text: `Here's what someone shared with me about their situation:
+
+${textContent ? `Context they provided: "${textContent}"` : "They uploaded screenshots for you to analyze."}
+
+${files.length > 0 ? `They uploaded ${files.length} screenshot(s) of their conversations.` : ""}
+
+Do your deep analysis and give me:
+
+1. "situation_type": What stage/type is this? (e.g., "First Date", "Early Talking Stage", "Situationship", etc.)
+
+2. "observations": 4-6 specific things you noticed in what they shared. Be specific — reference actual details you can see.
+
+3. "initial_read": Your first impression in 2-3 sentences. In your Sebastian voice.
+
+4. "questions": Exactly 5 questions to ask them. Each question must:
+   - Be specific to THIS situation (reference what you saw)
+   - Fill in gaps that would change your verdict
+   - Have exactly 4 multiple choice options
+   - Be in your natural Sebastian voice
+
+Respond ONLY with valid JSON:
+{
+  "situation_type": "string",
+  "observations": ["obs1", "obs2", "obs3", "obs4"],
+  "initial_read": "string",
+  "questions": [
+    {"id": 1, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 2, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 3, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 4, "question": "string", "options": ["a", "b", "c", "d"]},
+    {"id": 5, "question": "string", "options": ["a", "b", "c", "d"]}
+  ]
+}`
+    });
+
+    const response = await client.messages.create({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 2000,
+      system: SEBASTIAN_PERSONA + "\n\n" + SEBASTIAN_ANALYSIS_PROMPT,
+      messages: [{ role: "user", content }],
+    });
+
+    const responseText = response.content[0].text;
+
+    let data;
+    try {
+      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+      data = JSON.parse(jsonMatch ? jsonMatch[0] : responseText);
+    } catch (parseError) {
+      console.error("Sebastian JSON parse error:", parseError);
+      console.error("Raw response:", responseText);
+      throw new Error("Failed to parse AI response");
+    }
+
+    res.json({ success: true, data });
+
+  } catch (error) {
+    console.error("Sebastian analyze error:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Sebastian Route 2: Get final verdict
+app.post("/sebastian/verdict", async (req, res) => {
+  try {
+    const { originalContent, initialRead, situationType, observations, questions, answers } = req.body;
+
+    if (!questions || !answers) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const qaText = questions.map((q, i) =>
+      `Q: ${q.question}\nA: ${answers[i]?.answer || "No answer"}`
+    ).join("\n\n");
+
+    const response = await client.messages.create({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 2000,
+      system: SEBASTIAN_PERSONA,
+      messages: [{
+        role: "user",
+        content: `Here's a situation I analyzed:
+
+**Situation Type:** ${situationType || "Unknown"}
+
+**What they shared:** ${originalContent || "Screenshots only"}
+
+**What I noticed:**
+${(observations || []).map(o => `- ${o}`).join("\n")}
+
+**My initial read:** ${initialRead || "N/A"}
+
+**Questions I asked and their answers:**
+${qaText}
+
+Now give me your FINAL VERDICT.
+
+Your verdict must be one of: YES, PROBABLY YES, MIXED SIGNALS, PROBABLY NOT, or NO
+
+Respond ONLY with valid JSON:
+{
+  "verdict": "YES|PROBABLY YES|MIXED SIGNALS|PROBABLY NOT|NO",
+  "headline": "A punchy headline in your Sebastian voice (e.g., 'Honey, they're INTO you!' or 'Bestie, we need to talk...')",
+  "the_tea": "2-3 paragraphs explaining your verdict. Reference specific things from the screenshots and their answers. Be honest but kind. Your full Sebastian voice.",
+  "green_flags": ["specific positive sign 1", "specific positive sign 2"],
+  "red_flags": ["specific concern 1", "specific concern 2"],
+  "sebastian_advice": "What should they actually DO next? Be specific and actionable. 2-3 sentences."
+}`
+      }],
+    });
+
+    const responseText = response.content[0].text;
+
+    let data;
+    try {
+      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+      data = JSON.parse(jsonMatch ? jsonMatch[0] : responseText);
+    } catch (parseError) {
+      console.error("Sebastian verdict JSON parse error:", parseError);
+      console.error("Raw response:", responseText);
+      throw new Error("Failed to parse AI response");
+    }
+
+    res.json({ success: true, data });
+
+  } catch (error) {
+    console.error("Sebastian verdict error:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// ============================================
 // HEALTH CHECK
 // ============================================
 app.get("/api/health", (req, res) => {
